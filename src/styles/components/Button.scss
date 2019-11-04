@@ -1,0 +1,35 @@
+@import '../mixins';
+@import '../variables';
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 14px 28px;
+    background-color: $BLACK;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 1px 4px 0 $BLACK;
+    transition: box-shadow 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;
+
+    &:hover {
+        box-shadow: 0 1px 8px 0 rgba($BLACK, 0.85);
+    }
+
+    &:active {
+        box-shadow: 0 1px 8px 0 rgba($BLACK, 0.85);
+        background-color: adjust-color($BLACK, $lightness: 8%);
+    }
+
+    &--disabled {
+        background-color: adjust-color($BLACK, $lightness: 60%);
+        box-shadow: 0 1px 4px 0 adjust-color($BLACK, $lightness: 60%);
+
+        &:hover, &:active {
+            box-shadow: 0 1px 8px 0 rgba(adjust-color($BLACK, $lightness: 60%), 0.85);
+            background-color: adjust-color($BLACK, $lightness: 60%);
+        }
+    }
+}
