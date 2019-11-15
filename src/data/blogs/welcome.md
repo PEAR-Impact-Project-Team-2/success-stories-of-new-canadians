@@ -1,5 +1,5 @@
 ---
-title: "Let's Get Started!"
+title: "Let's not get started!"
 description: 'Learn more about the project, and how you can make an impact to your community and yourself.'
 author: 'Frederic Pun'
 image: ../../assets/demo.jpeg
