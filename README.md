@@ -1,5 +1,4 @@
-# Pear Impact Project Starter Code
-For the Computer Science Enrichment Club of The University of Toronto Scaroborough (UTSC)
+# Project
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/48928b73-3a4d-4a44-9a75-fed5d005593f/deploy-status)](https://app.netlify.com/sites/csec-pear/deploys)
 
