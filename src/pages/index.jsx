@@ -38,6 +38,11 @@ const IndexPage = () => {
 
   return (
     <Page className='index'>
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>My Title</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
       <h1 className='index__title'>CSEC Pear Impact Project - Starter Code</h1>
       <p className='index__text'>Not an actual fruit...</p>
       <div className='index__cards'>
