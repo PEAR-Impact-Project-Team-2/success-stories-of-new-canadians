@@ -2,9 +2,9 @@
 templateKey: story-page
 title: John Doe from Iran
 date: 2017-01-04T15:04:10.000Z
-featuredpost: false
-featuredimage: src/assets/demo.jpg
 description: Coming to America
+featuredpost: false
+featuredimage: /assets/uploads/logotrial1.png
 tags:
   - inspirational
   - refugee
