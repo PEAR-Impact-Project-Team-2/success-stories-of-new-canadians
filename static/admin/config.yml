@@ -17,7 +17,7 @@ collections:
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., title.md
     fields: # fields for each document, usually in frontmatter
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-post"}
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-page"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text"}
