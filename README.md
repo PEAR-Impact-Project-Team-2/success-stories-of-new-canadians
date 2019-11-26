@@ -4,4 +4,4 @@
 ## Getting started
 Learn more via reading the markdown files in /src/data/blogs. For a live demo, or to read online instead, go to https://csec-pear.netlify.com
 
-Team 2
+https://immigrant-success-canada.netlify.com/
