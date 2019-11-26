@@ -1,34 +1,24 @@
-const { createFilePath } = require(`gatsby-source-filesystem`);
-const path = require(`path`);
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require(`path`)
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
-/**
- * Creates a slug in graphql
- */
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
+  const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `data/blogs` });
+    console.log(node.internal.type)
+    const slug = createFilePath({ node, getNode, basePath: `pages` })
     createNodeField({
       node,
       name: `slug`,
       value: slug,
-    });
+    })
   }
-};
+}
 
-/**
- * Creates a page from slug above
- */
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
-  const { data } = await graphql(`
+  const { createPage } = actions
+  const result = await graphql(`
     query {
-      allMarkdownRemark {
+      allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "story-page"}}}) {
         edges {
           node {
             fields {
@@ -38,17 +28,17 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
+  `)
 
-  data.allMarkdownRemark.edges.forEach(({ node }) => {
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`./src/templates/BlogPage/index.jsx`),
+      component: path.resolve(`./src/templates/story-page.js`),
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         slug: node.fields.slug,
       },
-    });
-  });
-};
+    })
+  })
+}

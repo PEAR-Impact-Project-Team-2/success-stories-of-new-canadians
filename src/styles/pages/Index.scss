@@ -1,7 +1,7 @@
 @import '../index';
 
 .index {
-    & .page__content {
+    .page__content {
         display: flex;
         flex-direction: column;
         justify-content: center;

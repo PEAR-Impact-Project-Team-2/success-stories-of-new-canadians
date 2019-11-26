@@ -16,10 +16,26 @@ collections:
     folder: "src/data/stories" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., title.md
-    fields: # The fields for each document, usually in front matter
-      - {label: "Layout", name: "layout", widget: "hidden", default: "stories"}
+    fields: # fields for each document, usually in frontmatter
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-post"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
+      - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Tags", name: "tags", widget: "list"}
+      
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/data/index-page.md"
+        label: "Landing Page"
+        name: "index"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
+          - {label: Title, name: title, widget: string}
+          - {label: Image, name: image, widget: image}
+          - {label: Heading, name: heading, widget: string}
+          - {label: Subheading, name: subheading, widget: string}
+          - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
