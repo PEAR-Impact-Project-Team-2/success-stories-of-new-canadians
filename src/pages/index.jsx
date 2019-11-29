@@ -44,7 +44,7 @@ const IndexPage = () => {
         {
           allMarkdownRemark.edges.map(({ node }, i) => (
             <Card className='index__card' key={ i }>
-              <CardMedia style={{ height: '260px' }} image={ node.frontmatter.image.publicURL }/>
+              <CardMedia style={{ height: '260px' }}/>
               <CardHeader
                 title={ node.frontmatter.title }
                 subheader= { node.frontmatter.description }
