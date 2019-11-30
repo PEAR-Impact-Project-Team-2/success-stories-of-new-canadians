@@ -37,13 +37,16 @@ const ContactPage = () => {
   const openSubs = () => {
       setSubOpen(true);
   }
+
+  const retrieveEmail = (e) => {
+    console.log(e.target.value)
+  }
   
   const closeSubs = () => {
       setSubOpen(false)
   }
 
   const openThanks = () => {
-      
       closeSubs()
       setThanksOpen(true)
   }

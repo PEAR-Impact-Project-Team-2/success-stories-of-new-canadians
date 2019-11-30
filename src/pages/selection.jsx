@@ -14,7 +14,7 @@ import { DynamicCheckbox } from '@components';
 // Drawer
 import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
 // Drawer
-import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@material-ui/core'
+import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
 // Cards
 import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
 import { NavigationIcon } from '@material-ui/icons'
@@ -377,43 +377,28 @@ const { allMarkdownRemark } = useStaticQuery(query);
   const rootSettings = useStyles()
 
   return (
-    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-    <List
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Results
-        </ListSubheader>
-    }
-    className={rootSettings.root}>
-
-      {
-        allMarkdownRemark.edges.map(({ node }, i) => (
-          // <SelectionCard
-          //    title={node.frontmatter.title}
-          //    desc={node.frontmatter.description}
-          //    tags={['Tag1']}>
-
-          //    </SelectionCard> 
-           console.log(node.frontmatter.title + ' ' + node.frontmatter.country + ' ' + node.frontmatter.tags)
-         ))
-      } 
+    <div style={{display: 'flex', flexWrap:'wrap', alignContent:'space-between', maxWidth: '1500px'}} className={rootSettings.root}>
+        {allMarkdownRemark.edges.map(({ node }, i) => (
+          <SelectionCard
+            title={node.frontmatter.title}
+            desc={node.frontmatter.description}
+            tags={['Tag1']}>
+              {console.log(node.frontmatter.title + ' ' + node.frontmatter.country + ' ' + node.frontmatter.tags)}
+          </SelectionCard> 
+        ))}
       {
 
-        allMarkdownRemark.edges.filter(({ node }, i) => (
-          node.frontmatter.country != null && node.frontmatter.tags != null &&
-          (props.countryFilter.includes(node.frontmatter.country) || props.includeAllCountries) &&
-          (props.tagFilter.includes(node.frontmatter.tags) || props.includeAllTags))).map(({node}, i) => (
-           <SelectionCard
-             title={node.frontmatter.title}
-             desc={node.frontmatter.description}
-             tags={['Tag1']}>             
-             </SelectionCard>
-      
-         )) 
-
+        // allMarkdownRemark.edges.filter(({ node }, i) => (
+        //   node.frontmatter.country != null && node.frontmatter.tags != null &&
+        //   (props.countryFilter.includes(node.frontmatter.country) || props.includeAllCountries) &&
+        //   (props.tagFilter.includes(node.frontmatter.tags) || props.includeAllTags))).map(({node}, i) => (
+        //    <SelectionCard
+        //      title={node.frontmatter.title}
+        //      desc={node.frontmatter.description}
+        //      tags={['Tag1']}>             
+        //      </SelectionCard>
+        //  )) 
       }
-
-    </List>
     </div>
   )
 }
