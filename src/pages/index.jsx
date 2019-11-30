@@ -65,6 +65,9 @@ const IndexPage = () => {
       <Button className='index__button' to='/welcome'>
         Let's Get Started
       </Button>
+      <Button className='selection__button' to='/selection'>
+        Select A Story
+      </Button> 
     </Page>
   );
 };
