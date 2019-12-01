@@ -1,0 +1,102 @@
+@import '../mixins';
+@import '../variables';
+
+.BlogHeader {
+    font-family: $FONT;
+    color: white;
+    display: flex;
+    
+    &__Title {
+        height: 60vh;
+        width: 40vw;
+        background: rgb(0,0,0);
+    }
+
+    &__TitleText {
+        padding: 16vh 0vw 16vh 8vw;
+    }
+
+    &__Image {
+        height: 60vh;
+        width: 60vw;
+        background-image: url("https://azharlaher.com/wp-content/uploads/2019/10/img-3298_orig-1024x576.jpg");
+        background-size:cover
+    }
+
+    &__ImageGradient {
+        height: 60vh;
+        width: 60vw;
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 40%);
+    }
+
+    &__tag {
+        margin-right: 20px;
+        font-weight: bold;
+        color: rgba($BLACK, 0.6);
+
+        & > strong {
+            color: white;
+        }
+    }
+
+    &__button {
+        margin-right: 20px;
+    }
+
+    h1 {
+        color: $PRIMARY
+    }
+
+    li {
+        color: white
+    }
+
+}
+
+.Image {
+    height: 75vh;
+    width: 60vw;
+    background-color: dimgray
+}
+
+@media screen and (orientation:portrait) {
+    .BlogHeader {  
+        &__Title{
+            height: 40vh;
+        }
+        &__Image{
+            height: 40vh;
+        }
+        &__ImageGradient {
+            height: 40vh
+        }
+        &__TitleText {
+            padding: 50px 40px 20px 20px
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .BlogHeader {
+        flex-direction:column;
+        
+        &__Title {
+            width: 100vw;
+            height: 300px;
+        }
+        &__TitleText {
+            padding: 25px 25px 25px 25px
+        }
+        &__Image {
+            width: 100vw;
+            height: 100vw;
+            background-size:cover
+        }
+        &__ImageGradient {
+            width: 100vw;
+            height: 100vw;
+            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 40%);
+        }
+    }
+}
