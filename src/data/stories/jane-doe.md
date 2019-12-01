@@ -1,6 +1,7 @@
 ---
 templateKey: story-page
 title: Jane Doe
+country: Germany
 date: 2019-11-26T04:13:30.895Z
 description: asdankb vasdnekfl dlqnlasd
 featuredpost: true

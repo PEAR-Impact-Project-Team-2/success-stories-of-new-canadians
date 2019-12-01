@@ -4,23 +4,24 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types'
+import Layout from '@layouts/Layout'
 import { useStaticQuery, graphql, navigate } from 'gatsby';
-import { Card, CardHeader, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
+import { Card, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { withSeo } from '@utils';
-import { Page } from '@layouts';
-import { DynamicCheckbox } from '@components';
+import { withSeo } from './../utils/withSeo';
+import { Page } from './../layouts/Page';
 // Drawer
 import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
 // Drawer
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
 // Cards
 import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
-import { NavigationIcon } from '@material-ui/icons'
 // Drawer 
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
-
+import { blogQuery } from './blogpagequery';
+import { BlogPageTemplate } from './blogpagequery'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -48,74 +49,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 345,
   },
 })); 
-
-/*
-function SortByMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const options = [ 'Filter by Name', 'Filter by Tag', 'Filter by Country', 'Filter by Date' ]
-
-  return (
-    <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        ADD FILTERS
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}></MenuItem>
-        <div>
-        {options.map( item => {
-          return (
-            <div>
-            <Checkbox label={item} onClick={handleClose}></Checkbox>{item}
-            </div>
-          );
-        })}
-        </div>
-      </Menu>
-    </div>
-  );
-}
-
-function SortNameMenu() {
-  const classes = useStyles();
-  const [order, setOrder] = React.useState('');
-
-  const handleChange = event => {
-    setOrder(event.target.value);
-  };
-
-  return (
-    <div>
-      {
-        <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Sorting</InputLabel>
-        <Select
-          labelId="name-sorting-select-label"
-          id="name-sorting-select"
-          value={order}
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>A to Z</MenuItem>
-          <MenuItem value={20}>Z to A</MenuItem>
-        </Select>
-        </FormControl>
-      }
-    </div>
-    
-  );
-} */
 
 function FilterDrawer() {
 
@@ -318,8 +251,12 @@ function FilterDrawer() {
   );
 }
 
-const SelectionPage = () => (
+const SelectionPage = ( {data} ) => {
     
+    const { frontmatter } = data.markdownRemark
+
+    return (
+
     <Page className='selection'>
       <h1 className='selection__title'>View all our stories!</h1>
       <p className='index__text'>Filter through a list of stories by filtering below</p>
@@ -338,33 +275,12 @@ const SelectionPage = () => (
 
       </div>
     </Page>
-);
+    )
+    }
 
 // Displays results from filtering 
 function FilterResults(props)
 {
-  const query = graphql`
-    {
-      allMarkdownRemark(sort: { fields: frontmatter___order, order: ASC }) {
-        edges {
-          node {
-            frontmatter {
-              title
-              image {
-                publicURL
-              }
-              description
-            }
-            fields {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `;
-
-const { allMarkdownRemark } = useStaticQuery(query);
   const tagStyles = makeStyles(theme => ({
     margin: {
       margin: theme.spacing(5),
@@ -376,30 +292,43 @@ const { allMarkdownRemark } = useStaticQuery(query);
 
   const rootSettings = useStyles()
 
-  return (
-    <div style={{display: 'flex', flexWrap:'wrap', alignContent:'space-between', maxWidth: '1500px'}} className={rootSettings.root}>
-        {allMarkdownRemark.edges.map(({ node }, i) => (
-          <SelectionCard
-            title={node.frontmatter.title}
-            desc={node.frontmatter.description}
-            tags={['Tag1']}>
-              {console.log(node.frontmatter.title + ' ' + node.frontmatter.country + ' ' + node.frontmatter.tags)}
-          </SelectionCard> 
-        ))}
-      {
+  const BlogPage = ({ data }) => {
+    const { frontmatter } = data.markdownRemark
+  
+    return (
+      <div>
+        { frontmatter.map( item => 
+          (
+              <SelectionCard
+              title={item.title}
+                      desc={item.description}
+                      tags={['Tag1']}>
+              </SelectionCard>
+          )) }
+          {
+            frontmatter.map( item => console.log(item.title))
+          }
+      </div>
+    )
+  }
 
-        // allMarkdownRemark.edges.filter(({ node }, i) => (
-        //   node.frontmatter.country != null && node.frontmatter.tags != null &&
-        //   (props.countryFilter.includes(node.frontmatter.country) || props.includeAllCountries) &&
-        //   (props.tagFilter.includes(node.frontmatter.tags) || props.includeAllTags))).map(({node}, i) => (
-        //    <SelectionCard
-        //      title={node.frontmatter.title}
-        //      desc={node.frontmatter.description}
-        //      tags={['Tag1']}>             
-        //      </SelectionCard>
-        //  )) 
-      }
-    </div>
+  return (
+    <BlogPage>
+      
+    </BlogPage>
+    // <div style={{display: 'flex', flexWrap:'wrap', alignContent:'space-between', maxWidth: '1500px'}} className={rootSettings.root}>
+    //     {allMarkdownRemark.edges.map(({ node }, i) => (
+    //       <SelectionCard
+    //         title={node.frontmatter.title}
+    //         desc={node.frontmatter.description}
+    //         tags={['Tag1']}>
+    //           {console.log(node.frontmatter.title + ' ' + node.frontmatter.country + ' ' + node.frontmatter.tags)}
+    //       </SelectionCard> 
+    //     ))}
+    //   {
+
+    //   }
+    // </div>
   )
 }
 

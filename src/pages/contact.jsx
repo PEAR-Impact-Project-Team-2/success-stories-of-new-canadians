@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql, navigate } from 'gatsby';
-import { withSeo } from '@utils';
-import { Page } from '@layouts';
+import { withSeo } from './../utils/withSeo';
+import { Page } from './../layouts/Page';
 import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, TextField} from '@material-ui/core'
 
 /** Get all markdown pages in ascending order */
@@ -10,14 +10,12 @@ import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogConten
  */
 const query = graphql`
   {
-    allMarkdownRemark(sort: { fields: frontmatter___order, order: ASC }) {
+    allMarkdownRemark(sort: { fields: frontmatter___title, order: ASC }) {
       edges {
         node {
           frontmatter {
             title
-            image {
-              publicURL
-            }
+            image
             description
           }
           fields {

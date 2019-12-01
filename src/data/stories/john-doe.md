@@ -1,6 +1,7 @@
 ---
 templateKey: story-page
-title: John Doe from Iran
+title: John Doe
+country: Ireland
 date: 2017-01-04T15:04:10.000Z
 description: Coming to America
 featuredpost: false
