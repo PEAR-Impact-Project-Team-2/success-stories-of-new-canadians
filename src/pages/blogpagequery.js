@@ -6,7 +6,7 @@ import Img from "gatsby-image"
 import Layout from '@layouts/Layout'
 import '@styles/pages/Index.scss'
 //import Features from '../components/Features'
-//import BlogRoll from '../components/BlogRoll' <Img fluid={image.childImageSharp.fluid}></Img>
+//import SelectionRoll from '../components/SelectionRoll' <Img fluid={image.childImageSharp.fluid}></Img>
 
 export const BlogPageTemplate = ({
   title
@@ -24,7 +24,7 @@ BlogPageTemplate.propTypes = {
   title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
-const BlogPage = ({ data }) => {
+const SelectionPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
 
   return (
@@ -36,7 +36,7 @@ const BlogPage = ({ data }) => {
   )
 }
 
-BlogPage.propTypes = {
+BlogPageTemplate.propTypes = {
   data: PropTypes.shape({
       markdownRemark: PropTypes.shape({
           frontmatter: PropTypes.object,
@@ -45,7 +45,7 @@ BlogPage.propTypes = {
 }
 
 
-export const blogQuery = graphql`
+export const selectionQuery = graphql`
 query BlogPageTemplate {
     markdownRemark(frontmatter: {templateKey: {eq: "story-page"}}) {
       frontmatter {
@@ -61,4 +61,4 @@ query BlogPageTemplate {
   }
 `
 
-export default BlogPage
+export default SelectionPage

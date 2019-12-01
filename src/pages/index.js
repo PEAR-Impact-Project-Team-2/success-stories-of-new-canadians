@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { Button } from '../components/Button'
 import Img from "gatsby-image"
 
 import Layout from '@layouts/Layout'
@@ -38,6 +39,7 @@ const IndexPage = ({ data }) => {
     const { frontmatter } = data.markdownRemark
 
     return (
+        <div>
         <Layout>
             <IndexPageTemplate
                 image={frontmatter.image}
@@ -47,6 +49,10 @@ const IndexPage = ({ data }) => {
                 aboutus={frontmatter.aboutus}
             />
         </Layout>
+        <Button className='index__button' to='/selection'>
+            Discover Stories
+        </Button>
+        </div>
     )
 }
 
