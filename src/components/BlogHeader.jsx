@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import '@styles/components/BlogHeader.scss';
 
-export const BlogHeader = ({ title, description, author, date, image }) => (
+export const BlogHeader = ({ title, description, author, date, image }) => ( 
     <div className={`BlogHeader`}>
         <div className={`BlogHeader__Title`}>
             <div className={`BlogHeader__TitleText`}>
@@ -33,7 +33,7 @@ export const BlogHeader = ({ title, description, author, date, image }) => (
             </div>
         </div>
 
-        <div className={`BlogHeader__Image`}>
+        <div className={`BlogHeader__Image`} style={{ backgroundImage: `url(${image.publicURL})` }}>
             <div className={`BlogHeader__ImageGradient`}></div>
         </div>
     </div>

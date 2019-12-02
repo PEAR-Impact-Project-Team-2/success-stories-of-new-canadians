@@ -46,6 +46,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        image {
+          publicURL
+        }
         description
         author
         order
