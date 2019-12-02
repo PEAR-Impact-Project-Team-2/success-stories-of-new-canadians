@@ -49,7 +49,7 @@ const IndexPage = ({ data }) => {
                 aboutus={frontmatter.aboutus}
             />
         </Layout>
-        <Button className='index__button' to='/selection'>
+        <Button className='index__button' to='/selectionTest'>
             Discover Stories
         </Button>
         </div>
