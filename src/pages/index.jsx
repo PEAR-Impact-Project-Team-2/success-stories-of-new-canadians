@@ -8,7 +8,8 @@ import { useStaticQuery, graphql, navigate } from 'gatsby';
 import { withSeo } from '@utils';
 import { Page } from '@layouts';
 import { Button } from '@components';
-import { Welcome } from '@components';
+// NOTICE: Welcome does not exist
+// import { Welcome } from '@components';
 import '@styles/pages/Index.scss';
 
 /** Get all markdown pages in ascending order */
@@ -40,7 +41,7 @@ const IndexPage = () => {
   return (
     <Page className='index'>
       <h1 className='index__title'>CSEC Pear Impact Project - Starter Code</h1>
-      <Welcome />
+      {/*  <Welcome />  WHERE DID THIS GO? THE COMPONENT IS MISSING */}
       <p className='index__text'>Not an actual fruit...</p>
       <div className='index__cards'>
         {
