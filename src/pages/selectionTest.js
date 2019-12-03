@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import { Grid, Button } from '@material-ui/core'
 import { Page } from './../layouts/Page';
-import Img from "gatsby-image"
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Card, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
@@ -12,35 +11,34 @@ import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Colla
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
-import Layout from '@layouts/Layout'
 import '@styles/pages/Index.scss'
-//import Features from '../components/Features'
-//import BlogRoll from '../components/BlogRoll' <Img fluid={image.childImageSharp.fluid}></Img>
 
 const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 160,
+      minWidth: 250,
+      maxHeight: 100
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
     list: {
-      width: 200,
+      width: 270,
     },
     fullList: {
       width: 'auto',
     },
     root: {
       width: '100%',
-      maxWidth: 360,
+      maxWidth: 250,
+      maxHeight: 100, 
       backgroundColor: theme.palette.background.paper,
     },
     nested: {
       paddingLeft: theme.spacing(4),
     },
     card: {
-      maxWidth: 345,
+      maxWidth: 550,
     },
   })); 
   
@@ -51,31 +49,39 @@ function FilterDrawer(props) {
   
     const [nameOpen, setNameOpen] = React.useState(true);
     const [countryOpen, setCountryOpen] = React.useState(false);
-    const [tagOpen, setTagOpen] = React.useState(false);  
-  
-    const [filterNameSetting, setNameSetting] = React.useState('A to Z');
-    const [filterCountrySetting, setCountrySetting] = React.useState(['Include All']);
-    const [filterTagSetting, setTagSetting] = React.useState([]); 
-    const [filterDateSetting, setFilterDateSetting] = React.useState('Newest First');
-  
+    const [tagOpen, setTagOpen] = React.useState(false);
+    const [dateOpen, setDateOpen] = React.useState(false);
+    
     // Possible Options
     const nameSorting = ['A to Z', 'Z to A']
     const countries = ['England', 'Scotland', 'Wales', 'Ireland', 'Germany'] 
-    var tags = ['Tag1', 'Tag2', 'Tag3']
-    var checkboxes = []; 
+    const dates = ['Newest First', 'Oldest First']
+  
+    const [filterNameSetting, setNameSetting] = React.useState(nameSorting[0]);
+    const [filterCountrySetting, setCountrySetting] = React.useState(['Include All']);
+    const [filterTagSetting, setTagSetting] = React.useState(props.tags); 
+    const [filterDateSetting, setFilterDateSetting] = React.useState(dates[0]);
+    const [update, setUpdate] = React.useState(false); 
   
     const handleClick = (e) => {
       if (e === 0) setNameOpen(!nameOpen);
       else if (e === 1) setCountryOpen(!countryOpen);
       else if (e === 2) setTagOpen(!tagOpen); 
+      else if (e === 3) setDateOpen(!dateOpen); 
     };
   
     const updateFilter = () => {
       console.log("refresh the filter.")
+      setUpdate(!update); 
     }
   
     const handleNameChange = event => {
       setNameSetting(event.target.value);
+      updateFilter(); 
+    }
+
+    const handleDateChange = event => {
+      setFilterDateSetting(event.target.value); 
       updateFilter(); 
     }
   
@@ -106,7 +112,7 @@ function FilterDrawer(props) {
   
       if (event.target.name === 'Include All')  {
         setTagOpen (!event.target.checked); 
-        if (event.target.checked) setTagSetting(tags); 
+        if (event.target.checked) setTagSetting(props.tags); 
         else setTagSetting([]); 
       }
       // if box is no longer selected
@@ -134,22 +140,57 @@ function FilterDrawer(props) {
   
       setDrawerState({ ...drawerState, [side]: open });
     };
-  
+   
+    function sortNamesAlphabetically( a, b ) {
+      if ( a.node.frontmatter.title < b.node.frontmatter.title){
+        return (filterNameSetting === nameSorting[0]) ? -1 : 1;
+      }
+      if ( a.node.frontmatter.title > b.node.frontmatter.title ){
+        return (filterNameSetting === nameSorting[0]) ? 1 : -1;
+      }
+      return 0;
+    }
+
+    function sortDates( a, b ) {
+      if ( a.node.frontmatter.date < b.node.frontmatter.date){
+        return (filterDateSetting === dates[0]) ? -1 : 1;
+      }
+      if ( a.node.frontmatter.date > b.node.frontmatter.date ){
+        return (filterDateSetting === dates[0]) ? 1 : -1;
+      }
+      return 0;
+    }
+
+    function filterTags(value)
+    { 
+      let b = false; 
+      if (filterTagSetting === props.tags) return true;
+      value.node.frontmatter.tags.map( tagCheck => 
+        {
+          if (filterTagSetting.includes(tagCheck)) 
+          {
+            b = true;
+            return; 
+          } 
+        }); 
+      return b; 
+    }
+
     const sideList = side => (
       <div
         className={nestedClasses.list}
       >
         <List>
           <List
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-          subheader={
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+            subheader= {
             <ListSubheader component="div" id="nested-list-subheader">
               Filter Stories
             </ListSubheader>
           }
           className={nestedClasses.root}
-        >
+          >
           { /* Name Filtering */ }
           <ListItem button onClick={handleClick.bind(this, 0)}>
             <ListItemText primary="by Name" />
@@ -157,15 +198,35 @@ function FilterDrawer(props) {
           </ListItem>
           <Collapse in={nameOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-  
+              <FormControl component="fieldset" className={nestedClasses.formControl}>
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup aria-label="name" name="name1" value={filterNameSetting} onChange={handleNameChange}>
+                  {nameSorting.map( item => {
+                    return (
+                    <ListItem button className={nestedClasses.nested}>
+                      <FormControlLabel value={item} control={<Radio />} label={item} />
+                    </ListItem>
+                    )
+                  })}
+                  </RadioGroup>
+              </FormControl>
+            </List>
+          </Collapse> 
+
+          { /* Date Filtering */ }
+          <ListItem button onClick={handleClick.bind(this, 3)}>
+            <ListItemText primary="by Date Added" />
+            {dateOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={dateOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
             <FormControl component="fieldset" className={nestedClasses.formControl}>
               <FormLabel component="legend"></FormLabel>
-              <RadioGroup aria-label="name" name="name1" value={filterNameSetting} onChange={handleNameChange}>
-  
-                {nameSorting.map( item => {
+              <RadioGroup aria-label="name" name="name1" value={filterDateSetting} onChange={handleDateChange}>
+                {dates.map( item => {
                   return (
                   <ListItem button className={nestedClasses.nested}>
-                    <FormControlLabel value={item} control={<Radio />} label={item} />
+                    <FormControlLabel className={nestedClasses.formControlLabel} value={item} control={<Radio />} label={item} />
                   </ListItem>
                   )
                 })}
@@ -214,12 +275,12 @@ function FilterDrawer(props) {
           <Collapse in={tagOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding> 
   
-            { tags.map(
-              item => 
+            { props.tags.map(
+              item => { return (
               <ListItem button className={nestedClasses.nested}>
-              <Checkbox name={item} label={item} onClick={handleTagChange} ></Checkbox>{item}
+              <Checkbox name={item} label={item} onClick={handleTagChange} defaultChecked={filterTagSetting.includes(item)}></Checkbox>{item}
               </ListItem>
-              )
+              ) } )
             }
             </List>
           </Collapse> 
@@ -229,12 +290,13 @@ function FilterDrawer(props) {
     );
   
     return (
-        <div>
+      <main alignItems="center">
+        <div alignItems="center">
             <Button onClick={toggleDrawer('left', true)}>Filter Options</Button>
+
             <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
                 {sideList('left')}
             </Drawer>
-
             <Grid
                 container
                 direction="row"
@@ -243,30 +305,31 @@ function FilterDrawer(props) {
             > 
                 <div style={{display: 'flex', flexWrap:'wrap', alignContent:'space-between', maxWidth: '1500px'}} className={nestedClasses.root}>
                     {props.edges.filter(({node}) => 
-                        (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen) &&
-                        (!tagOpen)
-                    ).length > 0 ? 
+                        (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen)
+                    ).filter(filterTags).length > 0 ? 
                     <div>
                         { props.edges.filter(({node}) => 
-                            (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen) &&
-                            (!tagOpen)
-                            ).map(({ node }, i) => (
+                            (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen)
+                            ).filter(filterTags).sort(sortNamesAlphabetically).sort(sortDates).map(({ node }, i) => (
                                 <SelectionCard
                                     key={i}
                                     frontmatter={node.frontmatter}>
-                                    {console.log(node.frontmatter.title + ' ' + node.frontmatter.country + ' ' + node.frontmatter.tags)}
                                 </SelectionCard> 
                         )) }
                     </div> : 
-                    <h1>
+                    <h3>
                         No results found for filter settings.
-                    </h1>}
+                    </h3>}
                 </div> 
 
             </Grid> 
     </div>
+    </main>
     );
   }
+
+
+  
 
 function SelectionCard(props) {
 
@@ -279,10 +342,16 @@ function SelectionCard(props) {
             component="img"
             alt="Sample Story"
             height="225"
-            image="/static/demo-f362adb686ed8fa86a8c5e96437a264c.jpeg"
+            image={props.frontmatter.featuredimage}
             title="Sample Story"
           />
           <CardContent>
+            { 
+              (props.frontmatter.featuredpost ? 
+                <Typography gutterBottom variant="h4" component="h3">
+                  Featured post
+                </Typography> : <></>)
+            }
             <Typography gutterBottom variant="h5" component="h2">
               {props.frontmatter.title}
             </Typography>
@@ -292,7 +361,8 @@ function SelectionCard(props) {
             <Typography variant="body2" color="textSecondary" component="p">
               {props.frontmatter.description}
             </Typography>
-            
+            <Grid
+              spacing={5}>
             {
               props.frontmatter.tags.map( tagText => 
                 <Fab
@@ -300,12 +370,15 @@ function SelectionCard(props) {
                   size="small"
                   color="primary"
                   aria-label="add"
+                  marginLeft={5}
+                  marginRgiht={5}
                 >
                   {tagText}
                 </Fab>
               )  
   
             }
+            </Grid>
           </CardContent>
         </CardActionArea>
         <CardActions>
@@ -333,6 +406,18 @@ SelectionPageTemplate.propTypes = {
   title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
+function GenerateTags(edges) {
+  let t = [];
+  edges.map( ({node}) => 
+    {
+      node.frontmatter.tags.map(storyTag => {
+        if (!t.includes(storyTag))
+        t.push(storyTag) 
+      })
+    })
+  return t;
+}
+
 const SelectionPage = ( { data } ) => {
 
     const  { allMarkdownRemark } = data 
@@ -349,11 +434,9 @@ const SelectionPage = ( { data } ) => {
     </div>
     { /* Filter Row */ }
       <FilterDrawer
-        className='temporary'
-        edges={allMarkdownRemark.edges}> 
+        edges={allMarkdownRemark.edges}
+        tags={GenerateTags(allMarkdownRemark.edges)}>
       </FilterDrawer>
-
-    
   </Page>
   )
 }
