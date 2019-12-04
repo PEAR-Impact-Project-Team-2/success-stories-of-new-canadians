@@ -1,7 +1,9 @@
 @import '../mixins';
 @import '../variables';
 
+
 .blog {
+
     &__header {
         margin-bottom: 20px;
         border-bottom: 1.5px solid rgba($BLACK, 0.1);
@@ -78,6 +80,70 @@
     }
 }
 
+.content {
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh; 
+    width:100vw; 
+    padding: 100px 20vw;
+    box-sizing: border-box;
+
+    &__paragraph {
+        width: 50vw;
+        box-sizing: border-box;
+
+        & p, & ul, & table {
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        & h2, & h3, & h4, & h5, & h6 {
+            margin-bottom: 5px;
+        }
+
+        & td {
+            padding-right: 20px;
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+
+        & th {
+            border-bottom: 1.5px solid $BLACK;
+        }
+
+        & a {
+            transition: color 0.2s ease-in-out 0s;
+            color: $PRIMARY;
+            &:hover {
+                color: adjust-color($PRIMARY, $lightness: -20%);
+            }
+
+            &:active {
+                color: adjust-color($PRIMARY, $lightness: -40%);
+            }
+        }
+
+        img {
+            width: 50vw;
+        }
+    }
+}
+
+@media screen and (orientation:portrait) {
+    .content {
+        padding: 50px 10vw;
+        &__paragraph {
+            width: 80vw;
+        }
+
+        img {
+            width: 80vw;
+        }
+    }
+}
+
 @media screen and (max-width: 720px) {
     .blog {
         &__footer {
@@ -86,6 +152,17 @@
         &__button {
             margin: 0 0 10px;
             width: 100%;
+        }
+    }
+
+    .content {
+        padding: 50px 5vw;
+        &__paragraph {
+            width: 90vw;
+        }
+
+        img {
+            width: 90vw;
         }
     }
 }
