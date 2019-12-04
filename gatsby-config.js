@@ -11,22 +11,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name:`images`,
         path: `${__dirname}/src/assets`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-stories`,
+        name: `markdown`,
         path: `${__dirname}/src/data/stories`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `markdown-pages`,
-        path: `${__dirname}/src/data`,
       },
     },
     {
@@ -41,7 +33,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-netlify-cms`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
