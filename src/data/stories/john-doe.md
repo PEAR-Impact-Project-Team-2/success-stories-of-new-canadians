@@ -5,6 +5,7 @@ date: 2017-01-04T15:04:10.000Z
 featuredpost: false
 featuredimage: src/assets/demo.jpg
 description: Coming to America
+image: ../../assets/demo.jpeg
 tags:
   - inspirational
   - refugee
