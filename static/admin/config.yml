@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: netlifycms-test
+  branch: master
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
@@ -16,6 +16,7 @@ collections:
     folder: "src/data/stories" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., title.md
+<<<<<<< HEAD
     fields: # fields for each document, usually in frontmatter
 <<<<<<< HEAD
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-post"}
@@ -47,3 +48,12 @@ collections:
 =======
           - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
 >>>>>>> 909dc51c7a643226d5332c172dc753f68a671625
+=======
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "stories"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
+      - {label: "Body", name: "body", widget: "markdown"}
+>>>>>>> parent of 909dc51... Update config.yml 
