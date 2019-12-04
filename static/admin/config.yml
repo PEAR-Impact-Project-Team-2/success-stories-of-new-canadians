@@ -19,11 +19,7 @@ collections:
 <<<<<<< HEAD
 <<<<<<< HEAD
     fields: # fields for each document, usually in frontmatter
-<<<<<<< HEAD
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-post"}
-=======
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-page"}
->>>>>>> 909dc51c7a643226d5332c172dc753f68a671625
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text"}
@@ -45,6 +41,7 @@ collections:
           - {label: Heading, name: heading, widget: string}
           - {label: Subheading, name: subheading, widget: string}
 <<<<<<< HEAD
+<<<<<<< HEAD
           - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
 =======
           - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
@@ -67,3 +64,6 @@ collections:
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
       - {label: "Body", name: "body", widget: "markdown"}
 >>>>>>> parent of 909dc51... Update config.yml 
+=======
+          - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
+>>>>>>> parent of e33dfa6... merging local changes
