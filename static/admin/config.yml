@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: netlifycms-test
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
@@ -17,7 +17,11 @@ collections:
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., title.md
     fields: # fields for each document, usually in frontmatter
+<<<<<<< HEAD
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-post"}
+=======
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-page"}
+>>>>>>> 909dc51c7a643226d5332c172dc753f68a671625
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text"}
@@ -38,4 +42,8 @@ collections:
           - {label: Image, name: image, widget: image}
           - {label: Heading, name: heading, widget: string}
           - {label: Subheading, name: subheading, widget: string}
+<<<<<<< HEAD
           - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
+=======
+          - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
+>>>>>>> 909dc51c7a643226d5332c172dc753f68a671625
