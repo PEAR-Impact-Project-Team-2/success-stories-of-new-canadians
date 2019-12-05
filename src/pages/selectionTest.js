@@ -32,13 +32,18 @@ const useStyles = makeStyles(theme => ({
       maxWidth: 1500,
       maxHeight: 1300, 
       backgroundColor: 'white', //theme.palette.background.paper,
+      justifyItems: 'center'
+    },
+    grid: {
+      backgroundColor: 'blue',
+      justifyItems: 'center'
     },
 
     nested: {
       paddingLeft: theme.spacing(4),
     },
     card: {
-      minWidth: 250,
+      minWidth: 500,
       marginRight: '5px',
       marginLeft: '5px',
       marginTop: '5px',
@@ -47,7 +52,8 @@ const useStyles = makeStyles(theme => ({
     },
     resultsBox: {
       display: 'flex',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
+      justifyContent: 'center',
     },
     button: {
       backgroundColor: 'red',
@@ -66,7 +72,14 @@ const useStyles = makeStyles(theme => ({
       flexWrap: 'wrap'
     },
     cardActions: {
-      justifyContent: 'center'
+      justifyContent: 'center',
+      bottom: '0%'
+    },
+    buttonSection: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignContent: 'center'
     }
   })); 
   
@@ -292,8 +305,8 @@ function FilterDrawer(props) {
     );
   
     return (
-      <main >
-        <div>
+      <main>
+        <div justify='center' className={nestedClasses.buttonAndResults}>
             <Button className={nestedClasses.button} onClick={toggleDrawer('left', true)}>Filter Options</Button>
 
             <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
@@ -302,7 +315,7 @@ function FilterDrawer(props) {
             <Grid
                 container
                 direction="row"
-                justify="left"
+                justify="center"
                 alignItems="center"              
             > 
                 <div className={nestedClasses.root}>
@@ -343,7 +356,6 @@ function SelectionCard(props) {
             component="img"
             alt="Sample Story"
             height="225"
-            maxWidth='250'
             image={props.frontmatter.featuredimage}
             title="Sample Story"
           />
@@ -364,7 +376,11 @@ function SelectionCard(props) {
               {props.frontmatter.description}
             </Typography>
             <Grid
-              spacing={5}>
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            >
             {
               props.frontmatter.tags.map( tagText => 
                 <Fab
@@ -375,6 +391,7 @@ function SelectionCard(props) {
                   aria-label="add"
                   marginLeft={5}
                   marginRgiht={5}
+                  
                 >
                   {tagText}
                 </Fab>
