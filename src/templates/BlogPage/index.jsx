@@ -33,7 +33,6 @@ const BlogPage = ({ data }) => {
           className='content__paragraph'
           dangerouslySetInnerHTML={{ __html: html }}
         />
-        <Footer order={order} edges={data.allMarkdownRemark.edges} />
       </div>
 
     </div>
@@ -55,7 +54,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
       }
     }
-    allMarkdownRemark(sort: { fields: frontmatter___order, order: ASC }) {
+    allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}, filter: {frontmatter: {templateKey: {eq: "story-page"}}}) {
       edges {
         node {
           frontmatter {

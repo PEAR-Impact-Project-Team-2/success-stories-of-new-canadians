@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: netlifycms-test
+  branch: master
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
@@ -19,13 +19,13 @@ collections:
     fields: # fields for each document, usually in frontmatter
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "story-page"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
-      - {label: "Featured Image", name: "featuredimage", widget: image}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Country", name: "country", widget: "string"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Image", name: "image", widget: image}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Tags", name: "tags", widget: "list"}
-      
+      - {label: "Body", name: "body", widget: "markdown"}
   - name: "pages"
     label: "Pages"
     files:
