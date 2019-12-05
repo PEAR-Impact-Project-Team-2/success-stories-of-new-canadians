@@ -1,0 +1,26 @@
+@import './variables';
+@import './mixins';
+
+body {
+    font-family: $FONT;
+    background-color: rgba(0,0,0,0.1);
+    color: $BLACK;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+html {
+    height: 100%;
+}
+
+h1 {
+    color: $PRIMARY;
+}
+
+h2, h3, h4, h5, h6 {
+    color: adjust-color($BLACK, $lightness: 20%);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}

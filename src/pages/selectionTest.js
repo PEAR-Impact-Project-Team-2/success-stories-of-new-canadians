@@ -11,7 +11,7 @@ import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Colla
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
-import '@styles/pages/Index.scss'
+import '@styles/pages/SelectionTest.scss'
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -29,16 +29,45 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
       width: '100%',
-      maxWidth: 250,
-      maxHeight: 100, 
-      backgroundColor: theme.palette.background.paper,
+      maxWidth: 1500,
+      maxHeight: 1300, 
+      backgroundColor: 'white', //theme.palette.background.paper,
     },
+
     nested: {
       paddingLeft: theme.spacing(4),
     },
     card: {
-      maxWidth: 550,
+      minWidth: 250,
+      marginRight: '5px',
+      marginLeft: '5px',
+      marginTop: '5px',
+      marginBottom: '5px',
+      backgroundColor: 'white'
     },
+    resultsBox: {
+      display: 'flex',
+      flexWrap: 'wrap'
+    },
+    button: {
+      backgroundColor: 'red',
+      color: 'white',
+    },
+    fab: {
+      backgroundColor: 'red',
+      color: 'white',
+      marginRight: '5px',
+    },
+    cardContent: {
+      justifyContent: 'center'
+    },
+    description: {
+      display: 'flex',
+      flexWrap: 'wrap'
+    },
+    cardActions: {
+      justifyContent: 'center'
+    }
   })); 
   
 
@@ -51,8 +80,8 @@ function FilterDrawer(props) {
     const [tagOpen, setTagOpen] = React.useState(false);
     
     // Possible Options
-    const countries = ['England', 'Scotland', 'Wales', 'Ireland', 'Germany'] 
-    const dateNames = ['Date - Newest First', 'Date - Oldest First', 'A to Z', 'Z to A']
+    const countries = ['England', 'France', 'Scotland', 'Wales', 'Ireland', 'Germany'] 
+    const dateNames = ['Date - Oldest First', 'Date - Newest First', 'A to Z', 'Z to A']
   
     const [filterCountrySetting, setCountrySetting] = React.useState(['Include All']);
     const [filterTagSetting, setTagSetting] = React.useState(props.tags); 
@@ -263,9 +292,9 @@ function FilterDrawer(props) {
     );
   
     return (
-      <main alignItems="center">
-        <div alignItems="center">
-            <Button onClick={toggleDrawer('left', true)}>Filter Options</Button>
+      <main >
+        <div>
+            <Button className={nestedClasses.button} onClick={toggleDrawer('left', true)}>Filter Options</Button>
 
             <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
                 {sideList('left')}
@@ -273,14 +302,14 @@ function FilterDrawer(props) {
             <Grid
                 container
                 direction="row"
-                justify="center"
-                alignItems="center"
+                justify="left"
+                alignItems="center"              
             > 
-                <div style={{display: 'flex', flexWrap:'wrap', alignContent:'space-between', maxWidth: '1500px'}} className={nestedClasses.root}>
+                <div className={nestedClasses.root}>
                     {props.edges.filter(({node}) => 
                         (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen)
                     ).filter(filterTags).length > 0 ? 
-                    <div>
+                    <div className={nestedClasses.resultsBox}>
                         { props.edges.filter(({node}) => 
                             (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen)
                             ).filter(filterTags).sort(sortNamesAlphabetically).map(({ node }, i) => (
@@ -294,7 +323,6 @@ function FilterDrawer(props) {
                         No results found for filter settings.
                     </h3>}
                 </div> 
-
             </Grid> 
     </div>
     </main>
@@ -315,23 +343,24 @@ function SelectionCard(props) {
             component="img"
             alt="Sample Story"
             height="225"
+            maxWidth='250'
             image={props.frontmatter.featuredimage}
             title="Sample Story"
           />
-          <CardContent>
-            { 
+          <CardContent className={classes.cardContent}>
+            {/* { 
               (props.frontmatter.featuredpost ? 
                 <Typography gutterBottom variant="caption" component="p">
                   Featured post
                 </Typography> : <></>)
-            }
+            } */}
             <Typography gutterBottom variant="h5" component="h2">
               {props.frontmatter.title}
             </Typography>
             <Typography variant="caption" component="p">
               {props.frontmatter.date.split("T")[0]}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
               {props.frontmatter.description}
             </Typography>
             <Grid
@@ -339,6 +368,7 @@ function SelectionCard(props) {
             {
               props.frontmatter.tags.map( tagText => 
                 <Fab
+                  className={classes.fab}
                   variant="extended"
                   size="small"
                   color="primary"
@@ -354,11 +384,11 @@ function SelectionCard(props) {
             </Grid>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
+        <CardActions className={classes.cardActions}>
+          <Button className={classes.button} size="small" color="primary">
             Share
           </Button>
-          <Button size="small" color="primary">
+          <Button className={classes.button} size="small" color="primary">
             Learn More
           </Button>
         </CardActions>
