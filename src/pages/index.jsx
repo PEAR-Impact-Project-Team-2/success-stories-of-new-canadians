@@ -1,10 +1,5 @@
-/**
- * An example of using Material UI
- */
-
 import React from 'react';
-import { Card, CardHeader, CardMedia, Button as MaterialButton, CardActions } from '@material-ui/core';
-import { useStaticQuery, graphql, navigate } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { withSeo } from '@utils';
 import { Page } from '@layouts';
 import { Button } from '@components';
