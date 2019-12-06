@@ -44,8 +44,6 @@ const BlogPage = ({ data }) => {
           className='content__paragraph'
           dangerouslySetInnerHTML={{ __html: html }}
         />
-<<<<<<< Updated upstream
-=======
         
         {/* <Footer order={order} edges={data.allMarkdownRemark.edges} /> */}
         
@@ -53,7 +51,6 @@ const BlogPage = ({ data }) => {
           <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />
         </div>
 
->>>>>>> Stashed changes
       </div>
 
     </div>
