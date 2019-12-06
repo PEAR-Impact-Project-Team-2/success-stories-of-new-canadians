@@ -6,7 +6,7 @@ description: >-
   of a month
 country: Canada
 author: Henry Zhang
-image: /assets/uploads/stockvault-kaghan-valley112534.jpg
+image: /assets/uploads/logotrial2.png
 date: '2019-11-29'
 tags:
   - inspirational
