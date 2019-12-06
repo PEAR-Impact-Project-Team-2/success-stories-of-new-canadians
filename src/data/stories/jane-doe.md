@@ -3,9 +3,9 @@ templateKey: story-page
 title: Jane Doe
 country: Germany
 date: 2019-11-26T04:13:30.895Z
-description: Coming to Canada
+description: Coming to Canada asonasd anod naosnd oiand a sonasd anod naosnd oiand a sonasd anod naosnd oiand a sonasd anod naosnd oiand a
 featuredpost: true
-featuredimage: /assets/uploads/logotrial1.png
+featuredimage: /assets/upload/logotrial1.png
 tags:
   - inspirational
   - hardships

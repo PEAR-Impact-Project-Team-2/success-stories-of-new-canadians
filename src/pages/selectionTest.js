@@ -28,9 +28,9 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
     },
     root: {
-      width: '100%',
-      maxWidth: 1500,
-      maxHeight: 1300, 
+      // width: '100%',
+      // maxWidth: 1500,
+      // maxHeight: 1300, 
       backgroundColor: 'white', //theme.palette.background.paper,
       justifyItems: 'center'
     },
@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
       minWidth: 500,
+      maxWidth: 500,
       marginRight: '5px',
       marginLeft: '5px',
       marginTop: '5px',
@@ -58,6 +59,8 @@ const useStyles = makeStyles(theme => ({
     button: {
       backgroundColor: 'red',
       color: 'white',
+      marginBottom: '5px',
+      marginTop: '5px'
     },
     fab: {
       backgroundColor: 'red',
@@ -65,21 +68,19 @@ const useStyles = makeStyles(theme => ({
       marginRight: '5px',
     },
     cardContent: {
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     description: {
-      display: 'flex',
-      flexWrap: 'wrap'
+      justifyContent: 'center',
+      textAlign: 'center',
+      marginBottom: '8.4px'
     },
     cardActions: {
       justifyContent: 'center',
       bottom: '0%'
     },
     buttonSection: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignContent: 'center'
+      textAlign: 'center'
     }
   })); 
   
@@ -306,7 +307,7 @@ function FilterDrawer(props) {
   
     return (
       <main>
-        <div justify='center' className={nestedClasses.buttonAndResults}>
+        <div className={nestedClasses.buttonSection}>
             <Button className={nestedClasses.button} onClick={toggleDrawer('left', true)}>Filter Options</Button>
 
             <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
@@ -445,8 +446,8 @@ const SelectionPage = ( { data } ) => {
 
   return (
     <Page>
-      <h1 className='selection__title'>View all our stories!</h1>
-      <p className='index__text'>Filter through a list of stories by filtering below</p>
+      <h1 className='selectionTest__title'>View all our stories!</h1>
+      {/*<p className='index__text'>Filter through a list of stories by filtering below</p>*/}
       <div>    
       {
           console.log(allMarkdownRemark)
