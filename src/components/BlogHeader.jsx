@@ -23,9 +23,6 @@ export const BlogHeader = ({ title, description, author, date, image }) => (
                 <div>
                     <ul className='blog__tags'>
                         <li className='BlogHeader__tag'>
-                            <Button variant="outlined" color="primary">Read Story</Button>
-                        </li>
-                        <li className='BlogHeader__tag'>
                             <Button variant="outlined" color="primary">Share</Button>
                         </li>
                     </ul>
