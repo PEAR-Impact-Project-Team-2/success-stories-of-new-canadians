@@ -7,14 +7,11 @@ import { ShareCard } from '../../components/ShareCard';
 import { SuggestStories } from '../../components/SuggestStories';
 //import { Footer } from './Footer';
 import { Seo } from '@components';
-import commentBox from 'commentbox.io';
 import '@styles/templates/BlogPage.scss';
 
 const BlogPage = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
   const { order, ...headerProps } = frontmatter;
-  const commentBox = require('commentbox.io');
-  commentBox('5727411148685312-proj');
 
   return (
     <div>
@@ -57,7 +54,7 @@ const BlogPage = ({ data }) => {
       </div>
 
       <div>
-        <div className="commentbox"></div>
+        
       </div>
 
     </div>
