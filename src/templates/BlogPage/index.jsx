@@ -50,11 +50,9 @@ const BlogPage = ({ data }) => {
           dangerouslySetInnerHTML={{ __html: html }}
         />
         
-        {/* <Footer order={order} edges={data.allMarkdownRemark.edges} /> */}
-        
-        {/*<div className='content__suggestedBlog'>
+        <div className='content__suggestedBlog'>
           <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />
-        </div>*/}
+        </div>
 
       </div>
       
