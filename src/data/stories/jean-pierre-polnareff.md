@@ -6,7 +6,6 @@ country: France
 author: Jean
 image: /images/uploads/stockvault-kaghan-valley112534.jpg
 date: 2019-02-22T15:04:10.000Z
-description: Coming to Canada
 featuredpost: false
 featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
 tags:

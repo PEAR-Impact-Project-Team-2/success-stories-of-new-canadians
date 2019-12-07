@@ -38,7 +38,7 @@ const IndexPage = () => {
       <Button className='index__button' to='/welcome'>
         Let's Get Started
       </Button>
-      <Button className='selection__button' to='/selection'>
+      <Button className='selection__button' to='/selectionTest'>
         Select A Story
       </Button> 
     </Page>
