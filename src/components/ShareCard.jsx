@@ -7,8 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import '@styles/components/ShareCard.scss';
 
 export const ShareCard = () => (
-    <div className='cardContainer'>
-        <Card className='card'>
+    <div className='card'>
+        <Card>
             <CardContent className='cardContent'>
 
                 <h1 className='header'>Share</h1>
@@ -57,5 +57,6 @@ export const ShareCard = () => (
                 <Button size="small">Contact Us</Button>
             </CardActions>
         </Card>
+
     </div>
 )

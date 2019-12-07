@@ -2,11 +2,11 @@
 @import '../variables';
 
 .card {
-    //margin-bottom: 335px;
-    width: 200px;
+    margin-bottom: 335px;
     max-height: 250px;
-    position:sticky;
+    width: 200px;
     top: 20px;
+    position: sticky;
 }
 
 .cardTell {
@@ -14,7 +14,6 @@
     margin-bottom: 20px;
     width: 200px;
     max-height: 300px;
-    position:sticky;
     top: 290px;
 }
 
