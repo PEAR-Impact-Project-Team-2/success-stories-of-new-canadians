@@ -37,14 +37,6 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: "UA-154097685-1",
-        head: true,
-        pageTransitionDelay: 0,
-      },
-    },
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
@@ -72,22 +64,6 @@ module.exports = {
           '@styles': path.resolve(__dirname, 'src/styles'),
           '@utils': path.resolve(__dirname, 'src/utils'),
         },
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 500,
-            },
-          },
-        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
