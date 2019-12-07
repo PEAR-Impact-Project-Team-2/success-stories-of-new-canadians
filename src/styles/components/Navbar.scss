@@ -24,7 +24,7 @@
 #nav-wrap > a.mobile-btn { display: none; }
 
 ul#nav {
-   min-height: 48px;
+   min-height: 20px;
    width: auto;
    background-color: #fff;
    /* center align the menu */
@@ -33,7 +33,7 @@ ul#nav {
 ul#nav li {
    position: relative;
    list-style: none;
-   height: 48px;
+   height: 20px;
    display: inline-block;
 }
 
@@ -43,8 +43,8 @@ ul#nav li a {
 /* 8px padding top + 8px padding bottom + 32px line-height = 48px */
 
    display: inline-block;
-   padding: 8px 13px;
-   line-height: 32px;
+   padding: 0px 13px;
+   line-height: 20px;
   text-decoration: none;
    text-align: left;
    color: #333;
