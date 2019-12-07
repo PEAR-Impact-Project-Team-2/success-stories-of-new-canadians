@@ -4,14 +4,13 @@ title: A Thrilling Story
 description: >-
   The thrilling story of how one team managed to complete a website in the span
   of a month
-country: 'Canada'
-author: 'Henry Zhang'
-image: ../../assets/demo.jpeg
+country: Canada
+author: Henry Zhang
+image: /images/uploads/stockvault-kaghan-valley112534.jpg
 date: '2019-11-29'
 tags:
   - inspirational
   - refugee
-order: 4
 ---
 ## A Daring Project
 
