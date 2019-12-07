@@ -5,7 +5,8 @@ country: Egypt
 date: 2016-02-22T15:04:10.000Z
 description: Coming to Canada
 featuredpost: true
-featuredimage: /assets/uploads/logotrial1.png
+featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
+image: /images/uploads/stockvault-kaghan-valley112534.jpg
 tags:
   - inspirational
 ---

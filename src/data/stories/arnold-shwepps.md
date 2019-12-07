@@ -5,7 +5,7 @@ country: Austria
 date: 2008-01-04T15:04:10.000Z
 description: Coming to Canada
 featuredpost: true
-featuredimage: /assets/uploads/logotrial1.png
+featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
 tags:
   - success
   - refugee

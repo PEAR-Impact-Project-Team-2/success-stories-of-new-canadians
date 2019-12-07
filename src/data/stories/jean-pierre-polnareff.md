@@ -5,7 +5,7 @@ country: France
 date: 2019-02-22T15:04:10.000Z
 description: Coming to Canada
 featuredpost: false
-featuredimage: /assets/uploads/logotrial1.png
+featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
 tags:
   - inspirational
 ---
