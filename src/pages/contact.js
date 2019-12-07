@@ -20,11 +20,15 @@ const useStyles = makeStyles(theme => ({
     marginRight: '5px'
   },
   textfield: {
-    flex: 7
+    flex: 8
   },
   textfieldBox: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    maxHeight: 350,
+    maxWidth: 500,
+    height: '100%',
+    width: '100%'
   },
   popup: {
     display: 'flex',
