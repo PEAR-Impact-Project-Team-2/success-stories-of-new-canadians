@@ -1,7 +1,7 @@
 ---
 templateKey: story-page
 title: Mohammed Avdol
-country: United Kingdom
+country: Egypt
 date: 2016-02-22T15:04:10.000Z
 description: Coming to Canada
 featuredpost: true

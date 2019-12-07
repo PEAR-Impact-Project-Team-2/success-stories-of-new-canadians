@@ -7,5 +7,3 @@ export const withSeo = (Component, config = {}) => props => (
     <Component {...props} />
   </>
 );
-
-export default withSeo

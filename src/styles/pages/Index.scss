@@ -1,7 +1,7 @@
 @import '../index';
 
 .index {
-    .page__content {
+    & .page__content {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -16,6 +16,7 @@
         font-size: 1.6rem;
         color: rgba($BLACK, 0.4);
         margin-bottom: 15px;
+        text-align: center;
     }
 
     &__button {
