@@ -4,13 +4,15 @@ import { graphql } from 'gatsby'
 import { Grid, Button } from '@material-ui/core'
 import { SquareFlagIcon, CountryKey } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import { Card, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
 import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
 import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import SearchIcon from '@material-ui/icons/Search'
+import { TextField } from '@material-ui/core';
 import ReactCountryFlag from "react-country-flag";
 
 import '@styles/pages/SelectionTest.scss'
@@ -33,6 +35,7 @@ const useStyles = makeStyles(theme => ({
       // width: '100%',
       // maxWidth: 1500,
       // maxHeight: 1300, 
+      maxWidth: 320,
       backgroundColor: 'white', //theme.palette.background.paper,
       justifyItems: 'center'
     },
@@ -46,7 +49,8 @@ const useStyles = makeStyles(theme => ({
       padding: 1
     },
     card: {
-      maxWidth: 500,
+      maxWidth: 320,
+      minWidth: 320,
       width: '100%',
       marginRight: '5px',
       marginLeft: '5px',
@@ -54,6 +58,21 @@ const useStyles = makeStyles(theme => ({
       marginBottom: '5px',
       backgroundColor: 'white',
       flexWrap: 'wrap'
+    },
+    searchBox: {
+      maxWidth: 240,
+      minWidth: 240,
+      maxHeight: 20,
+      minHeight: 20,
+      marginRight: '3px'
+    },
+    searchSubmitButton: {
+      backgroundColor: 'red',
+      maxWidth: 10,
+      color: 'white',
+      marginBottom: '10px',
+      marginTop: '10px',
+      marginRight: '10px'
     },
     resultsBox: {
       display: 'flex',
@@ -86,7 +105,7 @@ const useStyles = makeStyles(theme => ({
       bottom: '0%'
     },
     buttonSection: {
-      textAlign: 'center'
+      textAlign: 'center',
     }, 
     // item padding in lists
     item: {
@@ -108,6 +127,10 @@ function FilterDrawer(props) {
     const [tagOpen, setTagOpen] = React.useState(false);
     const [includeAllCountries, setIncludeAllCountries] = React.useState(true);
     const [includeAllTags, setIncludeAllTags] = React.useState(true); 
+    
+    const [searchText, setSearchText] = React.useState(""); 
+
+    var currentSearchText = "";
     
     // Possible Options
     const countries = Object.keys(CountryKey);
@@ -326,15 +349,81 @@ function FilterDrawer(props) {
         </List>
       </div>
     );
+
+    function filterSearchBar(value)
+    { 
+      if (searchText.length === 0) return true;
+      return (value.node.frontmatter.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1)
+    }
+
+    function getFilteredResults() 
+    {
+      return props.edges.filter(({node}) => 
+        (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries)
+        ).filter(filterTags).filter(filterSearchBar); 
+      
+    }
+
+    function onSearchSubmit()
+    {
+      setSearchText(currentSearchText); 
+    }
+
+    const search = (e) =>
+    {
+      currentSearchText = e.target.value;  
+    }
+
+    const CssTextField = withStyles({
+      root: {
+        '& label.Mui-focused': {
+          color: 'red',
+        },
+        '& .MuiInput-underline:after': {
+          borderBottomColor: 'red',
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'red',
+          },
+          '&:hover fieldset': {
+            borderColor: 'red',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: 'red',
+          },
+        },
+      },
+    })(TextField);
   
     return (
       <main>
-        <div className={nestedClasses.buttonSection}>
-            <Button className={nestedClasses.button} onClick={toggleDrawer('left', true)}>Filter Options</Button>
+        <div className={nestedClasses.buttonSection}> 
+        <p className='index__text' justifyContent='center'> Find your next inspiration by their background, interests and contributions.</p>
 
+            <CssTextField
+              className={nestedClasses.searchBox}
+              defaultValue={currentSearchText}
+              onChange = { search.bind(this) }
+              variant="outlined"
+              id="custom-css-outlined-input"
+              onKeyPress={event => {
+                if (event.key === 'Enter') {
+                  onSearchSubmit()
+                }
+              }}
+            />
+
+            <Button key="saerch" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
+            <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>More Filters</Button>
+
+            
             <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
                 {sideList('left')}
             </Drawer>
+            <h3>
+              {(searchText.length > 0 ? "Results for: '" + searchText + "'" : "")}
+            </h3>
             <Grid
                 container
                 direction="row"
@@ -342,13 +431,9 @@ function FilterDrawer(props) {
                 alignItems="center"              
             > 
                 <div className={nestedClasses.root}>
-                    {props.edges.filter(({node}) => 
-                        (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries)
-                    ).filter(filterTags).length > 0 ? 
+                    {getFilteredResults().length > 0 ? 
                     <div className={nestedClasses.resultsBox}>
-                        { props.edges.filter(({node}) => 
-                            (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries)
-                            ).filter(filterTags).sort(sortNamesAlphabetically).map(({ node }, i) => (
+                        { getFilteredResults().sort(sortNamesAlphabetically).map(({ node }, i) => (
                                 <SelectionCard
                                     key={i}
                                     frontmatter={node.frontmatter}>
@@ -364,9 +449,6 @@ function FilterDrawer(props) {
     </main>
     );
   }
-
-
-  
 
 function SelectionCard(props) {
 
@@ -469,8 +551,7 @@ const SelectionPage = ( { data } ) => {
 
   return (
     <Page>
-      <h1 className='selectionTest__title'>Search</h1>
-      <p className='index__text'>Find your next inspiration by country, interests and contributions.</p>
+      <h1 className='selectionTest__title'>Search Stories</h1>
       <div>    
       {
           console.log(allMarkdownRemark)
