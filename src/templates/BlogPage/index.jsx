@@ -6,7 +6,6 @@ import { BlogHeader } from '../../components/BlogHeader';
 import { ShareCard } from '../../components/ShareCard';
 import { SuggestStories } from '../../components/SuggestStories';
 import { DiscussionEmbed } from "disqus-react"
-//import { Footer } from './Footer';
 import { Seo } from '@components';
 import '@styles/templates/BlogPage.scss';
 
@@ -60,6 +59,13 @@ const BlogPage = ({ data }) => {
         <div className='comment__commentSection'>
           <DiscussionEmbed {...disqusConfig} />
         </div>
+      </div>
+
+      <div className='footer'>
+
+        <h2 className='footer__title'>
+          Success Stories of New Canadians
+        </h2>
       </div>
 
     </div>
