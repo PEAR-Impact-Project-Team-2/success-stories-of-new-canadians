@@ -4,6 +4,7 @@ title: 'John Doe'
 description: 'Coming to America'
 country: 'Ireland'
 image: /images/uploads/stockvault-kaghan-valley112534.jpg
+featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
 author: 'Henry Zhang'
 date: 2017-01-04T15:04:10.000Z
 tags:

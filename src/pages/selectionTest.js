@@ -421,7 +421,7 @@ function FilterDrawer(props) {
                 {sideList('left')}
             </Drawer>
             <h3>
-              {(searchText.length > 0 ? "Results for: '" + searchText + "'" : "")}
+              {(searchText.length > 0 ? "Results for: '" + searchText + "'. Click search again to return." : "")}
             </h3>
             <Grid
                 container

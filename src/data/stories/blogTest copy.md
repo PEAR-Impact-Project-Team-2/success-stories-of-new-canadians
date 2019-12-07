@@ -7,6 +7,7 @@ description: >-
 country: Canada
 author: Henry Zhang
 image: /images/uploads/stockvault-kaghan-valley112534.jpg
+featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
 date: '2019-11-29'
 tags:
   - inspirational
