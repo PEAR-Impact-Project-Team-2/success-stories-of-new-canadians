@@ -7,42 +7,43 @@ import IconButton from '@material-ui/core/IconButton';
 import '@styles/components/ShareCard.scss';
 
 export const ShareCard = () => (
-    <div>
+    <div className='cardContainer'>
         <Card className='card'>
             <CardContent className='cardContent'>
 
                 <h1 className='header'>Share</h1>
 
                 <div className='icon'>
-                    <div>
-                        <div>
+                    
+                        <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/facebook.svg')} height='64px'/>
+                                <img src={require('../assets/facebook.svg')} height='64px' alt='Facebook'/>
                             </IconButton>
                         </div>
 
-                        <div>
+                        <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/instagram.svg')} height='64px' />
+                                <img src={require('../assets/instagram.svg')} height='64px' alt='Instagram' />
                             </IconButton>
                         </div>
-                    </div>
+                    
 
-                    <div>
-                        <div>
+                    
+                        <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/twitter.svg')} height='64px'/>
+                                <img src={require('../assets/twitter.svg')} height='64px' alt='Twitter'/>
                             </IconButton>
                         </div>
 
-                        <div>
+                        <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/linkedin.svg')} height='64px' />
+                                <img src={require('../assets/linkedin.svg')} height='64px' alt='LinkedIn' />
                             </IconButton>
                         </div>
-                    </div>
+                    
 
                 </div>
+                
             </CardContent>
         </Card>
 

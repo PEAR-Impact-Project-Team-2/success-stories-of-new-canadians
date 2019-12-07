@@ -39,7 +39,12 @@
 
 .icon {
     display:flex;
+    flex-wrap: wrap;
     align-items: center;
+}
+
+.iconDiv {
+    width: 80px;
 }
 
 .button {
@@ -49,4 +54,34 @@
 .header {
     text-align: center;
     margin-bottom: 10px
+}
+
+@media screen and (max-width: 768px) {
+
+    .iconDiv {
+        width: 20vw;
+    }
+
+    .cardContainer {
+        flex-direction: row;
+        width: 100vw;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        width: 90vw;
+        max-height: 250px;
+        position: relative;
+        top: 20px;
+    }
+
+    .cardTell {
+        margin-top: 20px;
+        margin-bottom: 50px;
+        width: 90vw;
+        max-height: 300px;
+        position: relative;
+        top: 20px;
+    }
+
 }

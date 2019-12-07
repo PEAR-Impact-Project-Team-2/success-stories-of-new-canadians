@@ -7,7 +7,7 @@
     display: flex;
     
     &__Title {
-        height: 60vh;
+        height: 50vh;
         width: 40vw;
         background: rgb(0,0,0);
     }
@@ -17,15 +17,15 @@
     }
 
     &__Image {
-        height: 60vh;
-        width: 60vw;
+        height: 50vh;
+        width: 59vw;
         background-image: url("https://azharlaher.com/wp-content/uploads/2019/10/img-3298_orig-1024x576.jpg");
         background-size:cover;
     }
 
     &__ImageGradient {
-        height: 60vh;
-        width: 60vw;
+        height: 50vh;
+        width: 59vw;
         background: rgb(0,0,0);
         background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 40%);
         z-index: 0;
@@ -64,13 +64,13 @@
 @media screen and (orientation:portrait) {
     .BlogHeader {  
         &__Title{
-            height: 40vh;
+            height: 35vh;
         }
         &__Image{
-            height: 40vh;
+            height: 35vh;
         }
         &__ImageGradient {
-            height: 40vh
+            height: 35vh
         }
         &__TitleText {
             padding: 50px 40px 20px 20px

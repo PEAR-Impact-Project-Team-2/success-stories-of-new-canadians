@@ -9,58 +9,50 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import '@styles/components/SuggestStories.scss';
 
-            {/* REFERENCE CODE
-            <Button 
-                to={edges[order - 1].node.fields.slug}
-                className='blog__button'
-                disabled={!order}
-            >
-                Prev Page - {edges[order - 1].node.frontmatter.title}
-            </Button> */}
-
 export const SuggestStories = ({ order, edges }) => (
     <div>
         <h3>Suggested Reading:</h3>
-        {Boolean(order) ? (
+
+        {Boolean(order>1) ? (
         
-        <Card onClick={()=>window.open(`${edges[order - 1].node.fields.slug}`, "_self")} className='suggestCard'>
+        <Card onClick={()=>window.open(`${edges[order - 2].node.fields.slug}`, "_self")} className='suggestCard'>
             <CardActionArea
-                to={edges[order - 1].node.fields.slug}
+                to={edges[order - 2].node.fields.slug}
             >
                 <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
-                height="140"
-                image={ edges[order-1].node.frontmatter.image.publicURL }
+                height="200"
+                image={ edges[order - 2].node.frontmatter.image.publicURL }
                 title="Contemplative Reptile"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        { edges[order-1].node.frontmatter.title }
+                        { edges[order - 2].node.frontmatter.title }
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        { edges[order-1].node.frontmatter.description }
+                        { edges[order - 2].node.frontmatter.description }
                     </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
 
         ) : (
-            <Card onClick={()=>window.open(`${edges[order + 2].node.fields.slug}`, "_self")} className='suggestCard'>
+            <Card onClick={()=>window.open(`${edges[order + 1].node.fields.slug}`, "_self")} className='suggestCard'>
                 <CardActionArea>
                     <CardMedia
                     component="img"
                     alt="Contemplative Reptile"
-                    height="140"
-                    image={ edges[order+2].node.frontmatter.image.publicURL }
+                    height="200"
+                    image={ edges[order + 1].node.frontmatter.image.publicURL }
                     title="Contemplative Reptile"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            { edges[order+2].node.frontmatter.title }
+                            { edges[order + 1].node.frontmatter.title }
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            { edges[order+2].node.frontmatter.description }
+                            { edges[order + 1].node.frontmatter.description }
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -70,23 +62,23 @@ export const SuggestStories = ({ order, edges }) => (
 
         {order !== edges.length - 1 ? (
         
-            <Card onClick={()=>window.open(`${edges[order + 1].node.fields.slug}`, "_self")} className='suggestCard'>
+            <Card onClick={()=>window.open(`${edges[order].node.fields.slug}`, "_self")} className='suggestCard'>
                 <CardActionArea
-                    to={edges[order + 1].node.fields.slug}
+                    to={edges[order].node.fields.slug}
                 >
                     <CardMedia
                     component="img"
                     alt="Contemplative Reptile"
-                    height="140"
-                    image={ edges[order+1].node.frontmatter.image.publicURL }
+                    height="200"
+                    image={ edges[order].node.frontmatter.image.publicURL }
                     title="Contemplative Reptile"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            { edges[order+1].node.frontmatter.title }
+                            { edges[order].node.frontmatter.title }
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            { edges[order+1].node.frontmatter.description }
+                            { edges[order].node.frontmatter.description }
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -94,23 +86,23 @@ export const SuggestStories = ({ order, edges }) => (
 
         ) : (
 
-            <Card onClick={()=>window.open(`${edges[order - 2].node.fields.slug}`, "_self")} className='suggestCard'>
+            <Card onClick={()=>window.open(`${edges[order - 3].node.fields.slug}`, "_self")} className='suggestCard'>
                 <CardActionArea
-                    to={edges[order - 2].node.fields.slug}
+                    to={edges[order - 3].node.fields.slug}
                 >
                     <CardMedia
                     component="img"
                     alt="Contemplative Reptile"
-                    height="140"
-                    image={ edges[order-2].node.frontmatter.image.publicURL }
+                    height="200"
+                    image={ edges[order - 3].node.frontmatter.image.publicURL }
                     title="Contemplative Reptile"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            { edges[order-2].node.frontmatter.title }
+                            { edges[order - 3].node.frontmatter.title }
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            { edges[order-2].node.frontmatter.description }
+                            { edges[order - 3].node.frontmatter.description }
                         </Typography>
                     </CardContent>
                 </CardActionArea>
