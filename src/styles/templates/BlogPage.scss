@@ -98,7 +98,7 @@
 .content {
     //display: flex;
     //flex-direction: row;
-    justify-content: center;
+    //justify-content: center;
     min-height: 100vh; 
     width:100vw; 
     box-sizing: border-box;
@@ -157,11 +157,14 @@
             }
         }
 
-        img {
-            width: 50vw;
-        }
+    }
+
+    img {
+        width: 80vw;
     }
 }
+
+
 
 .comment {
     background-color: white;
