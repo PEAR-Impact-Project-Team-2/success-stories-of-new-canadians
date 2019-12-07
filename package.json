@@ -8,6 +8,7 @@
     "@material-ui/core": "^4.5.2",
     "@material-ui/icons": "^4.5.1",
     "commentbox.io": "^2.0.0",
+    "disqus-react": "^1.0.7",
     "gatsby": "^2.17.4",
     "gatsby-image": "^2.2.29",
     "gatsby-plugin-alias-imports": "^1.0.5",
@@ -28,6 +29,7 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "prettier": "^1.18.2"
   },
   "keywords": [

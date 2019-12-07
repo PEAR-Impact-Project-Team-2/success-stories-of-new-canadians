@@ -5,13 +5,18 @@ import { graphql } from 'gatsby';
 import { BlogHeader } from '../../components/BlogHeader';
 import { ShareCard } from '../../components/ShareCard';
 import { SuggestStories } from '../../components/SuggestStories';
+import { DiscussionEmbed } from "disqus-react"
 //import { Footer } from './Footer';
 import { Seo } from '@components';
 import '@styles/templates/BlogPage.scss';
 
 const BlogPage = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
-  const { order, ...headerProps } = frontmatter;
+  const { order, title, ...headerProps } = frontmatter;
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: title },
+  }
 
   return (
     <div>
@@ -54,7 +59,7 @@ const BlogPage = ({ data }) => {
       </div>
 
       <div>
-        
+        <DiscussionEmbed {...disqusConfig} />
       </div>
 
     </div>
