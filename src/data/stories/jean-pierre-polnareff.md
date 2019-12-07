@@ -1,11 +1,11 @@
 ---
 templateKey: story-page
 title: Jean-Pierre Polnareff
-country: France
-date: 2019-02-22T15:04:10.000Z
 description: Coming to Canada
-featuredpost: false
-featuredimage: /assets/uploads/logotrial1.png
+country: France
+author: Jean
+image: /images/uploads/stockvault-kaghan-valley112534.jpg
+date: 2019-02-22T15:04:10.000Z
 tags:
   - inspirational
 ---
