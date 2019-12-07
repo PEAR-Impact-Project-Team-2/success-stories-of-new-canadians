@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Grid, Button } from '@material-ui/core'
+import { SquareFlagIcon, CountryKey } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,11 +16,11 @@ import '@styles/pages/SelectionTest.scss'
 
 const useStyles = makeStyles(theme => ({
     formControl: {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
       minWidth: 250,
     },
     selectEmpty: {
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(1),
     },
     list: {
       width: 270,
@@ -41,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 
     nested: {
       paddingLeft: theme.spacing(4),
+      padding: 1
     },
     card: {
       maxWidth: 500,
@@ -84,6 +86,10 @@ const useStyles = makeStyles(theme => ({
     },
     buttonSection: {
       textAlign: 'center'
+    }, 
+    // item padding in lists
+    item: {
+      padding: 1
     }
   })); 
   
@@ -97,7 +103,7 @@ function FilterDrawer(props) {
     const [tagOpen, setTagOpen] = React.useState(false);
     
     // Possible Options
-    const countries = ['England', 'France', 'Scotland', 'Wales', 'Ireland', 'Germany'] 
+    const countries = Object.keys(CountryKey);
     const dateNames = ['Date - Oldest First', 'Date - Newest First', 'A to Z', 'Z to A']
   
     const [filterCountrySetting, setCountrySetting] = React.useState(['Include All']);
@@ -240,7 +246,7 @@ function FilterDrawer(props) {
             </List>
           </Collapse>
           <Collapse in={nameOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
+            <List component="div" disablePadding={true}>
             <FormControl component="fieldset" className={nestedClasses.formControl}>
               <FormLabel component="legend"></FormLabel>
               <RadioGroup aria-label="name" name="name1" value={filterDateNameSetting} onChange={handleDateNameChange}>
@@ -269,7 +275,7 @@ function FilterDrawer(props) {
             </List>
           </Collapse>
           <Collapse in={countryOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
+            <List component="div" disablePadding={false} padding={0}>
   
             {countries.map( item => {return (
               <ListItem button className={nestedClasses.nested}>
@@ -364,12 +370,7 @@ function SelectionCard(props) {
             title="Sample Story"
           />
           <CardContent className={classes.cardContent}>
-            {/* { 
-              (props.frontmatter.featuredpost ? 
-                <Typography gutterBottom variant="caption" component="p">
-                  Featured post
-                </Typography> : <></>)
-            } */}
+          <SquareFlagIcon countryCode="us" svg />
             <Typography gutterBottom variant="h5" component="h2">
               {props.frontmatter.title}
             </Typography>
