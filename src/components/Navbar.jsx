@@ -4,8 +4,6 @@ import '@styles/components/Navbar.scss';
 class Navbar extends Component {
   render() {
     return (
-      <header id="home">
-
       <nav id="nav-wrap">
 
          <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
@@ -20,8 +18,6 @@ class Navbar extends Component {
          </ul>
 
       </nav>
-
-      </header>
         );
     }
 }
