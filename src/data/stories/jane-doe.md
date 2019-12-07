@@ -1,10 +1,10 @@
 ---
 templateKey: story-page
-title: 'Jane Doe'
-description: 'Coming to America'
-country: 'Germany'
-image: ../../assets/demo.jpeg
-author: 'Henry Zhang'
+title: Jane Doe
+description: Coming to America
+country: Germany
+author: Henry Zhang
+image: /assets/uploads/stockvault-kaghan-valley112534.jpg
 date: 2019-12-04T15:04:10.000Z
 tags:
   - inspirational
