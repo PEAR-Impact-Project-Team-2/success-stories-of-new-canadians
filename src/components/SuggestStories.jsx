@@ -1,11 +1,8 @@
 import React from 'react';
-import { Button } from '@components';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import '@styles/components/SuggestStories.scss';
 
@@ -60,7 +57,7 @@ export const SuggestStories = ({ order, edges }) => (
         )}
 
 
-        {order !== edges.length - 1 ? (
+        {order !== edges.length ? (
         
             <Card onClick={()=>window.open(`${edges[order].node.fields.slug}`, "_self")} className='suggestCard'>
                 <CardActionArea

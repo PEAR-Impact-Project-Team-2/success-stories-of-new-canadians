@@ -4,7 +4,7 @@ title: Jane Doe
 description: Coming to America
 country: Germany
 author: Henry Zhang
-image: /assets/uploads/stockvault-kaghan-valley112534.jpg
+image: ../../assets/demo.jpeg
 date: 2019-12-04T15:04:10.000Z
 tags:
   - inspirational
