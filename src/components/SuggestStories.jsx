@@ -10,7 +10,54 @@ export const SuggestStories = ({ order, edges }) => (
     <div>
         <h3>Suggested Reading:</h3>
 
-        {Boolean(order>1) ? (
+        <Card onClick={()=>window.open(`${edges[0].node.fields.slug}`, "_self")} className='suggestCard'>
+            <CardActionArea
+                to={edges[0].node.fields.slug}
+            >
+                <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                height="200"
+                image={ edges[0].node.frontmatter.image.publicURL }
+                title="Contemplative Reptile"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        { edges[0].node.frontmatter.title }
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        { edges[0].node.frontmatter.description }
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
+
+        <Card onClick={()=>window.open(`${edges[1].node.fields.slug}`, "_self")} className='suggestCard'>
+            <CardActionArea
+                to={edges[1].node.fields.slug}
+            >
+                <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                height="200"
+                image={ edges[1].node.frontmatter.image.publicURL }
+                title="Contemplative Reptile"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        { edges[1].node.frontmatter.title }
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        { edges[1].node.frontmatter.description }
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
+
+
+        {/*
+        
+        Boolean(order>1) ? (
         
         <Card onClick={()=>window.open(`${edges[order - 2].node.fields.slug}`, "_self")} className='suggestCard'>
             <CardActionArea
@@ -105,6 +152,6 @@ export const SuggestStories = ({ order, edges }) => (
                 </CardActionArea>
             </Card>
 
-        )}
+        ) */}
     </div>
 );
