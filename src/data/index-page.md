@@ -1,15 +1,9 @@
 ---
 templateKey: index-page
 title: Welcome
-<<<<<<< HEAD
 image: /images/uploads/stockvault-kaghan-valley112534.jpg
 heading: To Test Editing the Index Page
 subheading: Success stories of new Canadian immigrants
-=======
-image: /assets/uploads/logotrial1.png
-heading: Success stories of new Canadian immigrants
-subheading: by Azhar
->>>>>>> netlifycms-test
 aboutus:
   description: >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta lacus

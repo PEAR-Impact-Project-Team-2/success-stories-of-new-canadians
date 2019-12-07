@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: netlifycms-test
+  branch: master
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
