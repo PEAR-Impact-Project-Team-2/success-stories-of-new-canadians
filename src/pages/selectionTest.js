@@ -43,13 +43,14 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: theme.spacing(4),
     },
     card: {
-      minWidth: 500,
       maxWidth: 500,
+      width: '100%',
       marginRight: '5px',
       marginLeft: '5px',
       marginTop: '5px',
       marginBottom: '5px',
-      backgroundColor: 'white'
+      backgroundColor: 'white',
+      flexWrap: 'wrap'
     },
     resultsBox: {
       display: 'flex',
@@ -73,7 +74,9 @@ const useStyles = makeStyles(theme => ({
     description: {
       justifyContent: 'center',
       textAlign: 'center',
-      marginBottom: '8.4px'
+      marginBottom: '8.4px',
+      height: 40.0333,
+      overflow: 'hidden',
     },
     cardActions: {
       justifyContent: 'center',
@@ -356,7 +359,7 @@ function SelectionCard(props) {
           <CardMedia
             component="img"
             alt="Sample Story"
-            height="225"
+            height='225'
             image={props.frontmatter.featuredimage}
             title="Sample Story"
           />

@@ -6,7 +6,7 @@ date: 2019-11-26T04:13:30.895Z
 description: Coming to Canada asonasd anod naosnd oiand a sonasd anod naosnd oiand a sonasd anod naosnd oiand a sonasd anod naosnd oiand a
 featuredpost: true
 featuredimage: /assets/upload/logotrial1.png
-tags:
+tags: 
   - inspirational
   - hardships
   - refugee
