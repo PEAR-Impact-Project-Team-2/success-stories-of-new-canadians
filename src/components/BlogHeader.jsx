@@ -34,7 +34,7 @@ export const BlogHeader = ({ title, description, author, date, image, country })
             </div>
         </div>
 
-        <div className={`BlogHeader__Image`} style={{ backgroundImage: `url(${image})` }}>
+        <div className={`BlogHeader__Image`} style={{ backgroundImage: `url(${image.publicURL})` }}>
             <div className={`BlogHeader__ImageGradient`}></div>
         </div>
     </div>

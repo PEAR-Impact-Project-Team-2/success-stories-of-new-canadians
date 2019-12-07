@@ -95,6 +95,7 @@ export const pageQuery = graphql`
             image
             description
             author
+            order
             date(formatString: "MMMM DD, YYYY")
             country
           }
