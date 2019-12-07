@@ -73,9 +73,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        image {
-          publicURL
-        }
+        image
         description
         author
         country
@@ -88,9 +86,7 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
-            image {
-              publicURL
-            }
+            image
             description
             author
             order

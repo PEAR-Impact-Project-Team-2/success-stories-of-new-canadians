@@ -17,9 +17,7 @@ const query = graphql`
         description
         title
       }
-      image {
-        publicURL
-      }
+      image
       subheading
       heading
       title
@@ -35,7 +33,7 @@ const IndexPage = () => {
     <Page className='index'>
       <h1 className='index__title'>{markdownRemark.frontmatter.title}</h1>
       <p className='index__text'>{markdownRemark.frontmatter.heading}</p>
-      <img src={markdownRemark.frontmatter.image.publicURL} alt="Logo" height='360px'/>;
+      <img src={markdownRemark.frontmatter.image} alt="Logo" height='360px'/>;
       <StoryRoll/>
       <Button className='index__button' to='/welcome'>
         Let's Get Started

@@ -14,7 +14,7 @@ class StoryRoll extends React.Component {
         {
           data.allMarkdownRemark.edges.map(({ node }, i) => (
             <Card className='index__card' key={i}>
-              <CardMedia style={{ height: '260px' }} image={node.frontmatter.image.publicURL} />
+              <CardMedia style={{ height: '260px' }} image={node.frontmatter.image} />
               <CardHeader
                 title={node.frontmatter.title}
                 subheader={node.frontmatter.description}
@@ -51,9 +51,7 @@ export default () => (
           node {
             frontmatter {
               title
-              image {
-                publicURL
-              }
+              image 
               description
             }
             fields {

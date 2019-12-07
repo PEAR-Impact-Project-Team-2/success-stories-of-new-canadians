@@ -1,7 +1,7 @@
 ---
 templateKey: index-page
 title: Welcome
-image: ../assets/World_map_green.png
+image: /images/uploads/stockvault-kaghan-valley112534.jpg
 heading: To Test Editing the Index Page
 subheading: Success stories of new Canadian immigrants
 aboutus:
