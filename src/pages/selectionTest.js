@@ -11,6 +11,7 @@ import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
 import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import ReactCountryFlag from "react-country-flag";
 
 import '@styles/pages/SelectionTest.scss'
 
@@ -89,7 +90,11 @@ const useStyles = makeStyles(theme => ({
     }, 
     // item padding in lists
     item: {
-      padding: 1
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      marginRight: '5px',
+      marginLeft: '5px',
     }
   })); 
   
@@ -101,6 +106,8 @@ function FilterDrawer(props) {
     const [nameOpen, setNameOpen] = React.useState(true);
     const [countryOpen, setCountryOpen] = React.useState(false);
     const [tagOpen, setTagOpen] = React.useState(false);
+    const [includeAllCountries, setIncludeAllCountries] = React.useState(true);
+    const [includeAllTags, setIncludeAllTags] = React.useState(true); 
     
     // Possible Options
     const countries = Object.keys(CountryKey);
@@ -131,9 +138,9 @@ function FilterDrawer(props) {
       console.log(event.target.name + " " + event.target.checked);
   
       if (event.target.name === 'Include All')  {
-        setCountryOpen (!event.target.checked); 
-        if (event.target.checked) setCountrySetting(countries); 
-        else setCountrySetting([]); 
+        setIncludeAllCountries (event.target.checked); 
+        setCountryOpen(!event.target.checked); 
+        setCountrySetting(event.target.checked ? countries : []); 
       }
       // if box is no longer selected
       else if (!event.target.checked)
@@ -145,7 +152,7 @@ function FilterDrawer(props) {
       { 
         filterCountrySetting.push(event.target.name);
       }
-      console.log(filterCountrySetting);
+      console.log('filter: ' + includeAllCountries + ' ' + countryOpen);
       updateFilter(); 
     }
   
@@ -153,6 +160,7 @@ function FilterDrawer(props) {
       console.log(event.target.name + " " + event.target.checked);
   
       if (event.target.name === 'Include All')  {
+        setIncludeAllTags(event.target.checked); 
         setTagOpen (!event.target.checked); 
         if (event.target.checked) setTagSetting(props.tags); 
         else setTagSetting([]); 
@@ -264,18 +272,20 @@ function FilterDrawer(props) {
   
           { /* Country Filtering */ }
   
-          <ListItem>
-            <ListItemText primary="by Country" />        
+          <ListItem button onClick={handleClick.bind(this, 1)}>
+            <ListItemText primary="by Country" />
+            { (!includeAllCountries) ? (countryOpen ? <ExpandLess /> : <ExpandMore />) :  
+                <ExpandLess /> }
           </ListItem>
           <Collapse in={true} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
             <ListItem button className={nestedClasses.nested}>
-              <Checkbox name='Include All' label='Include All' onClick={handleCountryChange} defaultChecked={!countryOpen}></Checkbox>Include All 
+              <Checkbox name='Include All' label='Include All' onClick={handleCountryChange} defaultChecked={includeAllCountries}></Checkbox>Include All 
                 </ListItem>
             </List>
           </Collapse>
-          <Collapse in={countryOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding={false} padding={0}>
+          <Collapse in={!includeAllCountries && countryOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding={true} padding={1}>
   
             {countries.map( item => {return (
               <ListItem button className={nestedClasses.nested}>
@@ -287,17 +297,20 @@ function FilterDrawer(props) {
   
           { /* Tag Filtering */ }
   
-          <ListItem>
+          <ListItem button onClick={handleClick.bind(this, 2)}>
             <ListItemText primary="by Tag" />
+            { (!includeAllTags) ? (tagOpen ? <ExpandLess /> : <ExpandMore />) :  
+                <ExpandLess /> }
           </ListItem>
           <Collapse in={true} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
             <ListItem button className={nestedClasses.nested}>
-              <Checkbox name='Include All' label='Include All' onClick={handleTagChange} defaultChecked={!tagOpen}></Checkbox>Include All 
+              <Checkbox name='Include All' label='Include All' onClick={handleTagChange} defaultChecked={includeAllTags}></Checkbox>Include All 
             </ListItem>
             </List>
           </Collapse>
-          <Collapse in={tagOpen} timeout="auto" unmountOnExit>
+
+          <Collapse in={!includeAllTags && tagOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding> 
   
             { props.tags.map(
@@ -330,11 +343,11 @@ function FilterDrawer(props) {
             > 
                 <div className={nestedClasses.root}>
                     {props.edges.filter(({node}) => 
-                        (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen)
+                        (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries)
                     ).filter(filterTags).length > 0 ? 
                     <div className={nestedClasses.resultsBox}>
                         { props.edges.filter(({node}) => 
-                            (filterCountrySetting.includes(node.frontmatter.country) || !countryOpen)
+                            (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries)
                             ).filter(filterTags).sort(sortNamesAlphabetically).map(({ node }, i) => (
                                 <SelectionCard
                                     key={i}
@@ -370,13 +383,19 @@ function SelectionCard(props) {
             title="Sample Story"
           />
           <CardContent className={classes.cardContent}>
-          <SquareFlagIcon countryCode="us" svg />
             <Typography gutterBottom variant="h5" component="h2">
-              {props.frontmatter.title}
-            </Typography>
-            <Typography variant="caption" component="p">
-              {props.frontmatter.date.split("T")[0]}
-            </Typography>
+
+              {props.frontmatter.title} </Typography>
+
+              <div className={classes.item}>
+                <SquareFlagIcon countryName={props.frontmatter.country} countryCode="" className={classes.item}></SquareFlagIcon> 
+                <Typography variant='caption' component="p" className={classes.item} > {props.frontmatter.country} </Typography>
+              </div>
+              <Typography variant="caption" component="p">
+                {props.frontmatter.date.split("T")[0]}
+              </Typography>
+
+
             <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
               {props.frontmatter.description}
             </Typography>
@@ -395,7 +414,7 @@ function SelectionCard(props) {
                   color="primary"
                   aria-label="add"
                   marginLeft={5}
-                  marginRgiht={5}
+                  marginRight={5}
                   
                 >
                   {tagText}
@@ -450,8 +469,8 @@ const SelectionPage = ( { data } ) => {
 
   return (
     <Page>
-      <h1 className='selectionTest__title'>View all our stories!</h1>
-      {/*<p className='index__text'>Filter through a list of stories by filtering below</p>*/}
+      <h1 className='selectionTest__title'>Search</h1>
+      <p className='index__text'>Find your next inspiration by country, interests and contributions.</p>
       <div>    
       {
           console.log(allMarkdownRemark)

@@ -1,7 +1,7 @@
 ---
 templateKey: story-page
 title: Arnold Scwepps
-country: England
+country: Austria
 date: 2008-01-04T15:04:10.000Z
 description: Coming to Canada
 featuredpost: true

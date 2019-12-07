@@ -3,15 +3,40 @@ import React from 'react';
 import { Link } from 'gatsby';
 import '@styles/components/Button.scss';
 import ReactCountryFlag from "react-country-flag";
-import { Code } from '@material-ui/icons';
+
 
 export const SquareFlagIcon = ({countryCode, countryName}) =>
 (
-    <ReactCountryFlag code={
-        (countryCode === "") ? CountryKey[countryName].toLowerCase() : countryCode.toLowerCase()
-    } /> 
+    <ReactCountryFlag 
+        styleProps={{
+            width: '20px',
+            height: '20px'
+        }}
+        code={getCode(countryCode, countryName)}
+        svg
+    />
 
 );
+
+function getCode(countryCode, countryName)
+{
+    if ((countryCode === "" || countryCode === null)) 
+    {
+        if (countryName != null && countryName != "") { 
+            let code = CountryKey[Object.keys(CountryKey).find(keyName => keyName.toLowerCase() === countryName.toLowerCase())]
+            console.log('code1: ' + code); 
+            if (code != null) return code.toLowerCase();  
+            else return 'ca'; 
+        }
+        else 
+            return 'ca';
+    }
+    else 
+    {   
+        console.log('code2: ' + countryCode); 
+        return countryCode.toLowerCase();
+    } 
+}
 
 export const CountryKey = {
     'Afghanistan': 'AF',
@@ -244,7 +269,7 @@ export const CountryKey = {
     'Uganda': 'UG',
     'Ukraine': 'UA',
     'United Arab Emirates': 'AE',
-    'United Kingdom': 'GB', 'UK': 'GB', 
+    'United Kingdom': 'GB', 
     'United States': 'US',
     'Uruguay': 'UY',
     'Uzbekistan': 'UZ',
