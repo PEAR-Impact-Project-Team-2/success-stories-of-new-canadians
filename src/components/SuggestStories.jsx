@@ -18,7 +18,7 @@ export const SuggestStories = ({ order, edges }) => (
                 component="img"
                 alt="Contemplative Reptile"
                 height="200"
-                image={ edges[0].node.frontmatter.image.publicURL }
+                image={ edges[0].node.frontmatter.image }
                 title="Contemplative Reptile"
                 />
                 <CardContent>
@@ -40,7 +40,7 @@ export const SuggestStories = ({ order, edges }) => (
                 component="img"
                 alt="Contemplative Reptile"
                 height="200"
-                image={ edges[1].node.frontmatter.image.publicURL }
+                image={ edges[1].node.frontmatter.image }
                 title="Contemplative Reptile"
                 />
                 <CardContent>
