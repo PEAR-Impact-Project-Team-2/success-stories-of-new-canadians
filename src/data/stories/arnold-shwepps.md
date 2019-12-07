@@ -6,6 +6,7 @@ date: 2008-01-04T15:04:10.000Z
 description: Coming to Canada
 featuredpost: true
 featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
+image: /images/uploads/stockvault-kaghan-valley112534.jpg
 tags:
   - success
   - refugee
