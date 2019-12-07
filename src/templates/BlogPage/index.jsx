@@ -12,10 +12,10 @@ import '@styles/templates/BlogPage.scss';
 
 const BlogPage = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
-  const { order, title, ...headerProps } = frontmatter;
+  const { order, ...headerProps } = frontmatter;
   const disqusConfig = {
-    shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: title },
+    shortname: 'immigrant-success-canada',
+    config: { identifier: order },
   }
 
   return (
@@ -57,9 +57,11 @@ const BlogPage = ({ data }) => {
         </div>
 
       </div>
-
-      <div>
-        <DiscussionEmbed {...disqusConfig} />
+      
+      <div className='comment'>
+        <div className='comment__commentSection'>
+          <DiscussionEmbed {...disqusConfig} />
+        </div>
       </div>
 
     </div>
