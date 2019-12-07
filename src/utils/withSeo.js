@@ -1,5 +1,5 @@
 import React from 'react';
-import { Seo } from '@components';
+import { Seo } from './../components/Seo';
 
 export const withSeo = (Component, config = {}) => props => (
   <>
