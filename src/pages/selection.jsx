@@ -13,6 +13,7 @@ import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Colla
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@material-ui/core'
 import { CardActionArea, CardContent, Typography } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import Navbar from '@components/Navbar';
 
 
 const useStyles = makeStyles(theme => ({
@@ -321,6 +322,7 @@ function FilterDrawer() {
 const SelectionPage = () => (
     
     <Page className='selection'>
+      <Navbar/>
       <h1 className='selection__title'>View all our stories!</h1>
       <p className='index__text'>Filter through a list of stories by filtering below</p>
       <div className='containers'>
