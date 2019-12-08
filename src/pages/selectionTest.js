@@ -352,7 +352,7 @@ function FilterDrawer(props) {
 
     function filterSearchBar(value)
     { 
-      if (searchText.length === 0) return true;
+      if (searchText.length === 0 || searchText === null) return true;
       return (value.node.frontmatter.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
     }
 

@@ -28,11 +28,11 @@ export function toTitleCase(str) {
 
 export function getCode(countryCode, countryName)
 {
-    if (countryCode === null || countryCode.length !== 2) 
+    if (countryCode == null || countryCode.length != 2) 
     {
-        if (countryName !== null && countryName !== "") { 
-            let code = CountryKey[Object.keys(CountryKey).find(keyName => keyName.toLowerCase() === countryName.toLowerCase())]
-            if (code !== null) return code.toLowerCase();  
+        if (countryName != null && countryName == "") { 
+            let code = CountryKey[Object.keys(CountryKey).find(keyName => keyName.toLowerCase() == countryName.toLowerCase())]
+            if (code != null) return code.toLowerCase();  
         }
         return '';
     }
