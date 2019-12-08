@@ -1,12 +1,11 @@
 ---
 templateKey: story-page
-title: Arnold Scwepps
-country: Austria
-date: 2008-01-04T15:04:10.000Z
+title: A Tale of Success
 description: Coming to Canada
-featuredpost: true
-featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
-image: /images/uploads/stockvault-kaghan-valley112534.jpg
+country: Austria
+author: Arnold Scwepps
+image: /images/uploads/face2.jpg
+date: 2008-01-04T15:04:10.000Z
 tags:
   - success
   - refugee
