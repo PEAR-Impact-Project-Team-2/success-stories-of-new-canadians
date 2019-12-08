@@ -4,7 +4,7 @@ title: John Doe
 description: Coming to America
 country: Ireland
 author: Henry Zhang
-image: /images/uploads/face2.jpg
+image: /images/uploads/face3.jpg
 date: 2017-01-04T15:04:10.000Z
 tags:
   - inspirational

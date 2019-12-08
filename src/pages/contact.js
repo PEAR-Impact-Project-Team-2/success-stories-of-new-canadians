@@ -4,6 +4,8 @@ import { withSeo } from '../utils/withSeo';
 import { Page } from '../layouts/Page';
 import { Button, Dialog, FormControl, DialogTitle, InputLabel, DialogActions, DialogContent, DialogContentText, TextField, Select, MenuItem} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import Navbar from '@components/Navbar';
+
 
 import '@styles/pages/Contact.scss'
 
@@ -55,7 +57,6 @@ const query = graphql`
 `
 
 const ContactPage = () => {
-  const { allMarkdownRemark } = useStaticQuery(query);
   const [contactType, setContactType] = React.useState('Contact')
   const [subOpen, setSubOpen] = React.useState(false)
   const [thanksOpen, setThanksOpen] = React.useState(false)
@@ -118,7 +119,7 @@ const ContactPage = () => {
 
   
 
-  console.log(allMarkdownRemark);
+  //console.log(allMarkdownRemark);
 
 
 
@@ -136,7 +137,10 @@ const ContactPage = () => {
 
   return (
     <Page className='contact'>
+      <Navbar/>
       <div /* subscribe button */>
+        <h1 className='selectionTest__title'>-</h1>  
+        <h1 className='selectionTest__title'>Contact and Subscribe</h1> 
         <Button className={classes.button} onClick={ openSubs }>Subscribe</Button>
         <Dialog open={subOpen} onClose={closeSubs}>
             <DialogTitle id='sub_popup'>Subscription</DialogTitle>
