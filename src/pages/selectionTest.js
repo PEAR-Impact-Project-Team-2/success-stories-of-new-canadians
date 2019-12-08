@@ -5,6 +5,7 @@ import { Grid, Button } from '@material-ui/core'
 import { SquareFlagIcon, CountryKey, toTitleCase } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Navbar from './../components/Navbar'
 
 import { Card, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
 import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
@@ -148,7 +149,6 @@ function FilterDrawer(props) {
     };
   
     const updateFilter = () => {
-      console.log("refresh the filter.")
       setUpdate(!update); 
     }
   
@@ -158,7 +158,6 @@ function FilterDrawer(props) {
     }
   
     const handleCountryChange = event => {
-      console.log(event.target.name + " " + event.target.checked);
   
       if (event.target.name === 'Include All')  {
         setIncludeAllCountries (event.target.checked); 
@@ -175,12 +174,10 @@ function FilterDrawer(props) {
       { 
         filterCountrySetting.push(event.target.name);
       }
-      console.log('filter: ' + includeAllCountries + ' ' + countryOpen);
       updateFilter(); 
     }
   
     const handleTagChange = event => {
-      console.log(event.target.name + " " + event.target.checked);
   
       if (event.target.name === 'Include All')  {
         setIncludeAllTags(event.target.checked); 
@@ -198,7 +195,6 @@ function FilterDrawer(props) {
       { 
         filterTagSetting.push(event.target.name);
       }
-      console.log(filterTagSetting);
       updateFilter(); 
     }
   
@@ -399,6 +395,7 @@ function FilterDrawer(props) {
   
     return (
       <main>
+        <Navbar/>
         <div className={nestedClasses.buttonSection}> 
         <p className='index__text' justifyContent='center'> Find your next inspiration by their background, interests and contributions.</p>
 
@@ -563,12 +560,10 @@ const SelectionPage = ( { data } ) => {
   return (
     <Page>
       <div className={'selectionTest__headerBox'}>
+      <h2 className='selectionTest__title'>-</h2>  
        <h1 className='selectionTest__title'>Search Stories</h1>  
       </div>
       <div>    
-      {
-          console.log(allMarkdownRemark)
-      }
       </div>
       { /* Filter Row */ }
         <FilterDrawer
