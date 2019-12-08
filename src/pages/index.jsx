@@ -3,6 +3,8 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { withSeo } from '@utils';
 import { Page } from '@layouts';
 import { Button } from '@components';
+import Navbar from '@components/Navbar';
+import Header from '@components/Header';
 import StoryRoll from '@components/StoryRoll'
 // NOTICE: Welcome does not exist
 // import { Welcome } from '@components';
@@ -30,7 +32,9 @@ const IndexPage = () => {
   const { markdownRemark } = useStaticQuery(query);
 
   return (
-    <Page className='index'>
+    <Page id='home' className='index'>
+      <Navbar/>
+      <Header/>
       <h1 className='index__title'>{markdownRemark.frontmatter.title}</h1>
       <p className='index__text'>{markdownRemark.frontmatter.heading}</p>
       <img src={markdownRemark.frontmatter.image} alt="Logo" height='360px'/>
@@ -38,7 +42,7 @@ const IndexPage = () => {
       <Button className='index__button' to='/welcome'>
         Let's Get Started
       </Button>
-      <Button className='selection__button' to='/selectionTest'>
+      <Button id='contact' className='selection__button' to='/selectionTest'>
         Select A Story
       </Button> 
     </Page>
