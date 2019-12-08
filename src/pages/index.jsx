@@ -37,14 +37,14 @@ const IndexPage = () => {
     <Page id='home' className='index'>
       <Navbar/>
       <Header/>
-      <h1 id='about' className='index__title'>{markdownRemark.frontmatter.title}</h1>
+      <h1 className='index__title'>{markdownRemark.frontmatter.title}</h1>
       <p className='index__text'>{markdownRemark.frontmatter.heading}</p>
       <img src={markdownRemark.frontmatter.image.publicURL} alt="Logo" height='360px'/>;
       <StoryRoll/>
       <Button className='index__button' to='/welcome'>
         Let's Get Started
       </Button>
-      <Button className='selection__button' to='/selection'>
+      <Button id='contact' className='selection__button' to='/selection'>
         Select A Story
       </Button> 
     </Page>

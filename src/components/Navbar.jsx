@@ -11,7 +11,7 @@ class Navbar extends Component {
 
          <ul id="nav" className="nav">
             <li className="current"><a className="smoothscroll" href="/#home">Home</a></li>
-            <li><a className="smoothscroll" href="/#about">About Me</a></li>
+            <li><a className="smoothscroll" href="https://azharlaher.com/about-azhar">About Me</a></li>
             <li><a className="smoothscroll" href="/selection">Stories</a></li>
 	          <li><a className="smoothscroll" href="/#contact">Contact Me</a></li>
             <li><a className="smoothscroll" href="/#subscribe">Subscribe</a></li>
