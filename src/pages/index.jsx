@@ -35,9 +35,6 @@ const IndexPage = () => {
       <p className='index__text'>{markdownRemark.frontmatter.heading}</p>
       <img src={markdownRemark.frontmatter.image} alt="Logo" height='360px'/>;
       <StoryRoll/>
-      <Button className='index__button' to='/welcome'>
-        Let's Get Started
-      </Button>
       <Button className='selection__button' to='/selection'>
         Select A Story
       </Button> 

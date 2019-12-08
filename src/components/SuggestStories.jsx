@@ -8,47 +8,47 @@ import '@styles/components/SuggestStories.scss';
 
 export const SuggestStories = ({ order, edges }) => (
     <div>
-        <h3>Suggested Reading:</h3>
+        <h3>Recent Stories:</h3>
 
-        <Card onClick={()=>window.open(`${edges[0].node.fields.slug}`, "_self")} className='suggestCard'>
+        <Card onClick={()=>window.open(`${edges[edges.length-1].node.fields.slug}`, "_self")} className='suggestCard'>
             <CardActionArea
-                to={edges[0].node.fields.slug}
+                to={edges[edges.length-1].node.fields.slug}
             >
                 <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
                 height="200"
-                image={ edges[0].node.frontmatter.image.publicURL }
+                image={ edges[edges.length-1].node.frontmatter.image }
                 title="Contemplative Reptile"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        { edges[0].node.frontmatter.title }
+                        { edges[edges.length-1].node.frontmatter.title }
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        { edges[0].node.frontmatter.description }
+                        { edges[edges.length-1].node.frontmatter.description }
                     </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
 
-        <Card onClick={()=>window.open(`${edges[1].node.fields.slug}`, "_self")} className='suggestCard'>
+        <Card onClick={()=>window.open(`${edges[edges.length-2].node.fields.slug}`, "_self")} className='suggestCard'>
             <CardActionArea
-                to={edges[1].node.fields.slug}
+                to={edges[edges.length-2].node.fields.slug}
             >
                 <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
                 height="200"
-                image={ edges[1].node.frontmatter.image.publicURL }
+                image={ edges[edges.length-2].node.frontmatter.image }
                 title="Contemplative Reptile"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        { edges[1].node.frontmatter.title }
+                        { edges[edges.length-2].node.frontmatter.title }
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        { edges[1].node.frontmatter.description }
+                        { edges[edges.length-2].node.frontmatter.description }
                     </Typography>
                 </CardContent>
             </CardActionArea>

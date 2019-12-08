@@ -1,9 +1,11 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
+import Footer from '@components/Footer';
 import '@styles/layouts/Page.scss';
+import { Container } from '@material-ui/core';
 
 export const Page = ({ children, className, ...props }) => (
   <main className={`page${className ? ` ${className}` : ''}`} {...props}>
-    <div className='page__content'>{children}</div>
+    <Container className='page__content'>{children}</Container>
+    <Footer/>
   </main>
 );
