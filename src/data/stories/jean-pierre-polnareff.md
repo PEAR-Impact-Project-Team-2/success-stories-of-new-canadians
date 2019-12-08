@@ -4,10 +4,8 @@ title: Jean-Pierre Polnareff
 description: Coming to Canada
 country: France
 author: Jean
-image: /images/uploads/stockvault-kaghan-valley112534.jpg
+image: /images/uploads/face1.jpg
 date: 2019-02-22T15:04:10.000Z
-featuredpost: false
-featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
 tags:
   - inspirational
 ---
