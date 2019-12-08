@@ -404,6 +404,7 @@ function FilterDrawer(props) {
             <CssTextField
               className={nestedClasses.searchBox}
               defaultValue={currentSearchText}
+              label="Search by name / title"
               onChange = { search.bind(this) }
               variant="outlined"
               id="custom-css-outlined-input"
