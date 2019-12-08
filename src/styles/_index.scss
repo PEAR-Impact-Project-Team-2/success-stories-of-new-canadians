@@ -22,11 +22,11 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 img {
-    max-width: 60vw;
+    width: 100%;
 }
 @media screen and (orientation:portrait) {
     img {
-        max-width: 50vw;
+        max-width: 100%;
     }
 }
 
