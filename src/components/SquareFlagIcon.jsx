@@ -31,7 +31,7 @@ export function getCode(countryCode, countryName)
     // catch undefined strings with == instead of ===
     if (countryCode == null || countryCode.length != 2) 
     {
-        if (countryName != null && countryName == "") { 
+        if (countryName != null && countryName != "") { 
             let code = CountryKey[Object.keys(CountryKey).find(keyName => keyName.toLowerCase() == countryName.toLowerCase())]
             if (code != null) return code.toLowerCase();  
         }
