@@ -55,7 +55,7 @@ export const SuggestStories = ({ order, edges }) => (
         </Card>
 
 
-        {/*
+        {/*            THIS IS LEGACY CODE, DON'T DELETE YET
         
         Boolean(order>1) ? (
         
