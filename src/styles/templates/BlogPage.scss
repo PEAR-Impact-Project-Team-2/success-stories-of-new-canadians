@@ -5,8 +5,11 @@
 .navSpace {
     height:60px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 693px) {
         height: 100px;
+    }
+    @media screen and (max-width: 381px) {
+        height: 140px;
     }
 }
 
@@ -173,6 +176,7 @@
 .comment {
     background-color: white;
     &__commentSection {
+        padding-top: 30px;
         margin-left: 20vw;
         margin-right: 20vw;
     }
