@@ -13,7 +13,7 @@ const IndexPage = () => {
       <Navbar/>
       <Header />
       <StoryRoll/>
-      <Button id='contact' className='selection__button' to='/selectionTest'>
+      <Button id='contact' className='index__button' to='/selectionTest'>
         Select A Story
       </Button> 
     </Page>
