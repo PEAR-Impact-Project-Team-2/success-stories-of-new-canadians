@@ -5,21 +5,23 @@ class Header extends Component {
   render() {
 
     return (
-      <header id="home">
+      <div className='headcont'>
+         <header id="home">
 
-      <div className="row banner">
-         <div className="banner-text">
-            <h1>Welcome</h1>
-            <h3>This is where we put a subtitle.</h3>
-            <hr />
+         <div className="row banner">
+            <div className="banner-text">
+               <h1>Welcome</h1>
+               <h3>This is where we put a subtitle.</h3>
+               <hr />
+            </div>
          </div>
+
+         <p className="scrolldown">
+            <a className="smoothscroll" href="#contact"><i class="fa fa-arrow-down"></i></a>
+         </p>
+
+         </header>
       </div>
-
-      <p className="scrolldown">
-         <a className="smoothscroll" href="#contact"><i class="fa fa-arrow-down"></i></a>
-      </p>
-
-   </header>
     );
   }
 }
