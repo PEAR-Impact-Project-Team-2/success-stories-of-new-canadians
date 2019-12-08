@@ -1,12 +1,11 @@
 ---
 templateKey: story-page
 title: Mohammed Avdol
-country: Egypt
-date: 2016-02-22T15:04:10.000Z
 description: Coming to Canada
-featuredpost: true
-featuredimage: /images/uploads/stockvault-kaghan-valley112534.jpg
-image: /images/uploads/stockvault-kaghan-valley112534.jpg
+country: Egypt
+author: Avdol
+image: /images/uploads/logotrial1.png
+date: 2016-02-22T15:04:10.000Z
 tags:
   - inspirational
 ---
