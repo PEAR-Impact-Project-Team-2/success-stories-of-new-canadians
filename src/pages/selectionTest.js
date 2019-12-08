@@ -454,7 +454,7 @@ function FilterDrawer(props) {
 function SelectionCard(props) {
 
     const classes = useStyles();
-  
+  //cinnuit
     return (
       <Card className={classes.card}>
         <CardActionArea>
@@ -462,7 +462,7 @@ function SelectionCard(props) {
             component="img"
             alt="Sample Story"
             height='225'
-            image={props.frontmatter.featuredimage}
+            image={props.frontmatter.image}
             title="Sample Story"
           />
           <CardContent className={classes.cardContent}>
@@ -601,7 +601,7 @@ query SelectionPageTemplate {
                     date
                     description
                     featuredpost
-                    featuredimage
+                    image
                     tags
                 }
                 fields {

@@ -190,6 +190,15 @@
     }
 }
 
+@media screen and (max-width: 1024px) {
+    .content {
+        padding: 50px 10vw;
+        &__paragraph {
+            width: 50vw;
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
     .blog {
         &__footer {
