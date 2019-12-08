@@ -79,8 +79,8 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'center',
     },
     button: {
-      backgroundColor: 'red',
-      color: 'white',
+      backgroundColor: 'white',
+      color: 'red',
       marginBottom: '5px',
       marginTop: '5px'
     },
@@ -105,6 +105,7 @@ const useStyles = makeStyles(theme => ({
     },
     buttonSection: {
       textAlign: 'center',
+      backgroundColor: 'white',
     }, 
     // item padding in lists
     item: {
@@ -509,9 +510,6 @@ function SelectionCard(props) {
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.cardActions}>
-          <Button className={classes.button} size="small" color="primary">
-            Share
-          </Button>
           <Button className={classes.button} size="small" color="primary" onClick={() => {navigate(props.fields.slug)}}>
             Learn More
           </Button>
@@ -563,7 +561,9 @@ const SelectionPage = ( { data } ) => {
 
   return (
     <Page>
-      <h1 className='selectionTest__title'>Search Stories</h1>
+      <div className={'selectionTest__headerBox'}>
+       <h1 className='selectionTest__title'>Search Stories</h1>  
+      </div>
       <div>    
       {
           console.log(allMarkdownRemark)

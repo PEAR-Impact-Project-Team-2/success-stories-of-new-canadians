@@ -8,9 +8,7 @@ class Header extends Component {
 
       return (
          <div className='headcont'>
-            <header  style={{
-               backgroundImage: `url(${data.markdownRemark.frontmatter.image})`,
-               }} id="home">
+            <header  style={{backgroundImage: `url(${data.markdownRemark.frontmatter.image})`}} id="home">
                <div className="row banner">
                   <div className="banner-text">
                      <h1>{data.markdownRemark.frontmatter.title}</h1>
