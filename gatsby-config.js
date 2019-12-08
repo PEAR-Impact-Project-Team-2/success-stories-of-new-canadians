@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: `CSEC Pear Impact Project 2019`,
-    description: `Starter code for participants of the CSEC Pear Impact Project of 2019`,
-    author: `@CSEC`,
+    title: `Success Stories of New Canadians`,
+    description: `Discover the success stories new Canadian immigrants`,
+    author: `@Team2`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
