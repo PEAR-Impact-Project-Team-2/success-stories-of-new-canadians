@@ -19,7 +19,7 @@ import '@styles/pages/SelectionTest.scss'
 
 const useStyles = makeStyles(theme => ({
     formControl: {
-      margin: theme.spacing(1),
+      margin: theme.spacing(1.5),
       minWidth: 250,
     },
     selectEmpty: {
