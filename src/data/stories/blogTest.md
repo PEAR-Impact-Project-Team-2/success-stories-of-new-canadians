@@ -6,8 +6,8 @@ description: >-
   of a month
 country: Canada
 author: Henry Zhang
-image: /images/uploads/african-landscape.jpg
-featuredimage: /images/uploads/african-landscape.jpg
+image: /images/uploads/african.landscape.jpg
+featuredimage: /images/uploads/african.landscape.jpg
 date: 2019-02-12T15:04:10.000Z
 tags:
   - inspirational
