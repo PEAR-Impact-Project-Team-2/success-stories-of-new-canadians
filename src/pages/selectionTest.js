@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import { Grid, Button } from '@material-ui/core'
 import { SquareFlagIcon, CountryKey, toTitleCase } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
@@ -436,7 +436,8 @@ function FilterDrawer(props) {
                         { getFilteredResults().sort(sortNamesAlphabetically).map(({ node }, i) => (
                                 <SelectionCard
                                     key={i}
-                                    frontmatter={node.frontmatter}>
+                                    frontmatter={node.frontmatter}
+                                    fields={node.fields}>
                                 </SelectionCard> 
                         )) }
                     </div> : 
@@ -511,7 +512,7 @@ function SelectionCard(props) {
           <Button className={classes.button} size="small" color="primary">
             Share
           </Button>
-          <Button className={classes.button} size="small" color="primary">
+          <Button className={classes.button} size="small" color="primary" onClick={() => {navigate(props.fields.slug)}}>
             Learn More
           </Button>
         </CardActions>
@@ -553,6 +554,7 @@ function GenerateCountries(edges) {
     })
   return t.map(toTitleCase)
 }
+
 
 const SelectionPage = ( { data } ) => {
 
@@ -601,6 +603,9 @@ query SelectionPageTemplate {
                     featuredpost
                     featuredimage
                     tags
+                }
+                fields {
+                  slug
                 }
             }
         }
