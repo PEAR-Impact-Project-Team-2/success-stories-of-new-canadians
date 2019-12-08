@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '@styles/components/Header.scss';
-import 'font-awesome/css/font-awesome.min.css';
 
 class Header extends Component {
   render() {
