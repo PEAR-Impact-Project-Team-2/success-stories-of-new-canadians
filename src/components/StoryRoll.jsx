@@ -1,5 +1,4 @@
 import React from 'react';
-import { Page } from '@layouts';
 import PropTypes from 'prop-types'
 import { Card, CardHeader, CardMedia, Button as MaterialButton, CardActions } from '@material-ui/core';
 import { StaticQuery, graphql, navigate } from "gatsby"
@@ -7,7 +6,6 @@ import { StaticQuery, graphql, navigate } from "gatsby"
 class StoryRoll extends React.Component {
   render() {
     const { data } = this.props
-    const { edges: posts } = data.allMarkdownRemark
 
     return (
       <div className='index__cards'>
