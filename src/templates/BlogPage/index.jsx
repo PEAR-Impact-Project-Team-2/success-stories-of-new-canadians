@@ -1,7 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-//import { Page } from '@layouts';
-//import { Header } from './Header';
 import { BlogHeader } from '../../components/BlogHeader';
 import { ShareCard } from '../../components/ShareCard';
 import { SuggestStories } from '../../components/SuggestStories';
