@@ -27,17 +27,24 @@ export function toTitleCase(str) {
     );
 }
 
-export function getCode(countryCode, countryName)
+function getCode(countryCode, countryName)
 {
-    if (countryCode === null || countryCode.length != 2) 
+    if ((countryCode === "" || countryCode === null)) 
     {
         if (countryName != null && countryName != "") { 
             let code = CountryKey[Object.keys(CountryKey).find(keyName => keyName.toLowerCase() === countryName.toLowerCase())]
+            console.log('code1: ' + code); 
             if (code != null) return code.toLowerCase();  
+            else return 'ca'; 
         }
-        return '';
+        else 
+            return 'ca';
     }
-    else return countryCode.toLowerCase();
+    else 
+    {   
+        console.log('code2: ' + countryCode); 
+        return countryCode.toLowerCase();
+    } 
 }
 
 export const CountryKey = {

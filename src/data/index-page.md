@@ -1,8 +1,8 @@
 ---
 templateKey: index-page
 title: Welcome
-image: /images/uploads/african.landscape.jpg
-heading: Put a subtitle here
+image: /images/uploads/stockvault-kaghan-valley112534.jpg
+heading: To Test Editing the Index Page
 subheading: Success stories of new Canadian immigrants
 aboutus:
   description: >
