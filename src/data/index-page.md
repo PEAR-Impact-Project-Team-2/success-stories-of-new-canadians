@@ -1,7 +1,7 @@
 ---
 templateKey: index-page
 title: Welcome
-image: /images/uploads/african.landscape.jpg
+image: /images/uploads/header-background.jpg
 heading: Put a subtitle here
 subheading: Success stories of new Canadian immigrants
 aboutus:
