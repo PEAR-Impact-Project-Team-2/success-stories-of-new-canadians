@@ -3,32 +3,32 @@ import { StaticQuery, graphql } from 'gatsby';
 import '@styles/components/Header.scss';
 
 class Header extends Component {
-  render() {
-   const { data } = this.props
+   render() {
+      const { data } = this.props
 
-    return (
-      <header id="home">
+      return (
+         <div className='headcont'>
+            <header id="home">
+               <div className="row banner">
+                  <div className="banner-text">
+                     <h1>{data.markdownRemark.frontmatter.title}</h1>
+                     <h3>{data.markdownRemark.frontmatter.heading}</h3>
+                     <hr />
+                  </div>
 
-      <div className="row banner">
-         <div className="banner-text">
-            <h1>{data.markdownRemark.frontmatter.title}</h1>
-            <h3>{data.markdownRemark.frontmatter.heading}</h3>
-            <hr />
+                  <p className="scrolldown">
+                     <a className="smoothscroll" href="#contact"><i class="fa fa-arrow-down"></i></a>
+                  </p>
+               </div>
+            </header>
          </div>
-      </div>
-
-      <p className="scrolldown">
-         <a className="smoothscroll" href="#contact"><i class="fa fa-arrow-down"></i></a>
-      </p>
-
-   </header>
-    );
-  }
+      );
+   }
 }
 
 export default () => (
    <StaticQuery
-     query={graphql`
+      query={graphql`
      {
       markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
         frontmatter {
@@ -44,6 +44,6 @@ export default () => (
       }
     }
      `}
-     render={data => <Header data={data} />}
+      render={data => <Header data={data} />}
    />
- )
+)
