@@ -2,18 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, navigate } from 'gatsby'
 import { Grid, Button } from '@material-ui/core'
-import { SquareFlagIcon, CountryKey, toTitleCase } from './../components/SquareFlagIcon'
+import { SquareFlagIcon, toTitleCase } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-import { Card, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
+import { Card, CardMedia, CardActions, Checkbox } from '@material-ui/core';
 import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
 import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
-import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
+import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import SearchIcon from '@material-ui/icons/Search'
 import { TextField } from '@material-ui/core';
-import ReactCountryFlag from "react-country-flag";
 
 import '@styles/pages/SelectionTest.scss'
 
@@ -215,7 +214,7 @@ function FilterDrawer(props) {
    
     function sortNamesAlphabetically( a, b ) {
 
-      if (filterDateNameSetting == 'A to Z' || filterDateNameSetting == 'Z to A') { 
+      if (filterDateNameSetting === 'A to Z' || filterDateNameSetting === 'Z to A') { 
 
         if ( a.node.frontmatter.title < b.node.frontmatter.title){
           return (filterDateNameSetting === dateNames[2]) ? -1 : 1;
@@ -240,7 +239,7 @@ function FilterDrawer(props) {
     { 
       let b = false; 
       if (filterTagSetting === props.tags) return true;
-      value.node.frontmatter.tags.map( tagCheck => 
+      value.node.frontmatter.tags.forEach( tagCheck => 
         {
           if (filterTagSetting.includes(tagCheck)) 
           {
@@ -353,7 +352,7 @@ function FilterDrawer(props) {
     function filterSearchBar(value)
     { 
       if (searchText.length === 0) return true;
-      return (value.node.frontmatter.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1)
+      return (value.node.frontmatter.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
     }
 
     function getFilteredResults() 
@@ -536,9 +535,9 @@ SelectionPageTemplate.propTypes = {
 
 function GenerateTags(edges) {
   let t = [];
-  edges.map( ({node}) => 
+  edges.forEach( ({node}) => 
     {
-      node.frontmatter.tags.map(storyTag => {
+      node.frontmatter.tags.forEach(storyTag => {
         if (!t.includes(storyTag.toLowerCase()))
         t.push(storyTag.toLowerCase()) 
       })
@@ -548,7 +547,7 @@ function GenerateTags(edges) {
 
 function GenerateCountries(edges) { 
   let t = [];
-  edges.map( ({node}) => 
+  edges.forEach( ({node}) => 
     {
         if (!t.includes(node.frontmatter.country.toLowerCase()))
         t.push(node.frontmatter.country.toLowerCase())
@@ -560,7 +559,6 @@ function GenerateCountries(edges) {
 const SelectionPage = ( { data } ) => {
 
     const  { allMarkdownRemark } = data 
-    const { frontmatter, html } = allMarkdownRemark
 
   return (
     <Page>
