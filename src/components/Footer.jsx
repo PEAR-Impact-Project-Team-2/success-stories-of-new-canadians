@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Grid } from '@material-ui/core'
+import { Box, Button, Grid } from '@material-ui/core'
 import '@styles/components/Footer.scss';
 
 export default function Footer() {
