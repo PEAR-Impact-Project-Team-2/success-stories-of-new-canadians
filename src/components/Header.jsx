@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import '@styles/components/Header.scss';
 
 class Header extends Component {
   render() {
+   const { data } = this.props
 
     return (
       <header id="home">
 
       <div className="row banner">
          <div className="banner-text">
-            <h1>Welcome</h1>
-            <h3>This is where we put a subtitle.</h3>
+            <h1>{data.markdownRemark.frontmatter.title}</h1>
+            <h3>{data.markdownRemark.frontmatter.heading}</h3>
             <hr />
          </div>
       </div>
@@ -24,4 +26,24 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default () => (
+   <StaticQuery
+     query={graphql`
+     {
+      markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
+        frontmatter {
+          aboutus {
+            description
+            title
+          }
+          image
+          subheading
+          heading
+          title
+        }
+      }
+    }
+     `}
+     render={data => <Header data={data} />}
+   />
+ )
