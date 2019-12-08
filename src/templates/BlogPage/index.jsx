@@ -5,6 +5,7 @@ import { ShareCard } from '../../components/ShareCard';
 import { SuggestStories } from '../../components/SuggestStories';
 import { DiscussionEmbed } from "disqus-react"
 import { Seo } from '@components';
+import Navbar from '../../components/Navbar'
 import '@styles/templates/BlogPage.scss';
 
 const BlogPage = ({ data }) => {
@@ -17,54 +18,58 @@ const BlogPage = ({ data }) => {
 
   return (
     <div>
-     <BlogHeader {...headerProps} />
+      <div className='navSpace'></div>
 
-     <div className='purpleStrip'></div>
-    
-      {/*
-      <Page className='blog'>
-        <Seo title={headerProps.title} />
-        <Header {...headerProps} />
-        <div
-          className='blog__content'
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-        <Footer order={order} edges={data.allMarkdownRemark.edges} />
-      </Page>
-      */}
+      <Navbar />
 
-      <div className='blogContainer'>
-        <Seo title={headerProps.title} />
-        
-        <div className='content__socialMedia'>
+      <BlogHeader {...headerProps} />
 
-          <ShareCard />
-
-        </div>
-
-        <div
-          className='content__paragraph'
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-        
-        <div className='content__suggestedBlog'>
-          <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />
-        </div>
-
-      </div>
+      <div className='purpleStrip'></div>
       
-      <div className='comment'>
-        <div className='comment__commentSection'>
-          <DiscussionEmbed {...disqusConfig} />
+        {/*
+        <Page className='blog'>
+          <Seo title={headerProps.title} />
+          <Header {...headerProps} />
+          <div
+            className='blog__content'
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+          <Footer order={order} edges={data.allMarkdownRemark.edges} />
+        </Page>
+        */}
+
+        <div className='blogContainer'>
+          <Seo title={headerProps.title} />
+          
+          <div className='content__socialMedia'>
+
+            <ShareCard />
+
+          </div>
+
+          <div
+            className='content__paragraph'
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+          
+          <div className='content__suggestedBlog'>
+            <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />
+          </div>
+
         </div>
-      </div>
+        
+        <div className='comment'>
+          <div className='comment__commentSection'>
+            <DiscussionEmbed {...disqusConfig} />
+          </div>
+        </div>
 
-      <div className='footer'>
+        <div className='footer'>
 
-        <h2 className='footer__title'>
-          Success Stories of New Canadians
-        </h2>
-      </div>
+          <h2 className='footer__title'>
+            Success Stories of New Canadians
+          </h2>
+        </div>
 
     </div>
 
