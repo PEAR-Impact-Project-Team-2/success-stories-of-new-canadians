@@ -5,8 +5,6 @@ import { Button } from '@components';
 import Navbar from '@components/Navbar';
 import Header from '@components/Header';
 import StoryRoll from '@components/StoryRoll'
-// NOTICE: Welcome does not exist
-// import { Welcome } from '@components';
 import '@styles/pages/Index.scss';
 
 const IndexPage = () => {
