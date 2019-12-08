@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Grid, Button } from '@material-ui/core'
-import { SquareFlagIcon, CountryKey } from './../components/SquareFlagIcon'
+import { SquareFlagIcon, CountryKey, toTitleCase } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
@@ -19,7 +19,7 @@ import '@styles/pages/SelectionTest.scss'
 
 const useStyles = makeStyles(theme => ({
     formControl: {
-      margin: theme.spacing(1),
+      margin: theme.spacing(1.5),
       minWidth: 250,
     },
     selectEmpty: {
@@ -132,10 +132,10 @@ function FilterDrawer(props) {
     var currentSearchText = "";
     
     // Possible Options
-    const countries = Object.keys(CountryKey);
+    const countries = props.countries;
     const dateNames = ['Date - Oldest First', 'Date - Newest First', 'A to Z', 'Z to A']
   
-    const [filterCountrySetting, setCountrySetting] = React.useState(['Include All']);
+    const [filterCountrySetting, setCountrySetting] = React.useState(countries);
     const [filterTagSetting, setTagSetting] = React.useState(props.tags); 
     const [filterDateNameSetting, setFilterDateNameSetting] = React.useState(dateNames[0]);
     const [update, setUpdate] = React.useState(false); 
@@ -311,7 +311,8 @@ function FilterDrawer(props) {
   
             {countries.map( item => {return (
               <ListItem button className={nestedClasses.nested}>
-                <Checkbox name={item} label={item} onClick={handleCountryChange} defaultChecked={filterCountrySetting.includes(item)}></Checkbox>{item}
+                <Checkbox name={item} onClick={handleCountryChange} defaultChecked={filterCountrySetting.includes(item)}>
+                </Checkbox>{item}
               </ListItem>) } ) } 
   
             </List>
@@ -536,11 +537,21 @@ function GenerateTags(edges) {
   edges.map( ({node}) => 
     {
       node.frontmatter.tags.map(storyTag => {
-        if (!t.includes(storyTag))
-        t.push(storyTag) 
+        if (!t.includes(storyTag.toLowerCase()))
+        t.push(storyTag.toLowerCase()) 
       })
     })
   return t;
+}
+
+function GenerateCountries(edges) { 
+  let t = [];
+  edges.map( ({node}) => 
+    {
+        if (!t.includes(node.frontmatter.country.toLowerCase()))
+        t.push(node.frontmatter.country.toLowerCase())
+    })
+  return t.map(toTitleCase)
 }
 
 const SelectionPage = ( { data } ) => {
@@ -559,7 +570,8 @@ const SelectionPage = ( { data } ) => {
       { /* Filter Row */ }
         <FilterDrawer
           edges={allMarkdownRemark.edges}
-          tags={GenerateTags(allMarkdownRemark.edges)}>
+          tags={GenerateTags(allMarkdownRemark.edges).sort()}
+          countries={GenerateCountries(allMarkdownRemark.edges).sort()}>
         </FilterDrawer>
     </Page>
   )
@@ -595,5 +607,4 @@ query SelectionPageTemplate {
     }
   }
 `
-
 export default SelectionPage
