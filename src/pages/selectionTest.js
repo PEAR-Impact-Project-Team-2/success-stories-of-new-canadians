@@ -414,7 +414,7 @@ function FilterDrawer(props) {
               }}
             />
 
-            <Button key="saerch" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
+            <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
             <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>More Filters</Button>
 
             
@@ -462,7 +462,7 @@ function SelectionCard(props) {
             component="img"
             alt="Sample Story"
             height='225'
-            image={props.frontmatter.featuredimage}
+            image={props.frontmatter.image}
             title="Sample Story"
           />
           <CardContent className={classes.cardContent}>
@@ -601,7 +601,7 @@ query SelectionPageTemplate {
                     date
                     description
                     featuredpost
-                    featuredimage
+                    image
                     tags
                 }
                 fields {
