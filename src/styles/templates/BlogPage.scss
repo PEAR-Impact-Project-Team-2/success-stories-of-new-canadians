@@ -158,10 +158,6 @@
         }
 
     }
-
-    img {
-        max-width: 50vw;
-    }
 }
 
 
@@ -189,11 +185,7 @@
     .content {
         padding: 50px 10vw;
         &__paragraph {
-            width: 80vw;
-        }
-
-        img {
-            width: 80vw;
+            width: 50vw;
         }
     }
 }
@@ -235,10 +227,6 @@
             width: 90vw;
             margin-left: 4vw;
             margin-right: 4vw;
-        }
-
-        img {
-            width: 90vw;
         }
     }
 
