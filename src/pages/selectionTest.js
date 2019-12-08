@@ -414,7 +414,7 @@ function FilterDrawer(props) {
               }}
             />
 
-            <Button key="saerch" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
+            <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
             <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>More Filters</Button>
 
             
