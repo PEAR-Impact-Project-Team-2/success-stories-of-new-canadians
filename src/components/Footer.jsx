@@ -12,10 +12,10 @@ export default function Footer() {
             <Grid container direction="row" justify="space-evenly" alignItems="stretch">
                 <Grid item>
                     <Grid item xs={4}>
-                        <Button style={styleZ} to="https://immigrant-success-canada.netlify.com/">Home</Button>
+                        <Button style={styleZ} to="https://immigrant-success-canada.netlify.com/#home">Home</Button>
                     </Grid>
                     <Grid item xs={4}>
-                        <Button style={styleZ} href="https://immigrant-success-canada.netlify.com/selectionTest/">Stories</Button>
+                        <Button style={styleZ} href="https://immigrant-success-canada.netlify.com/selectionTest">Stories</Button>
                     </Grid>
                     <Grid item xs={4}>
                         <Button style={styleZ} href="https://immigrant-success-canada.netlify.com/admin/">Admin</Button>
