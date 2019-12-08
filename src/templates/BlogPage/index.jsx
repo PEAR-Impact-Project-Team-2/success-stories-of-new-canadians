@@ -25,18 +25,6 @@ const BlogPage = ({ data }) => {
       <BlogHeader {...headerProps} />
 
       <div className='purpleStrip'></div>
-      
-        {/*
-        <Page className='blog'>
-          <Seo title={headerProps.title} />
-          <Header {...headerProps} />
-          <div
-            className='blog__content'
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-          <Footer order={order} edges={data.allMarkdownRemark.edges} />
-        </Page>
-        */}
 
         <div className='blogContainer'>
           <Seo title={headerProps.title} />
