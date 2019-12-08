@@ -179,18 +179,10 @@
         padding-top: 30px;
         margin-left: 20vw;
         margin-right: 20vw;
+        padding-bottom: 30px;
     }
 }
 
-.footer {
-    height: 130px;
-    background-color: black;
-
-    &__title {
-        margin-left: 35vw;
-        padding-top: 50px;
-    }
-}
 
 
 @media screen and (orientation:portrait) {
@@ -256,15 +248,6 @@
         &__commentSection {
             margin-left: 5vw;
             margin-right: 5vw;
-        }
-    }
-    .footer {
-        height: 130px;
-        background-color: black;
-    
-        &__title {
-            margin-left: 10vw;
-            padding-top: 50px;
         }
     }
 }

@@ -5,7 +5,8 @@ import { ShareCard } from '../../components/ShareCard';
 import { SuggestStories } from '../../components/SuggestStories';
 import { DiscussionEmbed } from "disqus-react"
 import { Seo } from '@components';
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import '@styles/templates/BlogPage.scss';
 
 const BlogPage = ({ data }) => {
@@ -64,12 +65,7 @@ const BlogPage = ({ data }) => {
           </div>
         </div>
 
-        <div className='footer'>
-
-          <h2 className='footer__title'>
-            Success Stories of New Canadians
-          </h2>
-        </div>
+        <Footer />
 
     </div>
 
