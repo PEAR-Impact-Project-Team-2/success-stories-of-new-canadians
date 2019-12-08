@@ -4,7 +4,7 @@ title: Mohammed Avdol
 description: Coming to Canada
 country: Egypt
 author: Avdol
-image: /images/uploads/logotrial1.png
+image: /images/uploads/african.landscape.jpg
 date: 2016-02-22T15:04:10.000Z
 tags:
   - inspirational
