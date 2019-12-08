@@ -600,7 +600,6 @@ query SelectionPageTemplate {
                     country
                     date
                     description
-                    featuredpost
                     image
                     tags
                 }
