@@ -20,3 +20,18 @@ h2, h3, h4, h5, h6 {
 h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
+
+img {
+    max-width: 60vw;
+}
+@media screen and (orientation:portrait) {
+    img {
+        max-width: 50vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    img {
+        max-width: 90vw;
+    }
+}
