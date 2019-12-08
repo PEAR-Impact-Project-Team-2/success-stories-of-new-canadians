@@ -595,5 +595,4 @@ query SelectionPageTemplate {
     }
   }
 `
-
 export default SelectionPage
