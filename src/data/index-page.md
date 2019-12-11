@@ -2,7 +2,7 @@
 templateKey: index-page
 title: Welcome
 image: /images/uploads/header-background.jpg
-heading: Put a subtitle here
+heading: This is the new subheading
 subheading: Success stories of new Canadian immigrants
 aboutus:
   description: >
