@@ -1,20 +1,17 @@
 import React from 'react'
 import { navigate } from 'gatsby'
-import PropTypes from 'prop-types'
 import { Grid, Button } from '@material-ui/core'
-import { SquareFlagIcon, CountryKey, toTitleCase } from './../components/SquareFlagIcon'
-import { Page } from './../layouts/Page';
+import { SquareFlagIcon } from './SquareFlagIcon'
 import Navbar from './../components/Navbar'
-
-import { Card, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab'
+import { CheckBoxOutlineBlankIcon, CheckBoxIcon } from '@material-ui/icons'
+import { Card, CardMedia, CardActions, Checkbox } from '@material-ui/core';
 import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
 import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import SearchIcon from '@material-ui/icons/Search'
 import { TextField } from '@material-ui/core';
-import ReactCountryFlag from "react-country-flag";
-import SelectionCards from './SelectionCard'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
@@ -36,11 +33,15 @@ const useStyles = makeStyles(theme => ({
     width: 'auto',
   },
   root: {
-    // width: '100%',
-    // maxWidth: 1500,
-    // maxHeight: 1300, 
     backgroundColor: 'white', //theme.palette.background.paper,
     justifyItems: 'center'
+  },
+  autocompleteroot:
+  {
+    width: 500,
+    '& > * + *': {
+      marginTop: theme.spacing(3),
+    },
   },
   grid: {
     backgroundColor: 'blue',
@@ -381,6 +382,9 @@ export default function FilterDrawer(props) {
       '& .MuiInput-underline:after': {
         borderBottomColor: 'red',
       },
+      '& .MuiFormLabel-root': {
+         color: 'red',
+      },
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
           borderColor: 'red',
@@ -395,12 +399,35 @@ export default function FilterDrawer(props) {
     },
   })(TextField);
 
+  const autocompleteoptions =  props.tags.concat(props.countries).map(function(val) {
+    return { title: "Tag: " + val };
+});
+
   return (
     <main>
       <Navbar/>
-      <div className={nestedClasses.buttonSection}> 
-      <p className='index__text' justifyContent='center'> Find your next inspiration by their background, interests and contributions.</p>
-
+      <div className={nestedClasses.root}> 
+        <p className='index__text' justifyContent='center'> Find your next inspiration by their background, interests and contributions.</p>
+          <div className={nestedClasses.buttonSection}>
+          <Autocomplete
+            className={nestedClasses.searchBox}
+            multiple
+            disableCloseOnSelect
+            //id="checkboxes-tags-demo"
+            options={autocompleteoptions}
+            getOptionLabel={option => option.title}
+            renderOption={(option, { selected }) => (
+            <Checkbox name='Include All' label='Include All' checked={selected}>{option.title}</Checkbox>
+            )}
+            renderInput={params => (
+              <CssTextField
+                {...params}
+                variant="outlined"
+                label="Filter by country or tag"
+                placeholder="Favorites"
+              />
+            )}
+          />
           <CssTextField
             className={nestedClasses.searchBox}
             defaultValue={currentSearchText}
@@ -414,11 +441,10 @@ export default function FilterDrawer(props) {
               }
             }}
           />
-
           <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
           <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>More Filters</Button>
-
-          
+      
+      </div>
           <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
               {sideList('left')}
           </Drawer>
@@ -447,7 +473,7 @@ export default function FilterDrawer(props) {
                   </h3>}
               </div> 
           </Grid> 
-  </div>
+    </div>
   </main>
   );
 }

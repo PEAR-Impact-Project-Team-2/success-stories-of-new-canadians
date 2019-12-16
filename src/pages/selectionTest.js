@@ -2,20 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, navigate } from 'gatsby'
 import { Grid, Button } from '@material-ui/core'
-import { SquareFlagIcon, CountryKey, toTitleCase } from './../components/SquareFlagIcon'
+import { toTitleCase } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Navbar from './../components/Navbar'
 import FilterDrawer from './../components/FilterDrawer'
-
-import { Card, CardMedia, Button as MaterialButton, CardActions, Checkbox } from '@material-ui/core';
-import { CardActionArea, CardContent, Typography, Fab } from '@material-ui/core'
-import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
-import { FormControlLabel, FormLabel, Radio, RadioGroup, Container } from '@material-ui/core'
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
-import SearchIcon from '@material-ui/icons/Search'
-import { TextField } from '@material-ui/core';
-import ReactCountryFlag from "react-country-flag";
 
 import '@styles/pages/SelectionTest.scss'
 
