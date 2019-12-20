@@ -6,12 +6,13 @@
     justify-content: center;
     min-height: 100vh;
     flex-direction: column;   
-    padding: 80px 40px;
-    box-sizing: border-box;
+    padding: 0px 0px;
 
     &__content {
-        width: 1200px;
-        box-sizing: border-box;
-        padding: 30px;
+        width: '100%';
+        // box-sizing: border-box;
+        padding-top: 100px;
+        padding-right: 0px;
+        padding-left: 0px;
     }
 }

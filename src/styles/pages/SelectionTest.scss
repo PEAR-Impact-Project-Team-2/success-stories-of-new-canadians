@@ -1,4 +1,8 @@
 @import '../selectiontest';
+@import '../mixins';
+@import '../variables';
+
+:export { tagBackground: $PRIMARY }
 
 .selectionTest {
     .page__content {
@@ -39,5 +43,11 @@
 
     &__headerBox {
         background-color: white;
+    }
+
+    &__checkboxtext {
+        color: $SECONDARY;
+        font-size: 0.8rem;
+        margin-right: 7px;
     }
 }
