@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     justifyItems: 'center',
     justifyContent: 'center'
-  }, 
+  },
   searchSubmitButton: {
     backgroundColor: 'red',
     maxWidth: 10,
@@ -109,13 +109,13 @@ const useStyles = makeStyles(theme => ({
     marginRight: '5px',
     marginLeft: '5px',
   }
-})); 
+}));
 
 const useAutoCompleteStyles = makeStyles(theme => ({
   root: {
     justifyItems: 'center',
     color: 'black',
-    backgroundColor:'white'
+    backgroundColor: 'white'
   },
   autocompleteroot:
   {
@@ -134,8 +134,8 @@ const useAutoCompleteStyles = makeStyles(theme => ({
     textAlign: 'center',
     justifyItems: 'center',
     justifyContent: 'center'
-  }, 
-})); 
+  },
+}));
 
 export default function FilterDrawer(props) {
 
@@ -145,9 +145,11 @@ export default function FilterDrawer(props) {
   const [nameOpen, setNameOpen] = React.useState(true);
   const [countryOpen, setCountryOpen] = React.useState(false);
   const [tagOpen, setTagOpen] = React.useState(!(props.initialTag == null));
-  const [includeAllCountries, setIncludeAllCountries] = React.useState(true);
-  const [includeAllTags, setIncludeAllTags] = React.useState(props.initialTag == null); 
-  const [searchText, setSearchText] = React.useState(""); 
+
+  function includeAllCountries() { return filterCountrySetting.length === props.countries.length }
+  function includeAllTags() { return filterTagSetting.length === props.tags.length }
+
+  const [searchText, setSearchText] = React.useState("");
 
   var currentSearchText = "";
 
@@ -156,58 +158,60 @@ export default function FilterDrawer(props) {
   const dateNames = ['Date - Oldest First', 'Date - Newest First', 'A to Z', 'Z to A']
 
   const [filterCountrySetting, setCountrySetting] = React.useState(countries);
-  const [filterTagSetting, setTagSetting] = React.useState(props.initialTag == null ? props.tags : [ props.initialTag ]); 
+  const [filterTagSetting, setTagSetting] = React.useState(props.initialTag == null ? props.tags : [props.initialTag]);
   const [filterDateNameSetting, setFilterDateNameSetting] = React.useState(dateNames[0]);
 
   const handleClick = (e) => {
     if (e === 0) setNameOpen(!nameOpen);
     else if (e === 1) setCountryOpen(!countryOpen);
-    else if (e === 2) setTagOpen(!tagOpen); 
+    else if (e === 2) setTagOpen(!tagOpen);
   };
 
-  const handleCardTagClick = (event) =>  {
+  const handleCardTagClick = (event) => {
     setTagSetting([event])
+    navigate("/selectionTest", {
+      state: { searchTag: { event } },
+    })
+    // setTagSetting([event])
+    // setIncludeAllTags(false);
+    // setTagOpen(true);
   }
 
   const handleDateNameChange = event => {
-    setFilterDateNameSetting(event.target.value); 
+    setFilterDateNameSetting(event.target.value);
   }
 
   const handleCountryChange = event => {
 
-    if (event.target.name === 'Include All')  {
-      setIncludeAllCountries (event.target.checked); 
-      setCountryOpen(!event.target.checked); 
-      setCountrySetting(event.target.checked ? countries : []); 
+    if (event.target.name === 'Include All') {
+      setCountrySetting(props.countries);
+      setCountryOpen(!event.target.checked);
+      setCountrySetting(event.target.checked ? countries : []);
     }
     // if box is no longer selected
-    else if (!event.target.checked)
-    {
+    else if (!event.target.checked) {
       var index = filterCountrySetting.indexOf(event.target.name);
-      if (index > -1) filterCountrySetting.splice(index, 1); 
+      if (index > -1) filterCountrySetting.splice(index, 1);
     }
-    else 
-    { 
+    else {
       filterCountrySetting.push(event.target.name);
     }
   }
 
   const handleTagChange = event => {
 
-    if (event.target.name === 'Include All')  {
-      setIncludeAllTags(event.target.checked); 
-      setTagOpen (!event.target.checked); 
-      if (event.target.checked) setTagSetting(props.tags); 
-      else setTagSetting([]); 
+    if (event.target.name === 'Include All') {
+      setTagSetting(props.tags);
+      setTagOpen(!event.target.checked);
+      if (event.target.checked) setTagSetting(props.tags);
+      else setTagSetting([]);
     }
     // if box is no longer selected
-    else if (!event.target.checked)
-    {
+    else if (!event.target.checked) {
       var index = filterTagSetting.indexOf(event.target.name);
-      if (index > -1) filterTagSetting.splice(index, 1); 
+      if (index > -1) filterTagSetting.splice(index, 1);
     }
-    else 
-    { 
+    else {
       filterTagSetting.push(event.target.name);
     }
   }
@@ -223,53 +227,48 @@ export default function FilterDrawer(props) {
 
     setDrawerState({ ...drawerState, [side]: open });
   };
- 
-  function sortNamesAlphabetically( a, b ) {
 
-    if (filterDateNameSetting == 'A to Z' || filterDateNameSetting == 'Z to A') { 
+  function sortNamesAlphabetically(a, b) {
 
-      if ( a.node.frontmatter.title < b.node.frontmatter.title){
+    if (filterDateNameSetting == 'A to Z' || filterDateNameSetting == 'Z to A') {
+
+      if (a.node.frontmatter.title < b.node.frontmatter.title) {
         return (filterDateNameSetting === dateNames[2]) ? -1 : 1;
       }
-      if ( a.node.frontmatter.title > b.node.frontmatter.title ){
+      if (a.node.frontmatter.title > b.node.frontmatter.title) {
         return (filterDateNameSetting === dateNames[2]) ? 1 : -1;
       }
       return 0;
-      }
-    else  {
-      if ( a.node.frontmatter.date < b.node.frontmatter.date){
+    }
+    else {
+      if (a.node.frontmatter.date < b.node.frontmatter.date) {
         return (filterDateNameSetting === dateNames[0]) ? -1 : 1;
       }
-      if ( a.node.frontmatter.date > b.node.frontmatter.date ){
+      if (a.node.frontmatter.date > b.node.frontmatter.date) {
         return (filterDateNameSetting === dateNames[0]) ? 1 : -1;
       }
       return 0;
     }
   }
 
-  function filterTags(value)
-  { 
-    let b = false; 
+  function filterTags(value) {
+    let b = false;
     if (filterTagSetting === props.tags) return true;
-    value.node.frontmatter.tags.forEach( tagCheck => 
-      {
-        if (filterTagSetting.includes(tagCheck)) 
-        {
-          b = true;
-          return; 
-        } 
-      }); 
-    return b; 
+    value.node.frontmatter.tags.forEach(tagCheck => {
+      if (filterTagSetting.includes(tagCheck)) {
+        b = true;
+        return;
+      }
+    });
+    return b;
   }
 
-  function onSearchSubmit()
-  {
-    setSearchText(currentSearchText); 
+  function onSearchSubmit() {
+    setSearchText(currentSearchText);
   }
 
-  const search = (e) =>
-  {
-    currentSearchText = e.target.value;  
+  const search = (e) => {
+    currentSearchText = e.target.value;
   }
 
   const sideList = side => (
@@ -280,108 +279,110 @@ export default function FilterDrawer(props) {
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
-          subheader= {
-          <ListSubheader component="div" id="nested-list-subheader">
-            Filter Stories
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              Filter Stories
           </ListSubheader>
-        }
-        className={nestedClasses.root}
-        >
-        { /* Date Filtering */ }
-        <ListItem button onClick={handleClick.bind(this, 0)}>
-          <ListItemText primary="by Name/Date" />
-          {nameOpen ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={true} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-          </List>
-        </Collapse>
-        <Collapse in={nameOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding={true}>
-          <FormControl component="fieldset" className={nestedClasses.formControl}>
-            <FormLabel component="legend"></FormLabel>
-            <RadioGroup aria-label="name" name="name1" value={filterDateNameSetting} onChange={handleDateNameChange}>
-              {dateNames.map( item => {
-                return (
-                <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
-                  <FormControlLabel className={nestedClasses.formControlLabel} key={item} value={item} control={<Radio />} label={item} />
-                </ListItem>
-                )
-              })}
-              </RadioGroup>
-          </FormControl>
-          </List>
-        </Collapse>     
-
-        { /* Country Filtering */ }
-
-        <ListItem button onClick={handleClick.bind(this, 1)}>
-          <ListItemText primary="by Country" />
-          { (!includeAllCountries) ? (countryOpen ? <ExpandLess /> : <ExpandMore />) :  
-              <ExpandLess /> }
-        </ListItem>
-        <Collapse in={true} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-          <ListItem button className={nestedClasses.nested}>
-            <Checkbox name='Include All' label='Include All' key='InlcAllCount' onClick={handleCountryChange} defaultChecked={includeAllCountries}></Checkbox>Include All 
-              </ListItem>
-          </List>
-        </Collapse>
-        <Collapse in={!includeAllCountries && countryOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding={true} padding={1}>
-
-          {countries.map( item => {return (
-            <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
-              <Checkbox name={item} key={item} onClick={handleCountryChange} defaultChecked={filterCountrySetting.includes(item)}>
-              </Checkbox>{item}
-            </ListItem>) } ) } 
-
-          </List>
-        </Collapse>       
-
-        { /* Tag Filtering */ }
-
-        <ListItem button onClick={handleClick.bind(this, 2)}>
-          <ListItemText primary="by Tag" />
-          { (!includeAllTags) ? (tagOpen ? <ExpandLess /> : <ExpandMore />) :  
-              <ExpandLess /> }
-        </ListItem>
-        <Collapse in={true} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-          <ListItem button className={nestedClasses.nested}>
-            <Checkbox name='Include All' label='Include All' key='InlcAllTag' onClick={handleTagChange} defaultChecked={includeAllTags}></Checkbox>Include All 
-          </ListItem>
-          </List>
-        </Collapse>
-
-        <Collapse in={!includeAllTags && tagOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding> 
-
-          { props.tags.map(
-            item => { return (
-            <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
-            <Checkbox name={item} label={item} onClick={handleTagChange} key={item} defaultChecked={filterTagSetting.includes(item)}></Checkbox>{item}
-            </ListItem>
-            ) } )
           }
-          </List>
-        </Collapse> 
-      </List>
+          className={nestedClasses.root}
+        >
+          { /* Date Filtering */}
+          <ListItem button onClick={handleClick.bind(this, 0)}>
+            <ListItemText primary="by Name/Date" />
+            {nameOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={true} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+            </List>
+          </Collapse>
+          <Collapse in={nameOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding={true}>
+              <FormControl component="fieldset" className={nestedClasses.formControl}>
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup aria-label="name" name="name1" value={filterDateNameSetting} onChange={handleDateNameChange}>
+                  {dateNames.map(item => {
+                    return (
+                      <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
+                        <FormControlLabel className={nestedClasses.formControlLabel} key={item} value={item} control={<Radio />} label={item} />
+                      </ListItem>
+                    )
+                  })}
+                </RadioGroup>
+              </FormControl>
+            </List>
+          </Collapse>
+
+          { /* Country Filtering */}
+
+          <ListItem button onClick={handleClick.bind(this, 1)}>
+            <ListItemText primary="by Country" />
+            {(!includeAllCountries()) ? (countryOpen ? <ExpandLess /> : <ExpandMore />) :
+              <ExpandLess />}
+          </ListItem>
+          <Collapse in={true} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem button className={nestedClasses.nested}>
+                <Checkbox name='Include All' label='Include All' key='InlcAllCount' onClick={handleCountryChange} defaultChecked={includeAllCountries()}></Checkbox>Include All
+              </ListItem>
+            </List>
+          </Collapse>
+          <Collapse in={!includeAllCountries() && countryOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding={true} padding={1}>
+
+              {countries.map(item => {
+                return (
+                  <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
+                    <Checkbox name={item} key={item} onClick={handleCountryChange} defaultChecked={filterCountrySetting.includes(item)}>
+                    </Checkbox>{item}
+                  </ListItem>)
+              })}
+
+            </List>
+          </Collapse>
+
+          { /* Tag Filtering */}
+
+          <ListItem button onClick={handleClick.bind(this, 2)}>
+            <ListItemText primary="by Tag" />
+            {(!includeAllTags()) ? (tagOpen ? <ExpandLess /> : <ExpandMore />) :
+              <ExpandLess />}
+          </ListItem>
+          <Collapse in={true} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem button className={nestedClasses.nested}>
+                <Checkbox name='Include All' label='Include All' key='InlcAllTag' onClick={handleTagChange} defaultChecked={includeAllTags()}></Checkbox>Include All
+          </ListItem>
+            </List>
+          </Collapse>
+
+          <Collapse in={!includeAllTags() && tagOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+
+              {props.tags.map(
+                item => {
+                  return (
+                    <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
+                      <Checkbox name={item} label={item} onClick={handleTagChange} key={item} defaultChecked={filterTagSetting.includes(item)}></Checkbox>{item}
+                    </ListItem>
+                  )
+                })
+              }
+            </List>
+          </Collapse>
+        </List>
       </List>
     </div>
   );
 
-  function filterSearchBar(value)
-  { 
+  function filterSearchBar(value) {
     if (searchText.length === 0) return true;
     return (value.node.frontmatter.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1)
   }
 
-  function getFilteredResults() 
-  {
-    return props.edges.filter(({node}) => 
-      (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries)
-      ).filter(filterTags).filter(filterSearchBar); 
+  function getFilteredResults() {
+    return props.edges.filter(({ node }) =>
+      (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries())
+    ).filter(filterTags).filter(filterSearchBar);
   }
 
   const CssTextField = withStyles({
@@ -393,7 +394,7 @@ export default function FilterDrawer(props) {
         borderBottomColor: 'red',
       },
       '& .MuiFormLabel-root': {
-         color: 'red',
+        color: 'red',
       },
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
@@ -418,9 +419,13 @@ export default function FilterDrawer(props) {
     },
   })(TextField);
 
-  const autocompleteoptions = props.edges.map( ({node}) => { return { title: "'" + node.frontmatter.title + "'" + ' from ' + node.frontmatter.author, 
-  country: node.frontmatter.country,
-  slug: node.fields.slug } } );
+  const autocompleteoptions = props.edges.map(({ node }) => {
+    return {
+      title: "'" + node.frontmatter.title + "'" + ' from ' + node.frontmatter.author,
+      country: node.frontmatter.country,
+      slug: node.fields.slug
+    }
+  });
 
   const c = (event, values) => {
     navigate(values.slug)
@@ -428,75 +433,78 @@ export default function FilterDrawer(props) {
 
   return (
     <main>
-      { console.log(filterTagSetting) } 
-      <div className={autoCompleteClasses.root}> 
+      {console.log(filterTagSetting)}
+      <div className={autoCompleteClasses.root}>
         <p className='index__text'> Find your next inspiration by their background, interests and contributions.</p>
-          <div className={autoCompleteClasses.buttonSection}>
-            <Autocomplete
-              className={autoCompleteClasses.searchBox}
-              freeSolo
-              disableClearable
-              onChange={c}
-              size='small'
-              id="combo-box-demo"
-              options={autocompleteoptions}
-              renderOption={(option) => (
+        <div className={autoCompleteClasses.buttonSection}>
+          <Autocomplete
+            className={autoCompleteClasses.searchBox}
+            freeSolo
+            disableClearable
+            onChange={c}
+            size='small'
+            id="combo-box-demo"
+            options={autocompleteoptions}
+            renderOption={(option) => (
               <React.Fragment>
                 <p className="selectionTest__checkboxtext">{option.title}</p>
               </React.Fragment>
-              )}  
-              renderInput={params => (
+            )}
+            renderInput={params => (
               <CssTextField
                 {...params}
-                label="Search input"
+                label="Search by story title"
                 margin="normal"
                 variant="outlined"
                 fullWidth
                 InputProps={{ ...params.InputProps, type: 'search' }}
               />)}
-            />
+          />
           <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
-          <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>More Filters</Button> 
-      
-      </div>
-          <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
-              {sideList('left')}
-          </Drawer>
-          <h3>
-            {(searchText.length > 0 ? "Results for: '" + searchText + "' with current tag and country filtering. Click search again to return." : "")}
-          </h3>
-          <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-          > 
-              <div classes={{ backgroundColor: 'transparent', justifyItems: 'center' }}>
-                  {getFilteredResults().length > 0 ? 
-                  <div className={nestedClasses.resultsBox}>
-                      { getFilteredResults().sort(sortNamesAlphabetically).map(({ node }, i) => (
-                          <SelectionCard
-                              key={i}
-                              frontmatter={node.frontmatter}
-                              fields={node.fields}
-                              tagCallback={handleCardTagClick}>
-                          </SelectionCard> 
-                      )) }
-                  </div> : 
-                  <h3>
-                      No results found for filter settings.
+          <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>
+            {'More Filters' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
+              ' (' + (filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1) + ')'))}
+          </Button>
+
+        </div>
+        <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
+          {sideList('left')}
+        </Drawer>
+        <h3>
+          {(searchText.length > 0 ? "Results for: '" + searchText + "' with current tag and country filtering. Click search again to return." : "")}
+        </h3>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <div classes={{ backgroundColor: 'transparent', justifyItems: 'center' }}>
+            {getFilteredResults().length > 0 ?
+              <div className={nestedClasses.resultsBox}>
+                {getFilteredResults().sort(sortNamesAlphabetically).map(({ node }, i) => (
+                  <SelectionCard
+                    key={i}
+                    frontmatter={node.frontmatter}
+                    fields={node.fields}
+                    tagCallback={handleCardTagClick}>
+                  </SelectionCard>
+                ))}
+              </div> :
+              <h3>
+                No results found for filter settings.
                   </h3>}
-              </div> 
-          </Grid> 
-    </div>
-  </main>
+          </div>
+        </Grid>
+      </div>
+    </main>
   );
 }
 
 function SelectionCard(props) {
 
   const classes = useStyles();
-//cinnuit
+  //cinnuit
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -510,45 +518,45 @@ function SelectionCard(props) {
 
             {props.frontmatter.title} </Typography>
 
-            <div className={classes.item}>
-              <SquareFlagIcon countryName={props.frontmatter.country} countryCode="" className={classes.item}></SquareFlagIcon> 
-              <Typography variant='caption' component="p" className={classes.item} > {props.frontmatter.country} </Typography>
-            </div>
-            <Typography variant="caption" component="p">
-              {props.frontmatter.date.split("T")[0]}
-            </Typography>
+          <div className={classes.item}>
+            <SquareFlagIcon countryName={props.frontmatter.country} countryCode="" className={classes.item}></SquareFlagIcon>
+            <Typography variant='caption' component="p" className={classes.item} > {props.frontmatter.country} </Typography>
+          </div>
+          <Typography variant="caption" component="p">
+            {props.frontmatter.date.split("T")[0]}
+          </Typography>
 
 
           <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
             {props.frontmatter.description}
           </Typography>
           <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
           >
-          {
-            props.frontmatter.tags.map( tagText => 
-              <Chip
-                className={classes.fab}
-                key={tagText + props.frontmatter.title}
-                variant="extended"
-                size="small"
-                aria-label="add"
-                onClick={() => props.tagCallback(tagText)}
-                label={tagText}
-              >
-                {tagText}
-              </Chip>
-            )  
+            {
+              props.frontmatter.tags.map(tagText =>
+                <Chip
+                  className={classes.fab}
+                  key={tagText + props.frontmatter.title}
+                  variant="extended"
+                  size="small"
+                  aria-label="add"
+                  onClick={() => props.tagCallback(tagText)}
+                  label={tagText}
+                >
+                  {tagText}
+                </Chip>
+              )
 
-          }
+            }
           </Grid>
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
-        <Button className={classes.button} size="small" color="primary" onClick={() => {navigate(props.fields.slug)}}>
+        <Button className={classes.button} size="small" color="primary" onClick={() => { navigate(props.fields.slug) }}>
           Learn More
         </Button>
       </CardActions>

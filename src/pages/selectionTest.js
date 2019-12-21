@@ -49,7 +49,7 @@ const SelectionPage = ( { data, location } ) => {
 
   const { allMarkdownRemark } = data 
   const { state = {} } = location
-  const { searchTag } = state == null ? null : state
+  // const { searchTag } = (state == null ? null : state)
 
   return (
     <Page  classes={{width:'100%'}}>
@@ -60,12 +60,13 @@ const SelectionPage = ( { data, location } ) => {
       </div>
       <div>    
       </div>
-      { }
+      { console.log(location.state.searchTag.event) }
         <FilterDrawer
           edges={allMarkdownRemark.edges}
           tags={GenerateTags(allMarkdownRemark.edges).sort()}
           countries={GenerateCountries(allMarkdownRemark.edges).sort()}
-          initialTag={searchTag == null ? null : searchTag.event}>
+          initialTag={(location.state.searchTag == null) ? null : location.state.searchTag.event}
+          >
         </FilterDrawer>
     </Page>
   )
@@ -76,7 +77,6 @@ SelectionPage.propTypes = {
       markdownRemark: PropTypes.shape({
           frontmatter: PropTypes.object,
       }),
-      searchTag: PropTypes.string
   }),
 }
 
