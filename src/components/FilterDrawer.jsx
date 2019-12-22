@@ -407,6 +407,19 @@ export default function FilterDrawer(props) {
           borderColor: 'red',
         },
       },
+      '& .MuiAutocomplete-inputRoot': {
+        '& .MuiAutocomplete-input': {
+          minWidth: '115%'
+        }
+      },
+      '& .input::-webkit-clear-button': {
+        '& .input::-webkit-outer-spin-button': {
+          '& .input::-webkit-inner-spin-button': {
+            display: "none",
+            margin: 80
+          },
+        },
+      }
     },
     '@global': {
       '.MuiFormControl-root': {
@@ -457,6 +470,20 @@ export default function FilterDrawer(props) {
                 margin="normal"
                 variant="outlined"
                 fullWidth
+                styles={{
+                  '& .input::-webkit-clear-button': {
+                    '& .input::-webkit-outer-spin-button': {
+                      '& .input::-webkit-inner-spin-button': {
+                        display: "none",
+                      },
+                    },
+                  }
+                }}
+                endAdornment={
+                  <React.Fragment>
+                    <SearchIcon></SearchIcon>
+                  </React.Fragment>
+                }
                 InputProps={{ ...params.InputProps, type: 'search' }}
               />)}
           />

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles'
-
 import '@styles/components/Navbar.scss';
 import PropTypes from 'prop-types'
-import { TextField, InputAdornment  } from '@material-ui/core'
-import { Visibility } from '@material-ui/icons'
+import { TextField  } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 
@@ -50,6 +48,11 @@ export class Navbar extends Component {
             borderColor: 'red',
           },
         },
+        '& .MuiAutocomplete-inputRoot': {
+          '& .MuiAutocomplete-input': {
+            minWidth: '250%'
+          }
+        }
       },
       '@global': {
         '.MuiFormControl-root': {
@@ -58,7 +61,7 @@ export class Navbar extends Component {
         '.MuiAutocomplete-tag': {
           backgroundColor: 'red',
           color: 'white',
-        }
+        },
       },
     })(TextField);
 
@@ -79,8 +82,7 @@ export class Navbar extends Component {
             freeSolo
             disableClearable
             onChange={onSelect}
-            size='small'
-            style={{ width: '300px'}}
+            style={{ width: 100 }}            size='small'
             id="combo-box-demo"
             options={autocompleteoptions}
             renderOption={(option) => (
@@ -102,10 +104,12 @@ export class Navbar extends Component {
             )}
           />
           </li>
+          <ul id="nav" className="nav">
           <li className="current"><a className="smoothscroll" href="/#home">Home</a></li>
           <li><a className="smoothscroll" href="https://azharlaher.com/about-azhar">About Me</a></li>
           <li><a className="smoothscroll" href="/contact">Contact Me</a></li>
           <li><a className="smoothscroll" href="/contact">Subscribe</a></li>
+        </ul>
         </ul>
 
       </nav>

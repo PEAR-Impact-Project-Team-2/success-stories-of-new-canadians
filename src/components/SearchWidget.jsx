@@ -10,9 +10,11 @@ class SearchWidget extends React.Component {
 
         const widgetStyles = makeStyles(theme => ({
             searchBox: {
-                maxHeight: '10px',
-                width: '76%',
-            },
+                marginLeft: '15px',
+                marginRight: '15px',
+                marginTop: '10px',
+                marginBottom:'10px',
+            }, 
             tagBox: {
                 display: 'flex',
                 backgroundColor: 'rgba(0,0,0,0.1)',
@@ -22,10 +24,6 @@ class SearchWidget extends React.Component {
                 flexWrap: 'wrap',
             }
         }));
-
-        const c = (event, values) => {
-            navigate(values.slug)
-        }
 
         const { data } = this.props
 
@@ -50,14 +48,13 @@ class SearchWidget extends React.Component {
         }
 
         const onTagSelect = (event) => {
-            //console.log(event)
             navigate("/selectionTest", {
                 state: { searchTag: { event } },
             })
         }
 
         return (
-            <div className={widgetStyles.searchBox}>
+            <div>
                 <h3>Directly search by title or person</h3>
                 <Autocomplete
                     className={widgetStyles.searchBox}
