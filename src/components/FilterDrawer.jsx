@@ -42,8 +42,6 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     maxWidth: 320,
-    minWidth: 320,
-    width: '100%',
     marginRight: '5px',
     marginLeft: '5px',
     marginTop: '5px',
@@ -51,25 +49,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     flexWrap: 'wrap'
   },
-  searchBox: {
-    minHeight: 20,
-    width: '90%',
-    // marginLeft: '10px',
-    // marginRight: '10px'
-  },
-  buttonSection: {
-    textAlign: 'center',
-    justifyItems: 'center',
-    justifyContent: 'center'
-  },
   searchSubmitButton: {
     backgroundColor: 'red',
-    maxWidth: 10,
     color: 'white',
-    marginBottom: '10px',
-    marginTop: '10px',
-    marginLeft: '10px',
-    marginRight: '10px'
+    maxWidth: '36px',
+    minWidth: '36px',
+    height: '50%',
   },
   resultsBox: {
     display: 'flex',
@@ -86,6 +71,16 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'red',
     color: 'white',
     marginRight: '5px',
+    '&:hover':
+    {
+      backgroundColor: 'white',
+      color: 'red',
+    },
+    '&:focus':
+    {
+      backgroundColor: 'red',
+      color: 'white'
+    }
   },
   cardContent: {
     justifyContent: 'center',
@@ -125,15 +120,18 @@ const useAutoCompleteStyles = makeStyles(theme => ({
     },
   },
   searchBox: {
-    minHeight: 20,
-    minWidth: '50%',
     marginLeft: '10px',
-    marginRight: '10px'
+    marginRight: '5px',
+    minWidth: '70%',
+    maxWidth: '70%',
+    minHeight: '50px',
+    maxHeight: '50px',
   },
   buttonSection: {
-    textAlign: 'center',
-    justifyItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'inline-flex',
+    width: '100%',
   },
 }));
 
@@ -428,6 +426,9 @@ export default function FilterDrawer(props) {
       '.MuiAutocomplete-tag': {
         backgroundColor: 'red',
         color: 'white',
+      },
+      '.MuiAutocomplete-option':	{
+        minHeight: '10px'
       }
     },
   })(TextField);
@@ -456,6 +457,7 @@ export default function FilterDrawer(props) {
             disableClearable
             onChange={c}
             size='small'
+            margin='dense'
             id="combo-box-demo"
             options={autocompleteoptions}
             renderOption={(option) => (
@@ -467,8 +469,9 @@ export default function FilterDrawer(props) {
               <CssTextField
                 {...params}
                 label="Search by story title"
-                margin="normal"
+                margin="dense"
                 variant="outlined"
+                margin="none"
                 fullWidth
                 styles={{
                   '& .input::-webkit-clear-button': {
@@ -488,12 +491,13 @@ export default function FilterDrawer(props) {
               />)}
           />
           <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
+        </div>
+        <div className={autoCompleteClasses.buttonSection}> 
           <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>
             {'More Filters' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
               ' (' + (filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1) + ')'))}
           </Button>
-
-        </div>
+        </div> 
         <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
           {sideList('left')}
         </Drawer>
@@ -538,6 +542,7 @@ function SelectionCard(props) {
         <CardMedia
           component="img"
           height='225'
+          width='100%'
           image={props.frontmatter.image}
         />
         <CardContent className={classes.cardContent}>
@@ -568,7 +573,6 @@ function SelectionCard(props) {
                 <Chip
                   className={classes.fab}
                   key={tagText + props.frontmatter.title}
-                  variant="extended"
                   size="small"
                   aria-label="add"
                   onClick={() => props.tagCallback(tagText)}
