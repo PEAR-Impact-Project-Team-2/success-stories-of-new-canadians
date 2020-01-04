@@ -59,11 +59,15 @@ const BlogPage = ({ data }) => {
 
         </div>
         
+        {/*
+          LEGACY CODE FOR DISCUS
+
         <div className='comment'>
           <div className='comment__commentSection'>
             <DiscussionEmbed {...disqusConfig} />
           </div>
         </div>
+        */}
 
         <Footer />
 
