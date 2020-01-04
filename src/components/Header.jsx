@@ -32,12 +32,7 @@ export default () => (
      {
       markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
         frontmatter {
-          aboutus {
-            description
-            title
-          }
           image
-          subheading
           heading
           title
         }

@@ -1,18 +1,17 @@
 import React from 'react';
 import { withSeo } from '@utils';
 import { Page } from '@layouts';
-import { Button } from '@components';
-import Navbar from '@components/Navbar';
+import { Button, Navbar } from '@components';
 import Header from '@components/Header';
-import StoryRoll from '@components/StoryRoll'
+import About from '@components/About';
 import '@styles/pages/Index.scss';
 
 const IndexPage = () => {
   return (
     <Page id='home' className='index'>
-      <Navbar/>
+      <Navbar />
       <Header />
-      <StoryRoll/>
+      <About />
       <Button id='contact' className='index__button' to='/selectionTest'>
         Select A Story
       </Button> 
