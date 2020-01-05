@@ -5,7 +5,7 @@ import { ShareCard } from '../../components/ShareCard';
 import { SuggestStories } from '../../components/SuggestStories';
 import { DiscussionEmbed } from "disqus-react"
 import { Seo } from '@components';
-import Navbar from '../../components/Navbar';
+import Navbar from '@components/Navbar';
 import Footer from '../../components/Footer';
 import '@styles/templates/BlogPage.scss';
 

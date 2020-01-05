@@ -468,7 +468,6 @@ export default function FilterDrawer(props) {
             renderInput={params => (
               <CssTextField
                 {...params}
-                label="Search by story title"
                 margin="dense"
                 variant="outlined"
                 margin="none"
@@ -538,12 +537,14 @@ function SelectionCard(props) {
   //cinnuit
   return (
     <Card className='selectionTest__cardStyles'>
+      <meta name="story" content={props.frontmatter.title + " " + props.frontmatter.country + " " + props.frontmatter.description}></meta>
       <CardActionArea>
         <CardMedia
           component="img"
           height='225'
           width='100%'
           image={props.frontmatter.image}
+          alt='image for this story'
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
@@ -574,7 +575,6 @@ function SelectionCard(props) {
                   className={classes.fab}
                   key={tagText + props.frontmatter.title}
                   size="small"
-                  aria-label="add"
                   onClick={() => props.tagCallback(tagText)}
                   label={tagText}
                 >

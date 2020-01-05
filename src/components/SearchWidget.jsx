@@ -7,7 +7,7 @@ import { StaticQuery, graphql, navigate } from "gatsby"
 
 import '@styles/pages/SelectionTest.scss'
 
-class SearchWidget extends React.Component {
+export class SearchWidget extends React.Component {
     render() {
 
         const useStyles = makeStyles(theme => ({

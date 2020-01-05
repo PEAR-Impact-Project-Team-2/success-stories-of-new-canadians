@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { toTitleCase } from './../components/SquareFlagIcon'
 import { Page } from './../layouts/Page';
 import FilterDrawer from './../components/FilterDrawer'
-import Navbar from './../components/Navbar'
+import Navbar from '@components/Navbar';
 
 
 import '@styles/pages/SelectionTest.scss'
@@ -57,6 +57,9 @@ const SelectionPage = ( { data, location } ) => {
       <div className={'selectionTest__headerBox'}>
       <h1 className='selectionTest__titleSpace'>s</h1>  
       <h1 className='selectionTest__title'>Search Stories</h1>  
+      <title>Page to search and filter blog stories on the site.</title>
+      <meta name="selection page" 
+      content="Search blog stories from new canadians"></meta>
       </div>
       <div>    
       </div>
