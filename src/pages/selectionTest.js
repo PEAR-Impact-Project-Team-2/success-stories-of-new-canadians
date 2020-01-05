@@ -60,12 +60,17 @@ const SelectionPage = ( { data, location } ) => {
       </div>
       <div>    
       </div>
-      { console.log(location.state.searchTag.event) }
+      { console.log(location.state !== null) }
         <FilterDrawer
           edges={allMarkdownRemark.edges}
           tags={GenerateTags(allMarkdownRemark.edges).sort()}
           countries={GenerateCountries(allMarkdownRemark.edges).sort()}
-          initialTag={(location.state.searchTag == null) ? null : location.state.searchTag.event}
+          initialTag=
+          {
+            (location.state !== null) ? 
+              (!location.state.hasOwnProperty('searchTag') || location.state.searchTag == null) ? null : location.state.searchTag.event 
+              : null
+          }
           >
         </FilterDrawer>
     </Page>

@@ -584,13 +584,13 @@ function SelectionCard(props) {
 
             }
           </Grid>
+          <CardActions className={classes.cardActions}>
+            <Button className={classes.button} size="small" color="primary" onClick={() => { navigate(props.fields.slug) }}>
+              Learn More
+            </Button>
+          </CardActions>
         </CardContent>
       </CardActionArea>
-      <CardActions className={classes.cardActions}>
-        <Button className={classes.button} size="small" color="primary" onClick={() => { navigate(props.fields.slug) }}>
-          Learn More
-        </Button>
-      </CardActions>
     </Card>
   );
 }
