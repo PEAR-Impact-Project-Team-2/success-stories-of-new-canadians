@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Card, CardHeader, CardMedia, Button as MaterialButton, CardActions } from '@material-ui/core';
 import { StaticQuery, graphql, navigate } from "gatsby"
 
+import '@styles/pages/SelectionTest.scss'
+
 class StoryRoll extends React.Component {
   render() {
     const { data } = this.props
@@ -11,7 +13,7 @@ class StoryRoll extends React.Component {
       <div className='index__cards'>
         {
           data.allMarkdownRemark.edges.map(({ node }, i) => (
-            <Card className='index__card' key={i}>
+            <Card className='selectionTest__cardStyles' key={i}>
               <CardMedia style={{ height: '260px' }} image={node.frontmatter.image} />
               <CardHeader
                 title={node.frontmatter.title}

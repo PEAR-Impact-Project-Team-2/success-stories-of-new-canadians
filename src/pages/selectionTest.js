@@ -52,11 +52,11 @@ const SelectionPage = ( { data, location } ) => {
   // const { searchTag } = (state == null ? null : state)
 
   return (
-    <Page  classes={{width:'100%'}}>
+    <Page classes={{width:'100%', marginTop: '100px'}}>
       <Navbar/>
       <div className={'selectionTest__headerBox'}>
-      <h2 className='selectionTest__title'>-</h2>  
-       <h1 className='selectionTest__title'>Search Stories</h1>  
+      <h1 className='selectionTest__titleSpace'>s</h1>  
+      <h1 className='selectionTest__title'>Search Stories</h1>  
       </div>
       <div>    
       </div>

@@ -17,6 +17,10 @@
         justify-content: center;
     }
 
+    &__titleSpace {
+        color: transparent;
+    }
+
     &__text {
         font-weight: bold;
         font-size: 1.6rem;
@@ -41,6 +45,24 @@
         width: calc(50% - 20px);
     }
 
+    @media screen and (max-width: 700px) {
+    &__cardStyles {
+        margin: 5px;
+        background-color: white;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}
+
+    @media screen and (min-width: 700px) {
+        &__cardStyles {
+            margin: 0.5%;
+            background-color: white;
+            flex-wrap: wrap;
+            width: 49%;
+        }
+    }
+
     &__headerBox {
         background-color: white;
     }
@@ -49,5 +71,36 @@
         color: $SECONDARY;
         font-size: 0.8rem;
         margin-right: 7px;
+    }
+
+    &__searchwidget {
+        margin: 15px;
+        padding: 10px;
+    }
+
+    &__searchwidgetitem {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    &__chips {
+        background-color: red;
+        color: white;
+        margin-right: 5px;
+        &:hover
+        {
+            background-color: white;
+            color: red;
+        }
+        &:focus
+        {
+            background-color: red;
+        color: white;
+        }
+    }
+
+    &__tagTitle {
+        margin-top: 20px;
+        margin-bottom: 5px;
     }
 }

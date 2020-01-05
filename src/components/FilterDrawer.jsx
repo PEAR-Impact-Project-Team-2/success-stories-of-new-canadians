@@ -40,15 +40,15 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(4),
     padding: 1
   },
-  card: {
-    maxWidth: 320,
-    marginRight: '5px',
-    marginLeft: '5px',
-    marginTop: '5px',
-    marginBottom: '5px',
-    backgroundColor: 'white',
-    flexWrap: 'wrap'
-  },
+  // card: {
+  //   width: {Dimensions.get('window')},
+  //   marginRight: '5px',
+  //   marginLeft: '5px',
+  //   marginTop: '5px',
+  //   marginBottom: '5px',
+  //   backgroundColor: 'white',
+  //   flexWrap: 'wrap'
+  // },
   searchSubmitButton: {
     backgroundColor: 'red',
     color: 'white',
@@ -315,7 +315,7 @@ export default function FilterDrawer(props) {
           <ListItem button onClick={handleClick.bind(this, 1)}>
             <ListItemText primary="by Country" />
             {(!includeAllCountries()) ? (countryOpen ? <ExpandLess /> : <ExpandMore />) :
-              <ExpandLess />}
+              null}
           </ListItem>
           <Collapse in={true} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
@@ -343,7 +343,7 @@ export default function FilterDrawer(props) {
           <ListItem button onClick={handleClick.bind(this, 2)}>
             <ListItemText primary="by Tag" />
             {(!includeAllTags()) ? (tagOpen ? <ExpandLess /> : <ExpandMore />) :
-              <ExpandLess />}
+              null}
           </ListItem>
           <Collapse in={true} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
@@ -537,7 +537,7 @@ function SelectionCard(props) {
   const classes = useStyles();
   //cinnuit
   return (
-    <Card className={classes.card}>
+    <Card className='selectionTest__cardStyles'>
       <CardActionArea>
         <CardMedia
           component="img"

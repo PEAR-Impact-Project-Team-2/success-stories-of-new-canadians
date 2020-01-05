@@ -1,19 +1,21 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import { TextField, Chip } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 
+import '@styles/pages/SelectionTest.scss'
+
 class SearchWidget extends React.Component {
     render() {
 
-        const widgetStyles = makeStyles(theme => ({
+        const useStyles = makeStyles(theme => ({
             searchBox: {
                 marginLeft: '15px',
                 marginRight: '15px',
-                marginTop: '10px',
-                marginBottom:'10px',
+                marginTop: '30px',
+                marginBottom:'30px',
             }, 
             tagBox: {
                 display: 'flex',
@@ -22,8 +24,33 @@ class SearchWidget extends React.Component {
                 boxSizing: 'border-box',
                 borderRadius: '8px',
                 flexWrap: 'wrap',
+                marginRight: '50px',
+                marginTop: '50px',
+            },
+            divBox: {
+                marginLeft: '20px',
+                marginRight: '10px',
+                marginTop: '20px',
+                marginBottom:'10px',
+            },
+            chip: {
+                backgroundColor: 'red',
+                color: 'white',
+                marginRight: '5px',
+                '&:hover':
+                {
+                backgroundColor: 'white',
+                color: 'red',
+                },
+                '&:focus':
+                {
+                backgroundColor: 'red',
+                color: 'white'
+                }
             }
         }));
+
+        const widgetStyles = makeStyles();
 
         const { data } = this.props
 
@@ -53,11 +80,75 @@ class SearchWidget extends React.Component {
             })
         }
 
+        const CssChip = withStyles({
+            root: {
+                backgroundColor: 'red',
+                color: 'white',
+                '&:hover':
+                {
+                backgroundColor: 'white',
+                color: 'red',
+                },
+                marginRight: '2px',
+                marginTop: '5px',
+            }
+        })(Chip)
+
+        const CssTextField = withStyles({
+            root: {
+              '& label.Mui-focused': {
+                color: 'red',
+              },
+              '& .MuiInput-underline:after': {
+                borderBottomColor: 'red',
+              },
+              '& .MuiFormLabel-root': {
+                color: 'red',
+              },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'red',
+                },
+                '&:hover fieldset': {
+                  borderColor: 'red',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'red',
+                },
+              },
+              '& .MuiAutocomplete-inputRoot': {
+                '& .MuiAutocomplete-input': {
+                  minWidth: '115%'
+                }
+              },
+              '& .input::-webkit-clear-button': {
+                '& .input::-webkit-outer-spin-button': {
+                  '& .input::-webkit-inner-spin-button': {
+                    display: "none",
+                    margin: 80
+                  },
+                },
+              }
+            },
+            '@global': {
+              '.MuiFormControl-root': {
+                width: '100%',
+              },
+              '.MuiAutocomplete-tag': {
+                backgroundColor: 'red',
+                color: 'white',
+              },
+              '.MuiAutocomplete-option':	{
+                minHeight: '10px'
+              }
+            },
+          })(TextField);
+
         return (
-            <div>
-                <h3>Directly search by title or person</h3>
+            <div className="selectionTest__searchwidget">
+                <p classes={{justifyText:'center'}}>Directly search by title or person</p>
                 <Autocomplete
-                    className={widgetStyles.searchBox}
+                    // className={widgetStyles.searchBox}
                     freeSolo
                     disableClearable
                     onChange={onSelect}
@@ -70,9 +161,8 @@ class SearchWidget extends React.Component {
                         </React.Fragment>
                     )}
                     renderInput={params => (
-                        <TextField
+                        <CssTextField
                             {...params}
-                            label="Search input"
                             margin="normal"
                             variant="outlined"
                             fullWidth
@@ -80,15 +170,16 @@ class SearchWidget extends React.Component {
                         />
                     )}
                 />
-                <div classes={widgetStyles.tagBox}>
+                <div>
                     {generateTags()}
-                    <p>or browse stories tagged with a specific topic</p>
+                    <p className='selectionTest__tagTitle'>or browse stories tagged with a specific topic: </p>
                     {
                         featuredtags.map(tag => {
                             return (
-                                <Chip label={tag} onClick={
-
-                                    () => onTagSelect(tag)} />
+                                <CssChip label={tag} 
+                                classes={widgetStyles.chip}
+                                onClick={() => onTagSelect(tag)} 
+                                key={tag}/>
                             )
                         }
                         )
