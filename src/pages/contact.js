@@ -1,8 +1,8 @@
 import React from 'react';
-import { useStaticQuery, graphql, navigate } from 'gatsby';
+import { graphql } from 'gatsby';
 import { withSeo } from '../utils/withSeo';
 import { Page } from '../layouts/Page';
-import { Button, Dialog, FormControl, DialogTitle, InputLabel, DialogActions, DialogContent, DialogContentText, TextField, Select, MenuItem} from '@material-ui/core'
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Select, MenuItem} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from '@components/Navbar';
 
@@ -36,25 +36,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
 })); 
-
-const query = graphql`
-  {
-    allMarkdownRemark(sort: { fields: frontmatter___title, order: ASC }) {
-      edges {
-        node {
-          frontmatter {
-            title
-            image
-            description
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`
 
 const ContactPage = () => {
   const [contactType, setContactType] = React.useState('Contact')

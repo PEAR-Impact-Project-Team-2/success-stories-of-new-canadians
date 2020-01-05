@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Link } from 'gatsby';
 import '@styles/components/Button.scss';
 import ReactCountryFlag from "react-country-flag";
 

@@ -1,13 +1,18 @@
 .headcont {
 
    header {
-      background-size: cover;
-      height: 100vh;
+      position: relative;
+      // margin-top: -150px;
+      // margin-left: -400px;
+      // background-size: 100%;
+      height: 980px;
+      min-height: 500px;
+      width: 100%;
       background: #161415 no-repeat top center;
       background-size: cover;
       text-align: center;
       justify-content: center;
-      overflow: hidden;
+      // overflow: hidden;
    }
    
    /* vertically center banner section */
@@ -15,7 +20,7 @@
       display: inline-block;
       vertical-align: middle;
       margin: 0 auto;
-      width: 85%;
+      width: 100%;
       padding-bottom: 30px;
       text-align: center;
    }
