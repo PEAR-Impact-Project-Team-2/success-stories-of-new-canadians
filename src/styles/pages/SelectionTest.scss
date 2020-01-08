@@ -2,8 +2,6 @@
 @import '../mixins';
 @import '../variables';
 
-:export { tagBackground: $PRIMARY }
-
 .selectionTest {
     .page__content {
         display: flex;

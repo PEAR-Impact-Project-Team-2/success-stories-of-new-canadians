@@ -118,7 +118,7 @@ const ContactPage = () => {
 
   return (
     <Page className='contact'>
-      <Navbar/>
+      <Navbar page='contact'/>
       <div /* subscribe button */>
         <h1 className='selectionTest__title'>-</h1>  
         <h1 className='selectionTest__title'>Contact and Subscribe</h1> 

@@ -9,7 +9,7 @@
    z-index: 9999;
 }
 
-.nav-wrap{
+.nav-wrap {
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -19,6 +19,7 @@
    #logo{
        width: 72px;
     }
+
    ul {
       list-style-type: none;
       display: flex;
@@ -27,29 +28,52 @@
       padding: 0;
       overflow: hidden;
     }
+
+    &__current {
+      display: block;
+      color: $PRIMARY;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 1.25em;
+
+      -webkit-transition: color .2s ease-in-out;
+      -moz-transition: color .2s ease-in-out;
+      -o-transition: color .2s ease-in-out;
+      -ms-transition: color .2s ease-in-out;
+      transition: color .2s ease-in-out;
+    }
+
+    &__other {
+      
+      &:hover
+      {
+         color: $PRIMARY; 
+      }
+
+      display: block;
+      color: #333;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 1.25em;
+
+      -webkit-transition: color .2s ease-in-out;
+      -moz-transition: color .2s ease-in-out;
+      -o-transition: color .2s ease-in-out;
+      -ms-transition: color .2s ease-in-out;
+      transition: color .2s ease-in-out;
+
+    }
     
     li {
       float: left;
-      a {
-         display: block;
-         color: #333;
-         text-align: center;
-         padding: 14px 16px;
-         text-decoration: none;
-         font-size: 1.25em;
-
-         -webkit-transition: color .2s ease-in-out;
-         -moz-transition: color .2s ease-in-out;
-         -o-transition: color .2s ease-in-out;
-         -ms-transition: color .2s ease-in-out;
-         transition: color .2s ease-in-out;
-      }
     }
 
-    
-    
-    li a:hover {
-      color: $PRIMARY;
-    }
+   //  li a:hover {
+   //    color: $PRIMARY;
+   //  }
 }
+
+
 

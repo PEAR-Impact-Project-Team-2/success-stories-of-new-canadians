@@ -11,7 +11,7 @@ import '@styles/pages/Index.scss';
 const IndexPage = () => {
   return (
     <Page id='home' className='index'>
-      <Navbar/>
+      <Navbar page='home'/>
       <Header />
       <About />
       <SearchWidget/>

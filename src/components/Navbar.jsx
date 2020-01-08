@@ -8,7 +8,7 @@ import { StaticQuery, graphql, navigate } from "gatsby"
 
 export class Navbar extends Component {
 
-  render() {
+  render(props) {
 
     const { data } = this.props
 
@@ -81,8 +81,10 @@ export class Navbar extends Component {
                 className={widgetStyles.searchBox}
                 freeSolo
                 disableClearable
+                margin='dense'
                 onChange={onSelect}
-                style={{ width: 100 }} size='small'
+                style={{ width: 100 }} 
+                size='small'
                 id="combo-box-demo"
                 options={autocompleteoptions}
                 renderOption={(option) => (
@@ -104,11 +106,12 @@ export class Navbar extends Component {
                 )}
               />
             </li>
-            <li className="current"><a className="smoothscroll" href="./">Home</a></li>
-            <li><a className="smoothscroll" href="/selectionTest">Stories</a></li>
-            <li><a className="smoothscroll" href="https://azharlaher.com/about-azhar">About Me</a></li>
-            <li><a className="smoothscroll" href="/contact">Contact Me</a></li>
-            <li><a className="smoothscroll" href="/contact">Subscribe</a></li>
+            {console.log(this.props.page.page === 'home')}
+            <li><a className={this.props.page.page === 'home' ? "nav-wrap__current" : "nav-wrap__other"} href="./">Home</a></li>
+            <li><a className={this.props.page.page === 'selection' ? "nav-wrap__current" : "nav-wrap__other"} href="/selectionTest">Stories</a></li>
+            <li><a className={this.props.page.page === 'about' ? "nav-wrap__current" : "nav-wrap__other"} href="https://azharlaher.com/about-azhar">About Me</a></li>
+            <li><a className={this.props.page.page === 'contact' ? "nav-wrap__current" : "nav-wrap__other"} href="/contact">Contact Me</a></li>
+            <li><a className={this.props.page.page === 'subscribe' ? "nav-wrap__current" : "nav-wrap__other"} href="/contact">Subscribe</a></li>
           </ul>
         </nav>
       </div>
@@ -121,10 +124,11 @@ Navbar.propTypes = {
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.array,
     }),
+    page: PropTypes.string,
   }),
 }
 
-export default () => (
+export default (props) => (
   <StaticQuery
     query={graphql`
   {
@@ -145,6 +149,6 @@ export default () => (
     }
   }
   `}
-    render={data => <Navbar data={data} />}
+    render={data => <Navbar data={data} page={props}/>}
   />
 )

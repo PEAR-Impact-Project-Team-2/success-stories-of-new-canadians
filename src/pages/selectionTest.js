@@ -53,7 +53,7 @@ const SelectionPage = ( { data, location } ) => {
 
   return (
     <Page classes={{width:'100%', marginTop: '100px'}}>
-      <Navbar/>
+      <Navbar page='selection'/>
       <div className={'selectionTest__headerBox'}>
       <h1 className='selectionTest__titleSpace'>s</h1>  
       <h1 className='selectionTest__title'>Search Stories</h1>  
@@ -99,7 +99,7 @@ query SelectionPageTemplate {
                 frontmatter {
                     title
                     country
-                    date
+                    date(formatString: "MMMM DD, YYYY")
                     description
                     image
                     tags
