@@ -118,7 +118,7 @@ export class SearchWidget extends React.Component {
               },
               '& .MuiAutocomplete-inputRoot': {
                 '& .MuiAutocomplete-input': {
-                  minWidth: '115%'
+                  minWidth: '100%'
                 }
               },
               '& .input::-webkit-clear-button': {

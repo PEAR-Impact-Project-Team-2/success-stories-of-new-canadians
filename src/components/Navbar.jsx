@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import '@styles/components/Navbar.scss';
 import PropTypes from 'prop-types'
-import { TextField  } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 
@@ -70,48 +70,48 @@ export class Navbar extends Component {
     }
 
     return (
-      <nav id="nav-wrap">
-
-        <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-        <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
-
-        <ul id="nav" className="nav">
-          <li>
-          <Autocomplete
-            className={widgetStyles.searchBox}
-            freeSolo
-            disableClearable
-            onChange={onSelect}
-            style={{ width: 100 }}            size='small'
-            id="combo-box-demo"
-            options={autocompleteoptions}
-            renderOption={(option) => (
-              <React.Fragment>
-                <p className="selectionTest__checkboxtext">{option.title}</p>
-              </React.Fragment>
-            )}
-            renderInput={params => (
-              <CSSNavBarTextField
+      <div class="parent">
+        <nav class="nav-wrap">
+          <a href="./" id="logo">
+            <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
+          </a>
+          <ul id="nav" className="nav">
+            <li>
+              <Autocomplete
                 className={widgetStyles.searchBox}
-                  {...params}
-                  margin="dense"
-                  variant="outlined"
-                  placeholder="Search ... "
-                  size='small'
-                  fullWidth
-                  InputProps={{ ...params.InputProps, type: 'search' }}
+                freeSolo
+                disableClearable
+                onChange={onSelect}
+                style={{ width: 100 }} size='small'
+                id="combo-box-demo"
+                options={autocompleteoptions}
+                renderOption={(option) => (
+                  <React.Fragment>
+                    <p className="selectionTest__checkboxtext">{option.title}</p>
+                  </React.Fragment>
+                )}
+                renderInput={params => (
+                  <CSSNavBarTextField
+                    className={widgetStyles.searchBox}
+                    {...params}
+                    margin="dense"
+                    variant="outlined"
+                    placeholder="Search ... "
+                    size='small'
+                    fullWidth
+                    InputProps={{ ...params.InputProps, type: 'search' }}
+                  />
+                )}
               />
-            )}
-          />
-          </li>
-          <li className="current"><a className="smoothscroll" href="/#home">Home</a></li>
-          <li><a className="smoothscroll" href="/selectionTest">Stories</a></li>
-          <li><a className="smoothscroll" href="https://azharlaher.com/about-azhar">About Me</a></li>
-          <li><a className="smoothscroll" href="/contact">Contact Me</a></li>
-          <li><a className="smoothscroll" href="/contact">Subscribe</a></li>
-        </ul>
-
-      </nav>
+            </li>
+            <li className="current"><a className="smoothscroll" href="./">Home</a></li>
+            <li><a className="smoothscroll" href="/selectionTest">Stories</a></li>
+            <li><a className="smoothscroll" href="https://azharlaher.com/about-azhar">About Me</a></li>
+            <li><a className="smoothscroll" href="/contact">Contact Me</a></li>
+            <li><a className="smoothscroll" href="/contact">Subscribe</a></li>
+          </ul>
+        </nav>
+      </div>
     );
   }
 }

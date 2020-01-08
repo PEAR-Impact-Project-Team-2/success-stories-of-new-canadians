@@ -12,7 +12,7 @@ export default function Footer() {
             <Grid container direction="row" justify="space-evenly" alignItems="stretch">
                 <Grid item>
                     <Grid item xs={4}>
-                        <Button style={styleZ} to="/#home">Home</Button>
+                        <Button style={styleZ} to="./">Home</Button>
                     </Grid>
                     <Grid item xs={4}>
                         <Button style={styleZ} href="/selectionTest">Stories</Button>
