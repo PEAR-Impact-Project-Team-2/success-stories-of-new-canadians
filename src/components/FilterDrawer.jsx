@@ -60,12 +60,19 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    padding: '10px',
   },
   button: {
     backgroundColor: 'white',
     color: 'red',
     marginBottom: '5px',
     marginTop: '5px'
+  },
+  sortButton: {
+    backgroundColor: 'red',
+    color: 'white',
+    marginBottom: '15px',
+    marginTop: '15px'
   },
   fab: {
     backgroundColor: 'red',
@@ -147,7 +154,7 @@ export default function FilterDrawer(props) {
   function includeAllCountries() { return filterCountrySetting.length === props.countries.length }
   function includeAllTags() { return filterTagSetting.length === props.tags.length }
 
-  const [searchText, setSearchText] = React.useState("");
+  const [searchText, setSearchText] = React.useState(props.initialSearchText != null ? props.initialSearchText : "");
 
   var currentSearchText = "";
 
@@ -170,9 +177,6 @@ export default function FilterDrawer(props) {
     navigate("/selectionTest", {
       state: { searchTag: { event } },
     })
-    // setTagSetting([event])
-    // setIncludeAllTags(false);
-    // setTagOpen(true);
   }
 
   const handleDateNameChange = event => {
@@ -267,6 +271,7 @@ export default function FilterDrawer(props) {
 
   const search = (e) => {
     currentSearchText = e.target.value;
+    console.log(currentSearchText);
   }
 
   const sideList = side => (
@@ -374,7 +379,19 @@ export default function FilterDrawer(props) {
 
   function filterSearchBar(value) {
     if (searchText.length === 0) return true;
-    return (value.node.frontmatter.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1)
+    let words = searchText.toLowerCase().split(" "); 
+    let res = false; 
+    console.log(words);
+    words.forEach( (st) => {
+    if (value.node.frontmatter.title.toLowerCase().indexOf(st) != -1 || 
+          value.node.frontmatter.tags.includes(st) || 
+          value.node.frontmatter.country.toLowerCase().indexOf(st) != -1) 
+        {
+          res = true;
+          return;  
+        } }
+    ); 
+    return res; 
   }
 
   function getFilteredResults() {
@@ -442,12 +459,12 @@ export default function FilterDrawer(props) {
   });
 
   const c = (event, values) => {
-    navigate(values.slug)
+    if (values.slug !== undefined)
+      navigate(values.slug)
   }
 
   return (
     <main>
-      {console.log(filterTagSetting)}
       <div className={autoCompleteClasses.root}>
         <p className='index__text'> Find your next inspiration by their background, interests and contributions.</p>
         <div className={autoCompleteClasses.buttonSection}>
@@ -486,30 +503,36 @@ export default function FilterDrawer(props) {
                     <SearchIcon></SearchIcon>
                   </React.Fragment>
                 }
+                onChange={search}
                 InputProps={{ ...params.InputProps, type: 'search' }}
+                onKeyPress={(ev) => {
+                  if (ev.key === 'Enter') {
+                    onSearchSubmit(); 
+                  }
+                }}
               />)}
           />
           <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
         </div>
         <div className={autoCompleteClasses.buttonSection}> 
-          <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>
-            {'More Filters' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
+          <Button key="drawer" className={nestedClasses.sortButton} onClick={toggleDrawer('left', true)}>
+            {'Sort by Tag / Country' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
               ' (' + (filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1) + ')'))}
           </Button>
         </div> 
         <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
           {sideList('left')}
         </Drawer>
-        <h3>
-          {(searchText.length > 0 ? "Results for: '" + searchText + "' with current tag and country filtering. Click search again to return." : "")}
-        </h3>
         <Grid
           container
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <div classes={{ backgroundColor: 'transparent', justifyItems: 'center' }}>
+          <h3 style={{textAlign:'center'}}>
+            {((searchText != null && searchText.length > 0) ? "Results for: '" + searchText + "' with current tag and country filtering. Click search again to return." : "")}
+          </h3>
+          <div style={{ backgroundColor: 'transparent', justifyItems: 'center' }}>
             {getFilteredResults().length > 0 ?
               <div className={nestedClasses.resultsBox}>
                 {getFilteredResults().sort(sortNamesAlphabetically).map(({ node }, i) => (
@@ -523,7 +546,7 @@ export default function FilterDrawer(props) {
               </div> :
               <h3>
                 No results found for filter settings.
-                  </h3>}
+              </h3>}
           </div>
         </Grid>
       </div>

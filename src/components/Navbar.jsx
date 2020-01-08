@@ -100,10 +100,10 @@ export class Navbar extends Component {
 
     return (
 
-      <div class="parent">
+      <div className="parent">
         <Hidden smDown>
-        <nav class="nav-wrap">
-          <a href="./" id="logo">
+        <nav className="nav-wrap">
+          <a id="logo">
             <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
           </a>
           <ul id="nav" className="nav">
@@ -114,7 +114,7 @@ export class Navbar extends Component {
                 disableClearable
                 margin='dense'
                 onChange={onSelect}
-                style={{ width: 100 }} 
+                style={{ width: 350 }} 
                 size='small'
                 id="combo-box-demo"
                 options={autocompleteoptions}

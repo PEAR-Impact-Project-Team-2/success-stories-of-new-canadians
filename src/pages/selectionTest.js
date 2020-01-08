@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { toTitleCase } from './../components/SquareFlagIcon'
-import { Page } from './../layouts/Page';
-import FilterDrawer from './../components/FilterDrawer'
+import { toTitleCase } from '@components/SquareFlagIcon'
+import { Page } from '@layouts/Page';
+import FilterDrawer from '@components/FilterDrawer'
 import Navbar from '@components/Navbar';
-
-
 import '@styles/pages/SelectionTest.scss'
 
 export const SelectionPageTemplate = ({
@@ -72,6 +70,12 @@ const SelectionPage = ( { data, location } ) => {
           {
             (location.state !== null) ? 
               (!location.state.hasOwnProperty('searchTag') || location.state.searchTag == null) ? null : location.state.searchTag.event 
+              : null
+          }
+          initialSearchText=
+          {
+            (location.state !== null) ? 
+            (!location.state.hasOwnProperty('searchText') || location.state.searchText == null) ? "" : location.state.searchText 
               : null
           }
           >
