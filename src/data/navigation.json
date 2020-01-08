@@ -1,0 +1,22 @@
+[
+	{
+		"text": "Home",
+		"relativelink": "./"
+	},
+	{
+		"text": "Stories",
+		"relativelink": "/selectionTest"
+    },
+    {
+		"text": "About Me",
+		"relativelink": "./"
+    },
+    {
+		"text": "Contact Me",
+		"relativelink": "/contact"
+    },
+    {
+		"text": "Subscribe",
+		"relativelink": "/contact"
+    }
+]

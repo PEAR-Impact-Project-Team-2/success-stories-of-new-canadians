@@ -15,10 +15,11 @@ const IndexPage = () => {
       <Header />
       <About />
       <SearchWidget/>
+      <div className='index__divbutton'>
       <Button id='contact' className='index__button' to='/selectionTest'>
-        Select A Story
+        Search more stories ...
       </Button> 
-      
+      </div> 
     </Page>
   );
 };

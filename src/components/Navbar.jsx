@@ -2,15 +2,44 @@ import React, { Component } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import '@styles/components/Navbar.scss';
 import PropTypes from 'prop-types'
-import { TextField } from '@material-ui/core'
+import { TextField, Hidden } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
+import MobileNavbar from '@components/MobileNavbar'
 
 export class Navbar extends Component {
 
   render(props) {
 
     const { data } = this.props
+
+    const navigation = [ 
+      {
+        "text": "Home",
+        "relativelink": "./",
+        "id": 'home'
+      },
+      {
+        "text": "Stories",
+        "relativelink": "/selectionTest",
+        "id": "selection"
+      },
+      {
+        "text": "About Me",
+        "relativelink": "./",
+        "id": "about"
+      },
+      {
+        "text": "Contact Me",
+        "relativelink": "/contact",
+        "id": "contact"
+      },
+      {
+        "text": "Subscribe",
+        "relativelink": "/contact",
+        "id": "subscribe"
+      }
+    ]
 
     const autocompleteoptions = data.allMarkdownRemark.edges.map(({ node }) => {
       return {
@@ -70,7 +99,9 @@ export class Navbar extends Component {
     }
 
     return (
+
       <div class="parent">
+        <Hidden smDown>
         <nav class="nav-wrap">
           <a href="./" id="logo">
             <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
@@ -106,14 +137,25 @@ export class Navbar extends Component {
                 )}
               />
             </li>
-            {console.log(this.props.page.page === 'home')}
-            <li><a className={this.props.page.page === 'home' ? "nav-wrap__current" : "nav-wrap__other"} href="./">Home</a></li>
-            <li><a className={this.props.page.page === 'selection' ? "nav-wrap__current" : "nav-wrap__other"} href="/selectionTest">Stories</a></li>
-            <li><a className={this.props.page.page === 'about' ? "nav-wrap__current" : "nav-wrap__other"} href="https://azharlaher.com/about-azhar">About Me</a></li>
-            <li><a className={this.props.page.page === 'contact' ? "nav-wrap__current" : "nav-wrap__other"} href="/contact">Contact Me</a></li>
-            <li><a className={this.props.page.page === 'subscribe' ? "nav-wrap__current" : "nav-wrap__other"} href="/contact">Subscribe</a></li>
+            {console.log(data)}
+            {navigation.map((entry) => (
+                <li>
+                  <a 
+                    className={this.props.page.page === entry.id ? "nav-wrap__current" : "nav-wrap__other"} 
+                    href={entry.relativelink}>
+                      {entry.text}
+                  </a>
+                </li>
+              ))}
+
+            {/* Legacy Link to Azhar's Site 
+              <li><a className={this.props.page.page === 'about' ? "nav-wrap__current" : "nav-wrap__other"} href="https://azharlaher.com/about-azhar">About Me</a></li> */}
           </ul>
         </nav>
+        </Hidden> 
+        <Hidden mdUp>
+          <MobileNavbar page={this.props.page.page} navigation={navigation} autocompleteoptions={autocompleteoptions} ></MobileNavbar>
+        </Hidden>
       </div>
     );
   }
