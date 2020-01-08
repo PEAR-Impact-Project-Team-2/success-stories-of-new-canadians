@@ -120,14 +120,13 @@ export class Navbar extends Component {
       <div className="parent">
         <Hidden smDown>
           <nav className="nav-wrap">
+          <meta name="navbar" content="Desktop navigation bar."/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <a id="logo">
                 <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
               </a>
               {
                 this.props.page.page === 'selection' ? null :
-
-
                   <Autocomplete
                     className={widgetStyles.searchBox}
                     freeSolo

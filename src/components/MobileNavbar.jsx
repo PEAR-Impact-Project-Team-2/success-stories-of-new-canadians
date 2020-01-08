@@ -165,12 +165,15 @@ export default function MobileNavbar(props) {
 
     return (
         <div className={classes.root}>
+            <title>Navigation bar for mobile devices</title>
             <CssBaseline />
+            <meta name="mobile-navbar" content="Mobile navigation bar."/>
             <AppBar
                 position="fixed"
                 style={{ background: 'white', height: 70 }}
             >
                 <Toolbar style={{ height: '100%' }}>
+                    <meta name='mobile-navbar' content='Search bar to search blog stories on site'/>
                     {!searchOpen ?
                         <React.Fragment>
                             <a id="logo" classes={{ marginLeft: -10 }}>
@@ -244,7 +247,7 @@ export default function MobileNavbar(props) {
                 <div className={classes.drawerHeader}>
                     <li>
                     </li>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton aria-label='close-menu' onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>

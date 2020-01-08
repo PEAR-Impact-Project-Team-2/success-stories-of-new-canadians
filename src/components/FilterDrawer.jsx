@@ -266,13 +266,13 @@ export default function FilterDrawer(props) {
 
   const search = (e) => {
     currentSearchText = e.target.value;
-    console.log(currentSearchText);
   }
 
   const sideList = side => (
     <div
       className={nestedClasses.list}
     >
+      <title>Navigation bar for desktop and larger screens.</title>
       <List>
         <List
           component="nav"
@@ -376,7 +376,6 @@ export default function FilterDrawer(props) {
     if (searchText.length === 0) return true;
     let words = searchText.toLowerCase().split(" "); 
     let res = false; 
-    console.log(words);
     words.forEach( (st) => {
     if (value.node.frontmatter.title.toLowerCase().indexOf(st) != -1 || 
           value.node.frontmatter.tags.includes(st) || 
@@ -507,7 +506,7 @@ export default function FilterDrawer(props) {
                 }}
               />)}
           />
-          <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
+          <Button key="search" aria-label='search submit button' className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
         </div>
         <div className={autoCompleteClasses.buttonSection}> 
           <Button key="drawer" className={nestedClasses.sortButton} onClick={toggleDrawer('left', true)}>
@@ -552,7 +551,7 @@ export default function FilterDrawer(props) {
 function SelectionCard(props) {
 
   const classes = useStyles();
-  //cinnuit
+
   return (
     <Card className='selectionTest__cardStyles'>
       <meta name="story" content={props.frontmatter.title + " " + props.frontmatter.country + " " + props.frontmatter.description}></meta>

@@ -9,12 +9,12 @@ import '@styles/pages/SelectionTest.scss'
 
 export const SelectionPageTemplate = ({
   title
-  
+
 }) => (
     <div>
-        <h1>{title}</h1>
+      <h1>{title}</h1>
     </div>
-)
+  )
 
 SelectionPageTemplate.propTypes = {
   title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -22,73 +22,69 @@ SelectionPageTemplate.propTypes = {
 
 function GenerateTags(edges) {
   let t = [];
-  edges.forEach( ({node}) => 
-    {
-      node.frontmatter.tags.forEach(storyTag => {
-        if (!t.includes(storyTag.toLowerCase()))
-        t.push(storyTag.toLowerCase()) 
-      })
+  edges.forEach(({ node }) => {
+    node.frontmatter.tags.forEach(storyTag => {
+      if (!t.includes(storyTag.toLowerCase()))
+        t.push(storyTag.toLowerCase())
     })
+  })
   return t;
 }
 
-function GenerateCountries(edges) { 
+function GenerateCountries(edges) {
   let t = [];
-  edges.forEach( ({node}) => 
-    {
-        if (!t.includes(node.frontmatter.country.toLowerCase()))
-        t.push(node.frontmatter.country.toLowerCase())
-    })
+  edges.forEach(({ node }) => {
+    if (!t.includes(node.frontmatter.country.toLowerCase()))
+      t.push(node.frontmatter.country.toLowerCase())
+  })
   return t.map(toTitleCase)
 }
 
 
-const SelectionPage = ( { data, location } ) => {
+const SelectionPage = ({ data, location }) => {
 
-  const { allMarkdownRemark } = data 
+  const { allMarkdownRemark } = data
   const { state = {} } = location
   // const { searchTag } = (state == null ? null : state)
 
   return (
-    <Page classes={{width:'100%', marginTop: '100px'}}>
-      <Navbar page='selection'/>
-      <div className={'selectionTest__headerBox'}>
-      <h1 className='selectionTest__titleSpace'>s</h1>  
-      <h1 className='selectionTest__title'>Search Stories</h1>  
+    <Page classes={{ width: '100%', marginTop: '100px' }}>
       <title>Page to search and filter blog stories on the site.</title>
-      <meta name="selection page" 
-      content="Search blog stories from new canadians"></meta>
+      <meta name="selection page"
+        content="Search blog stories from new canadians"></meta>
+      <Navbar page='selection' />
+      <div className={'selectionTest__headerBox'}>
+        <h1 className='selectionTest__titleSpace'>s</h1>
+        <h1 className='selectionTest__title'>Search Stories</h1>
       </div>
-      <div>    
-      </div>
-      { console.log(location.state !== null) }
-        <FilterDrawer
-          edges={allMarkdownRemark.edges}
-          tags={GenerateTags(allMarkdownRemark.edges).sort()}
-          countries={GenerateCountries(allMarkdownRemark.edges).sort()}
-          initialTag=
-          {
-            (location.state !== null) ? 
-              (!location.state.hasOwnProperty('searchTag') || location.state.searchTag == null) ? null : location.state.searchTag.event 
-              : null
-          }
-          initialSearchText=
-          {
-            (location.state !== null) ? 
-            (!location.state.hasOwnProperty('searchText') || location.state.searchText == null) ? "" : location.state.searchText 
-              : null
-          }
-          >
-        </FilterDrawer>
+      {console.log(location.state !== null)}
+      <FilterDrawer
+        edges={allMarkdownRemark.edges}
+        tags={GenerateTags(allMarkdownRemark.edges).sort()}
+        countries={GenerateCountries(allMarkdownRemark.edges).sort()}
+        initialTag=
+        {
+          (location.state !== null) ?
+            (!location.state.hasOwnProperty('searchTag') || location.state.searchTag == null) ? null : location.state.searchTag.event
+            : null
+        }
+        initialSearchText=
+        {
+          (location.state !== null) ?
+            (!location.state.hasOwnProperty('searchText') || location.state.searchText == null) ? "" : location.state.searchText
+            : null
+        }
+      >
+      </FilterDrawer>
     </Page>
   )
 }
 
 SelectionPage.propTypes = {
   data: PropTypes.shape({
-      markdownRemark: PropTypes.shape({
-          frontmatter: PropTypes.object,
-      }),
+    markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.object,
+    }),
   }),
 }
 
