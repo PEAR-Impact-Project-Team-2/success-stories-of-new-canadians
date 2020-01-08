@@ -40,15 +40,6 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(4),
     padding: 1
   },
-  // card: {
-  //   width: {Dimensions.get('window')},
-  //   marginRight: '5px',
-  //   marginLeft: '5px',
-  //   marginTop: '5px',
-  //   marginBottom: '5px',
-  //   backgroundColor: 'white',
-  //   flexWrap: 'wrap'
-  // },
   searchSubmitButton: {
     backgroundColor: 'red',
     color: 'white',
@@ -66,13 +57,18 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     color: 'red',
     marginBottom: '5px',
-    marginTop: '5px'
+    marginTop: '5px',
   },
   sortButton: {
     backgroundColor: 'red',
     color: 'white',
     marginBottom: '15px',
-    marginTop: '15px'
+    marginTop: '15px',
+    '&:hover':
+    {
+      backgroundColor: 'white',
+      color: 'red',
+    },
   },
   fab: {
     backgroundColor: 'red',
@@ -103,7 +99,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     bottom: '0%'
   },
-  // item padding in lists
   item: {
     display: 'flex',
     flexWrap: 'wrap',
