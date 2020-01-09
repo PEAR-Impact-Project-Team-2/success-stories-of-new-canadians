@@ -11,33 +11,31 @@ export const ShareCard = () => (
         <Card>
             <CardContent className='cardContent'>
 
-                <h1 className='header'>Share</h1>
+                <h2 className='header'>Share</h2>
 
                 <div className='icon'>
                     
                         <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/facebook.svg')} height='64px' alt='Facebook'/>
+                                <img src={require('../assets/facebook.svg')} height='32px' alt='Facebook'/>
                             </IconButton>
                         </div>
 
                         <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/instagram.svg')} height='64px' alt='Instagram' />
+                                <img src={require('../assets/instagram.svg')} height='32px' alt='Instagram' />
                             </IconButton>
                         </div>
                     
-
-                    
                         <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/twitter.svg')} height='64px' alt='Twitter'/>
+                                <img src={require('../assets/twitter.svg')} height='32px' alt='Twitter'/>
                             </IconButton>
                         </div>
 
                         <div className='iconDiv'>
                             <IconButton> 
-                                <img src={require('../assets/linkedin.svg')} height='64px' alt='LinkedIn' />
+                                <img src={require('../assets/linkedin.svg')} height='32px' alt='LinkedIn' />
                             </IconButton>
                         </div>
                     

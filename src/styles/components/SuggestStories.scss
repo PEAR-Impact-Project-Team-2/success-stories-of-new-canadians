@@ -1,5 +1,11 @@
+.suggestContainer {
+    display: flex;
+}
+
 .suggestCard {
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 20vw;
 }
 
 @media screen and (max-width: 768px) {
