@@ -11,10 +11,6 @@ import '@styles/templates/BlogPage.scss';
 const BlogPage = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
   const { order, ...headerProps } = frontmatter;
-  const disqusConfig = {
-    shortname: 'immigrant-success-canada',
-    config: { identifier: order },
-  }
 
   return (
     <div>

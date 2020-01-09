@@ -1,13 +1,34 @@
 .suggestContainer {
     display: flex;
+    width: 100%;
 }
 
 .suggestCard {
     margin-top: 20px;
     margin-left: 20px;
+    margin-bottom: 50px;
     width: 20vw;
+    height: 400px;
 }
 
-@media screen and (max-width: 768px) {
+.spacer {
+    margin-top: 50px;
+}
 
+.suggestRow {
+    display: flex;
+}
+
+@media screen and (max-width: 1024px) {
+    .spacer {
+        height: 170vh;
+    }
+
+    .suggestCard {
+        width: 40vw;
+    }
+    .suggestContainer {
+        height: 170vh;
+        flex-direction: column;
+    }
 }
