@@ -10,7 +10,7 @@ export const navigation = [
       "id": "selection"
     },
     {
-      "text": "About Me",
+      "text": "About",
       "relativelink": "/",
       "id": "about"
     },

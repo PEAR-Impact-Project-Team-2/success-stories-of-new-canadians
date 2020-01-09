@@ -80,7 +80,7 @@ export class Navbar extends Component {
         },
         '& .MuiAutocomplete-inputRoot': {
           '& .MuiAutocomplete-input': {
-            minWidth: '100%'
+            minWidth: '130%'
           }
         }
       },
@@ -126,7 +126,14 @@ export class Navbar extends Component {
               <a id="logo">
                 <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
               </a>
-              {
+              <h1 style={{color: 'red', alignSelf: 'center', textAlign: 'center', marginRight: 20}}>
+                Success Stories of New Canadians
+              </h1>
+            </div>
+            <a>
+            <ul id="nav" className="nav">
+
+            {
                 this.props.page.page === 'selection' ? null :
                   <Autocomplete
                     className={widgetStyles.searchBox}
@@ -134,7 +141,7 @@ export class Navbar extends Component {
                     disableClearable
                     margin='dense'
                     onChange={onSelect}
-                    style={{ width: 350 }}
+                    style={{ width: 250 }}
                     size='small'
                     id="combo-box-demo"
                     options={autocompleteoptions}
@@ -163,8 +170,6 @@ export class Navbar extends Component {
                     )}
                   />
               }
-            </div>
-            <ul id="nav" className="nav">
               {console.log(data)}
               {navigation.map((entry) => (
                 <li>
@@ -179,6 +184,7 @@ export class Navbar extends Component {
               {/* Legacy Link to Azhar's Site 
               <li><a className={this.props.page.page === 'about' ? "nav-wrap__current" : "nav-wrap__other"} href="https://azharlaher.com/about-azhar">About Me</a></li> */}
             </ul>
+            </a> 
           </nav>
         </Hidden>
         <Hidden mdUp>

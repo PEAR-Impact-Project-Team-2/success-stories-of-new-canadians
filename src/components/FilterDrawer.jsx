@@ -548,7 +548,7 @@ export default function FilterDrawer(props) {
           <h3 style={{ textAlign: 'center' }}>
             {((searchText != null && searchText.length > 0) ? "Results for: '" + searchText + "' with current tag and country filtering. Click search again to return." : "")}
           </h3>
-          <div style={{ backgroundColor: 'transparent', justifyItems: 'center' }}>
+          <div style={{ backgroundColor: 'transparent', justifyItems: 'center', width: '100%', display: 'flex', justifyContent: 'center' }}>
             {getFilteredResults().length > 0 ?
               <div className={nestedClasses.resultsBox}>
                 {getFilteredResults().sort(sortNamesAlphabetically).map(({ node }, i) => (
@@ -560,7 +560,7 @@ export default function FilterDrawer(props) {
                   </SelectionCard>
                 ))}
               </div> :
-              <h3>
+              <h3 style={{padding: 10}}>
                 No results found for filter settings.
               </h3>}
           </div>
