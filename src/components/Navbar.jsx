@@ -16,7 +16,7 @@ export class Navbar extends Component {
     const navigation = [
       {
         "text": "Home",
-        "relativelink": "./",
+        "relativelink": "/",
         "id": 'home'
       },
       {
@@ -26,7 +26,7 @@ export class Navbar extends Component {
       },
       {
         "text": "About Me",
-        "relativelink": "./",
+        "relativelink": "/",
         "id": "about"
       },
       {

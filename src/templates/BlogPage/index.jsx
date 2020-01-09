@@ -87,6 +87,7 @@ export const pageQuery = graphql`
         country
         order
         date(formatString: "MMMM DD, YYYY")
+        tags
       }
     }
     allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}, filter: {frontmatter: {templateKey: {eq: "story-page"}}}) {

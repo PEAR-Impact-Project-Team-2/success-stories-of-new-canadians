@@ -48,7 +48,7 @@ const SelectionPage = ({ data, location }) => {
   // const { searchTag } = (state == null ? null : state)
 
   return (
-    <Page classes={{ width: '100%', marginTop: '100px' }}>
+    <Page>
       <title>Page to search and filter blog stories on the site.</title>
       <meta name="selection page"
         content="Search blog stories from new canadians"></meta>
@@ -57,20 +57,20 @@ const SelectionPage = ({ data, location }) => {
         <h1 className='selectionTest__titleSpace'>s</h1>
         <h1 className='selectionTest__title'>Search Stories</h1>
       </div>
-      {console.log(location.state !== null)}
+      {console.log(location.state !== null + " " + location.state !== undefined)}
       <FilterDrawer
         edges={allMarkdownRemark.edges}
         tags={GenerateTags(allMarkdownRemark.edges).sort()}
         countries={GenerateCountries(allMarkdownRemark.edges).sort()}
         initialTag=
         {
-          (location.state !== null) ?
+          (location.state !== null && location.state !== undefined) ?
             (!location.state.hasOwnProperty('searchTag') || location.state.searchTag == null) ? null : location.state.searchTag.event
             : null
         }
         initialSearchText=
         {
-          (location.state !== null) ?
+          (location.state !== null && location.state !== undefined) ?
             (!location.state.hasOwnProperty('searchText') || location.state.searchText == null) ? "" : location.state.searchText
             : null
         }

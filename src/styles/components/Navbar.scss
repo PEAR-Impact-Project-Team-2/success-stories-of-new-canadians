@@ -13,8 +13,11 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   background-color: #fff;
+   background-color: rgb(255, 255, 255);
    height: 72px;
+   -moz-box-shadow: 0 0 5px rgb(175, 175, 175);
+    -webkit-box-shadow: 0 0 5px rgb(175, 175, 175);
+    box-shadow: 0 0 5px rgb(175, 175, 175);
 
    #logo{
        width: 72px;
