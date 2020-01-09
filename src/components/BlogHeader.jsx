@@ -37,10 +37,10 @@ export const BlogHeader = ({ title, description, author, date, image, country, t
                             {author}
                         </li>
                         <li className='BlogHeader__tag'>
-                            {date}
+                            {country}
                         </li>
                         <li className='BlogHeader__tag'>
-                            {country}
+                            {date}
                         </li>
                     </ul>
                 </header>

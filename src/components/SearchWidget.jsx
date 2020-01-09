@@ -146,7 +146,7 @@ export class SearchWidget extends React.Component {
 
         return (
             <div className="selectionTest__searchwidget">
-                <p classes={{justifyText:'center'}}>Directly search by title or person</p>
+                <h1 style={{marginBottom: '15px'}}>Directly search by title or person</h1>
                 <Autocomplete
                     // className={widgetStyles.searchBox}
                     freeSolo

@@ -287,7 +287,7 @@ export default function FilterDrawer(props) {
         >
           { /* Date Filtering */}
           <ListItem button onClick={handleClick.bind(this, 0)}>
-            <ListItemText primary="by Name/Date" />
+            <ListItemText primary="Sort by Name/Date" />
             {nameOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={true} timeout="auto" unmountOnExit>
@@ -295,14 +295,14 @@ export default function FilterDrawer(props) {
             </List>
           </Collapse>
           <Collapse in={nameOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding={true} >
-              <FormControl component="fieldset" className={nestedClasses.formControl}>
+            <List component="div" disablePadding={true} style={{marginLeft: '11px'}}>
+              <FormControl component="fieldset">
                 <FormLabel component="legend"></FormLabel>
                 <RadioGroup aria-label="name" name="name1" value={filterDateNameSetting} onChange={handleDateNameChange}>
                   {dateNames.map(item => {
                     return (
                       <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
-                        <FormControlLabel className={nestedClasses.formControlLabel} key={item} value={item} control={<CssRadio />}/>{item}
+                        <FormControlLabel key={item} value={item} control={<CssRadio />}/>{item}
                       </ListItem>
                     )
                   })}
@@ -482,7 +482,7 @@ export default function FilterDrawer(props) {
   return (
     <main>
       <div className={autoCompleteClasses.root}>
-        <p className='index__text'> Find your next inspiration by their background, interests and contributions.</p>
+        <p className='index__text'> Find your next inspiration.</p>
         <div className={autoCompleteClasses.buttonSection}>
           <Autocomplete
             className={autoCompleteClasses.searchBox}

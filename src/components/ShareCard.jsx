@@ -54,7 +54,7 @@ export const ShareCard = () => (
                 <p>We are always looking to tell the unique stories of Canadian immigrants</p>
             </CardContent>
             <CardActions>
-                <Button size="small">Contact Us</Button>
+                <Button size="small" href="/contact">Contact Us</Button>
             </CardActions>
         </Card>
 
