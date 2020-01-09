@@ -101,7 +101,7 @@
     display:flex;
     flex-direction: row;
     min-height: 100vh; 
-    width: 98vw; 
+    width: 100%; 
     box-sizing: border-box;
     background-color: white;
 }
@@ -111,7 +111,7 @@
     //flex-direction: row;
     //justify-content: center;
     min-height: 100vh; 
-    width:100vw; 
+    width:100%; 
     box-sizing: border-box;
 
     &__socialMedia {
@@ -216,6 +216,7 @@
 
     .blogContainer {
         flex-direction: column;
+        width: 100%;
     }
 
     .content {
@@ -223,7 +224,8 @@
         &__paragraph {
             order: 1;
             width: 90vw;
-            margin-left: 2vw;
+            margin-left: 4vw;
+            margin-right: 4vw;
         }
 
         &__socialMedia {

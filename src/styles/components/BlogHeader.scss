@@ -8,7 +8,7 @@
     
     &__Title {
         height: 50vh;
-        width: 40vw;
+        width: 40%;
         background: rgb(0,0,0);
     }
 
@@ -18,7 +18,7 @@
 
     &__Image {
         height: 50vh;
-        width: 59vw;
+        width: 60%;
         background-image: url("https://azharlaher.com/wp-content/uploads/2019/10/img-3298_orig-1024x576.jpg");
         background-size:cover;
         background-position:center;
@@ -26,7 +26,7 @@
 
     &__ImageGradient {
         height: 50vh;
-        width: 59vw;
+        width: 60%;
         background: rgb(0,0,0);
         background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 40%);
         z-index: 0;
