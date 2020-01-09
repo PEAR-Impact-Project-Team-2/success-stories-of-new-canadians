@@ -6,40 +6,41 @@ import { TextField, Hidden } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 import MobileNavbar from '@components/MobileNavbar'
+import { navigation } from '@components/Directory'
+
+// const navigation = [
+//   {
+//     "text": "Home",
+//     "relativelink": "/",
+//     "id": 'home'
+//   },
+//   {
+//     "text": "Stories",
+//     "relativelink": "/selectionTest",
+//     "id": "selection"
+//   },
+//   {
+//     "text": "About Me",
+//     "relativelink": "/",
+//     "id": "about"
+//   },
+//   {
+//     "text": "Contact Me",
+//     "relativelink": "/contact",
+//     "id": "contact"
+//   },
+//   {
+//     "text": "Subscribe",
+//     "relativelink": "/contact",
+//     "id": "subscribe"
+//   }
+// ]
 
 export class Navbar extends Component {
 
   render(props) {
 
     const { data } = this.props
-
-    const navigation = [
-      {
-        "text": "Home",
-        "relativelink": "/",
-        "id": 'home'
-      },
-      {
-        "text": "Stories",
-        "relativelink": "/selectionTest",
-        "id": "selection"
-      },
-      {
-        "text": "About Me",
-        "relativelink": "/",
-        "id": "about"
-      },
-      {
-        "text": "Contact Me",
-        "relativelink": "/contact",
-        "id": "contact"
-      },
-      {
-        "text": "Subscribe",
-        "relativelink": "/contact",
-        "id": "subscribe"
-      }
-    ]
 
     const autocompleteoptions = data.allMarkdownRemark.edges.map(({ node }) => {
       return {

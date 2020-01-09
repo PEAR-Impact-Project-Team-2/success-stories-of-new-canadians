@@ -1,52 +1,127 @@
 import React from 'react'
-import { Button, Grid } from '@material-ui/core'
+import { Button, Grid, Hidden } from '@material-ui/core'
 import '@styles/components/Footer.scss';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import { navigation } from '@components/Directory'
+import { makeStyles } from '@material-ui/core/styles';
+
 
 export default function Footer() {
-    const styleZ = {
-        color: "white",
+    const useStyles = makeStyles(theme => ({
+        navButton: {
+            color: "white",
+            '&:hover':
+            {
+                color: 'red',
+            },
+        },
+    }));
+
+    const styleZ = useStyles(); 
+
+    const socialMedia = [
+        
+        {
+            "alt": "Facebook",
+            "outlink": 'https://www.facebook.com/azhar.laher',
+            imagelink: require("../assets/facebook.svg"),
+        },
+        {
+            "alt": "Instagram",
+            "outlink": 'https://www.instagram.com/azhar_laher/?hl=en',
+            imagelink: require("../assets/instagram.svg"),
+        },
+        {
+            "alt": "Twitter",
+            "outlink": 'https://twitter.com/azharlaher?lang=en',
+            imagelink: require("../assets/twitter.svg"),
+        },
+        {
+            "alt": "LinkedIn",
+            "outlink": 'https://www.linkedin.com/in/azhar-laher-877b844/?originalSubdomain=ca',
+            imagelink: require("../assets/linkedin.svg"),
+        },
+         
+    ]
+
+    const bottomText = [
+        "Success Stories of New Canadians", 
+        "A blog of Canadian immigrant stories edited by Azhar Laher.", 
+        "Website © 2020 Cheng Liang (William) H., Sameer K., Dubem O., Mitra M. and Henry Z.", 
+    ]
+
+    function footerDirectory() {
+        return navigation.map((page) => {
+            return(
+                <span style={{display: 'flex', justifyContent: 'center'}} key={page.id + 'span'}>
+                    <Button className={styleZ.navButton} href={page.relativelink} key={page.id}>
+                        {page.text}
+                    </Button>
+                </span>
+            )
+        })
     }
+
     return (
         <footer>
-            <Grid container direction="row" justify="space-evenly" alignItems="stretch">
+            <div style={{backgroundColor: 'black', paddingTop: 30, paddingBottom: 30 }}>
+            <Grid container direction="column" alignItems="center">
                 <Grid item>
-                    <Grid item xs={4}>
-                        <Button style={styleZ} to="./">Home</Button>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Button style={styleZ} href="/selectionTest">Stories</Button>
-                    </Grid>
+                    <Hidden mdUp>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px"/>
+                        </div> 
+                    </Hidden>
+                    <div style={{display: 'flex', paddingBottom: 10, paddingRight: 20}}>
+                        <Hidden smDown>
+                            <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px"/>
+                        </Hidden>
+                        <h1 style={{color: 'white', alignSelf: 'center', textAlign: 'center'}}>
+                            Success Stories of New Canadians
+                        </h1>
+                    </div>
+                    <Hidden mdUp>
+                        <Grid container direction="column">
+                        <h4 style={{color: 'white', textAlign: 'center', paddingBottom: 10}}>
+                            NAVIGATION
+                        </h4>
+                            {footerDirectory()}
+                        </Grid> 
+                    </Hidden>
+                    <Hidden smDown>
+                        <Grid container direction="row" style={{display: 'flex', justifyContent: 'center'}}>
+                            <h4 style={{color: 'white', textAlign: 'center', alignSelf: 'center'}}>
+                                NAVIGATION
+                            </h4>
+                                {footerDirectory()}
+                        </Grid> 
+                    </Hidden>
+                    
                 </Grid>
                 <Grid item>
-                    <Grid item>
-                        <Button style={styleZ} href="/contact">Contact Us</Button>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Button size='small'>
-                        <OutboundLink href="https://www.facebook.com/azhar.laher">
-                            <img src={require('../assets/facebook.svg')} height='64px' alt='Facebook' />
-                        </OutboundLink>
-                    </Button>
+                    {
+                        socialMedia.map((entry) => {
+                            return(
+                                <Button size='small' key={entry.alt}>
+                                    <OutboundLink href={entry.outlink}>
+                                        <img src={entry.imagelink} height='50px' alt={entry.alt} />
+                                    </OutboundLink>
+                                </Button>
 
-                    <Button size='small'>
-                        <OutboundLink href="https://www.instagram.com/azhar_laher/?hl=en">
-                            <img src={require('../assets/instagram.svg')} height='64px' alt='Instagram' />
-                        </OutboundLink>
-                    </Button>
-                    <Button size='small'>
-                        <OutboundLink href="https://twitter.com/azharlaher?lang=en">
-                            <img src={require('../assets/twitter.svg')} height='64px' alt='Twitter' />
-                        </OutboundLink>
-                    </Button>
-                    <Button size='small'>
-                        <OutboundLink href="https://www.linkedin.com/in/azhar-laher-877b844/?originalSubdomain=ca">
-                            <img src={require('../assets/linkedin.svg')} height='64px' alt='LinkedIn' />
-                        </OutboundLink>
-                    </Button>
+                            ); 
+                        })
+                    }
+                </Grid>
+                <Grid item>
+                    <p style={{color: 'white', textAlign: 'center'}}>
+                        A blog of Canadian immigrant stories collected and edited by Azhar Laher.
+                    </p>
+                    <p style={{color: 'gray', textAlign: 'center'}}>
+                        Website © 2020 Chengliang H., Sameer K., Dubem O., Mitravasu P. and Henry Z.
+                    </p>
                 </Grid>
             </Grid>
+            </div>
         </footer>
     )
 }
