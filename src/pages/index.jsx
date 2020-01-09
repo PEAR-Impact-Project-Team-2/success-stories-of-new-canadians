@@ -12,13 +12,9 @@ const IndexPage = () => {
   return (
     <Page id='home' className='index'>
       <Navbar/>
-      <Header />
-      <SearchWidget/> 
-      <StoryRoll/>
-      <Button id='contact' className='index__button' to='/selectionTest'>
-        Select A Story
-      </Button> 
-      
+        <Header />
+        <SearchWidget/> 
+        <StoryRoll/>          
     </Page>
   );
 };

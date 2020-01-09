@@ -115,6 +115,7 @@ const ContactPage = () => {
 */
 
   const classes = useStyles();
+  var Recaptcha = require('react-recaptcha');
 
   return (
     <Page className='contact'>
@@ -128,7 +129,7 @@ const ContactPage = () => {
             <DialogContent>
                 <DialogContentText>Please enter your e-mail:</DialogContentText>
                 <div className={classes.popup}>
-                  <TextField className={classes.textfield} label='Email'></TextField>
+                  <TextField className={classes.textfield}></TextField>
                   <Button className={classes.button} onClick={openThanks}>Subscribe</Button>
                 </div>
             </DialogContent>        
@@ -152,7 +153,6 @@ const ContactPage = () => {
           onChange={handleChange}
         >
           <MenuItem value={'Contact Azhar'}>Contact Azhar</MenuItem>
-          <MenuItem value={'Contact Story Author'}>Contact Story Author</MenuItem>
         </ Select>)}
         <Dialog open={contactPopOpen} onClose={closeContactPopup}>
             <DialogTitle id='contact_popup'>{contactType}</DialogTitle>
