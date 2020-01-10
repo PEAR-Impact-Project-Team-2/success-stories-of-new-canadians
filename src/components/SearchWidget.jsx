@@ -113,13 +113,13 @@ export class SearchWidget extends Component {
                     disableClearable
                     margin='dense'
                     onChange={onSelect}
-                    style={{ width: 250 }}
+                    style={{ width: '80%' }}
                     size='small'
                     id="combo-box-demo"
                     options={autocompleteoptions}
                     renderOption={(option) => (
                       <React.Fragment>
-                        <h1 style={{color: 'black'}}>{option.title}</h1>
+                        <p style={{color: 'black'}}>{option.title}</p>
                       </React.Fragment>
                     )}
                     renderInput={params => (
@@ -160,7 +160,7 @@ export class SearchWidget extends Component {
                     }
                 </div>
                 <div style={{padding: '25px', display: 'flex', justifyContent: 'center'}}>
-                <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' to='/selectionTest'>
+                <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' href='/selectionTest'>
                   Browse all stories ...
                 </Button> 
                 </div> 
@@ -178,6 +178,11 @@ export class SearchWidget extends Component {
                 <p>
                 I am writing a book and developing a website on the experiences of immigrants and refugees in Canada, part of which includes a compilation of original stories from at least 100 Canadians who have made Canada their home. The project will highlight the joys and challenges of new Canadians who have been in Canada for at least 5 years.  I would love to hear interesting and compelling stories from immigrants and refugees from different parts of the world.
                 </p>
+                <div style={{padding: '25px', display: 'flex', justifyContent: 'center'}}>
+                <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' href='/contact'>
+                  Want to share your story? Contact me!
+                </Button> 
+                </div> 
                 </Card>
             </div>
         )
