@@ -54,9 +54,11 @@ const BlogPage = ({ data }) => {
 
         </div>
 
-        {/* <div className='suggestedBlog'>
+
+
+        <div className='suggestedBlog'>
           <SuggestStories edges={data.allMarkdownRemark.edges} />    
-        </div> */}
+        </div>
 
         <Footer />
 
