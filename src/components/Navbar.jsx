@@ -2,9 +2,39 @@ import React, { Component } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import '@styles/components/Navbar.scss';
 import PropTypes from 'prop-types'
-import { TextField } from '@material-ui/core'
+import { TextField, Hidden } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
-import { StaticQuery, graphql, navigate, Link } from "gatsby"
+import { StaticQuery, graphql, navigate } from "gatsby"
+import MobileNavbar from '@components/MobileNavbar'
+import { navigation } from '@components/Directory'
+
+// const navigation = [
+//   {
+//     "text": "Home",
+//     "relativelink": "/",
+//     "id": 'home'
+//   },
+//   {
+//     "text": "Stories",
+//     "relativelink": "/selectionTest",
+//     "id": "selection"
+//   },
+//   {
+//     "text": "About Me",
+//     "relativelink": "/",
+//     "id": "about"
+//   },
+//   {
+//     "text": "Contact Me",
+//     "relativelink": "/contact",
+//     "id": "contact"
+//   },
+//   {
+//     "text": "Subscribe",
+//     "relativelink": "/contact",
+//     "id": "subscribe"
+//   }
+// ]
 
 export class Navbar extends Component {
   componentDidMount() {
@@ -20,7 +50,7 @@ export class Navbar extends Component {
     }
   }
 
-  render() {
+  render(props) {
 
     const { data } = this.props
 
@@ -62,7 +92,7 @@ export class Navbar extends Component {
         },
         '& .MuiAutocomplete-inputRoot': {
           '& .MuiAutocomplete-input': {
-            minWidth: '250%'
+            minWidth: '130%'
           }
         }
       },
@@ -78,51 +108,100 @@ export class Navbar extends Component {
     })(TextField);
 
     const onSelect = (event, values) => {
-      navigate(values.slug)
+      if (values.slug !== undefined)
+        navigate(values.slug)
+      else
+        navigate("/selectionTest", {
+          state: { searchTag: null, searchText: currentSearchText },
+        });
+    }
+
+    var currentSearchText = "";
+
+    function onSearchSubmit() {
+      navigate("/selectionTest", {
+        state: { searchTag: null, searchText: currentSearchText },
+      })
+    }
+
+    const search = (e) => {
+      currentSearchText = e.target.value;
     }
 
     return (
-      <div id="floatingNavbar">
-        <nav className="nav-wrap">
-          <Link to="/" id="logo">
-            <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
-          </Link>
-          <ul id="nav" className="nav">
-            <li>
-              <Autocomplete
-                className={widgetStyles.searchBox}
-                freeSolo
-                disableClearable
-                onChange={onSelect}
-                style={{ width: 100 }} size='small'
-                id="combo-box-demo"
-                options={autocompleteoptions}
-                renderOption={(option) => (
-                  <React.Fragment>
-                    <p className="selectionTest__checkboxtext">{option.title}</p>
-                  </React.Fragment>
-                )}
-                renderInput={params => (
-                  <CSSNavBarTextField
+
+      <div className="parent">
+        <Hidden smDown>
+          <nav className="nav-wrap">
+          <meta name="navbar" content="Desktop navigation bar."/>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <a id="logo">
+                <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
+              </a>
+              <h1 style={{color: 'red', alignSelf: 'center', textAlign: 'center', marginRight: 20}}>
+                Success Stories of New Canadians
+              </h1>
+            </div>
+            <a>
+            <ul id="nav" className="nav">
+
+            {
+                this.props.page.page === 'selection' ? null :
+                  <Autocomplete
                     className={widgetStyles.searchBox}
-                    {...params}
-                    margin="dense"
-                    variant="outlined"
-                    placeholder="Search ... "
+                    freeSolo
+                    disableClearable
+                    margin='dense'
+                    onChange={onSelect}
+                    style={{ width: 250 }}
                     size='small'
-                    fullWidth
-                    InputProps={{ ...params.InputProps, type: 'search' }}
+                    id="combo-box-demo"
+                    options={autocompleteoptions}
+                    renderOption={(option) => (
+                      <React.Fragment>
+                        <p className="selectionTest__checkboxtext">{option.title}</p>
+                      </React.Fragment>
+                    )}
+                    renderInput={params => (
+                      <CSSNavBarTextField
+                        className={widgetStyles.searchBox}
+                        {...params}
+                        margin="dense"
+                        variant="outlined"
+                        placeholder="Search ... "
+                        size='small'
+                        fullWidth
+                        InputProps={{ ...params.InputProps, type: 'search' }}
+                        onChange={search}
+                                    onKeyPress={(ev) => {
+                                        if (ev.key === 'Enter') {
+                                            onSearchSubmit();
+                                        }
+                                    }}
+                      />
+                    )}
                   />
-                )}
-              />
-            </li>
-            <li className="current"><Link className="smoothscroll" to="/">Home</Link></li>
-            <li><Link className="smoothscroll" to="/selectionTest">Stories</Link></li>
-            <li><Link className="smoothscroll" to="/#about">About Me</Link></li>
-            <li><Link className="smoothscroll" to="/contact">Contact Me</Link></li>
-            <li><Link className="smoothscroll" to="/contact">Subscribe</Link></li>
-          </ul>
-        </nav>
+              }
+              {console.log(data)}
+              {navigation.map((entry) => (
+                <li>
+                  <a
+                    className={this.props.page.page === entry.id ? "nav-wrap__current" : "nav-wrap__other"}
+                    href={entry.relativelink}>
+                    {entry.text}
+                  </a>
+                </li>
+              ))}
+
+              {/* Legacy Link to Azhar's Site 
+              <li><a className={this.props.page.page === 'about' ? "nav-wrap__current" : "nav-wrap__other"} href="https://azharlaher.com/about-azhar">About Me</a></li> */}
+            </ul>
+            </a> 
+          </nav>
+        </Hidden>
+        <Hidden mdUp>
+          <MobileNavbar page={this.props.page.page} navigation={navigation} autocompleteoptions={autocompleteoptions} ></MobileNavbar>
+        </Hidden>
       </div>
     );
   }
@@ -133,10 +212,11 @@ Navbar.propTypes = {
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.array,
     }),
+    page: PropTypes.string,
   }),
 }
 
-export default () => (
+export default (props) => (
   <StaticQuery
     query={graphql`
   {
@@ -157,6 +237,6 @@ export default () => (
     }
   }
   `}
-    render={data => <Navbar data={data} />}
+    render={data => <Navbar data={data} page={props} />}
   />
 )

@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import { BlogHeader } from '@components/BlogHeader';
 import { ShareCard } from '@components/ShareCard';
 import { SuggestStories } from '@components/SuggestStories';
-import { DiscussionEmbed } from "disqus-react"
 import { Seo } from '@components';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
@@ -12,10 +11,6 @@ import '@styles/templates/BlogPage.scss';
 const BlogPage = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
   const { order, ...headerProps } = frontmatter;
-  const disqusConfig = {
-    shortname: 'immigrant-success-canada',
-    config: { identifier: order },
-  }
 
   return (
     <div>
@@ -54,9 +49,13 @@ const BlogPage = ({ data }) => {
           />
           
           <div className='content__suggestedBlog'>
-            <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />
+            
           </div>
 
+        </div>
+
+        <div className='suggestedBlog'>
+          <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />    
         </div>
         
         {/*
@@ -88,6 +87,7 @@ export const pageQuery = graphql`
         country
         order
         date(formatString: "MMMM DD, YYYY")
+        tags
       }
     }
     allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}, filter: {frontmatter: {templateKey: {eq: "story-page"}}}) {
