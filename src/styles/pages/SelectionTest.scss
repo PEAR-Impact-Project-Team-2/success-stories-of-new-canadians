@@ -57,19 +57,36 @@
         }
     }
 
+    &__contactBox {
+        display: flex;
+        padding: '10px';
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__subBox {
+        display: flex;
+        padding: '10px';
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 100px;
+        margin-top: 150px;
+    }
+
     &__contactStyle {
         background-color: white;
         margin-bottom: 10px;
-        padding: 10px;
+        padding: 200px;
         justify-content: center;
         display: flex;
+        flex-direction: column;
         height: 30px;
         padding-bottom: 50vh;
     }
 
     &__headerBox {
         background-color: white;
-        padding-top: 7vh;
+        padding-top: 10vh;
     }
 
     &__checkboxtext {
