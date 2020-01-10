@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
     marginRight: '5px'
   },
   textfield: {
-    flex: 8
+    flex: 8,
+    padding: '10px'
   },
   textfieldBox: {
     display: 'flex',
@@ -50,10 +51,6 @@ const ContactPage = () => {
       setSubOpen(true);
   }
 
-  const retrieveEmail = (e) => {
-    console.log(e.target.value)
-  }
-  
   const closeSubs = () => {
       setSubOpen(false)
   }
@@ -76,27 +73,13 @@ const ContactPage = () => {
     setMessageOpen(false)
   }
 
-  const handleChange = event => {
-    setContactPopOpen(true)
-    setContactType(event.target.value)
-  }
-
-  const handleClose = () => {
-    setContactOpen(false);
-  };
-
   const closeContactPopup = () => {
     setContactPopOpen(false);
   };
 
-  const handleOpen = () => {
-    setContactOpen(true);
+  const openContactPopup = () => {
+    setContactPopOpen(true);
   };
-
-  const openContact = () => {
-    setShowDropdown(!showDropdown)
-    handleOpen();
-  }
 
   
 
@@ -115,72 +98,65 @@ const ContactPage = () => {
 */
 
   const classes = useStyles();
+  var Recaptcha = require('react-recaptcha');
 
   return (
     <Page className='contact'>
-      <Navbar page='contact'/>
-      <div /* subscribe button */>
-        <h1 className='selectionTest__title'>-</h1>  
+      <Navbar/>
+      <div className='selectionTest__headerBox'>
         <h1 className='selectionTest__title'>Contact and Subscribe</h1> 
-        <Button className={classes.button} onClick={ openSubs }>Subscribe</Button>
-        <Dialog open={subOpen} onClose={closeSubs}>
-            <DialogTitle id='sub_popup'>Subscription</DialogTitle>
-            <DialogContent>
-                <DialogContentText>Please enter your e-mail:</DialogContentText>
-                <div className={classes.popup}>
-                  <TextField className={classes.textfield} label='Email'></TextField>
-                  <Button className={classes.button} onClick={openThanks}>Subscribe</Button>
-                </div>
-            </DialogContent>        
-        </Dialog>
-        <Dialog open={thanksOpen} onClose={closeThanks}>
-            <DialogTitle>Subscribed</DialogTitle>
-            <DialogContent>
-                <DialogContentText>Thank you for subscribing! We hope you enjoy these stories!</DialogContentText>
-                <Button onClick={closeThanks}>Close</Button>
-            </DialogContent>
-        </Dialog>
       </div>
-      <div /* contact me form */>
-        <Button className={classes.button} onClick={ openContact }>Contact</Button>
-        {showDropdown &&
-        (<Select
-          open={contactOpen}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={contactType}
-          onChange={handleChange}
-        >
-          <MenuItem value={'Contact Azhar'}>Contact Azhar</MenuItem>
-          <MenuItem value={'Contact Story Author'}>Contact Story Author</MenuItem>
-        </ Select>)}
-        <Dialog open={contactPopOpen} onClose={closeContactPopup}>
-            <DialogTitle id='contact_popup'>{contactType}</DialogTitle>
-            <DialogContent>
-                <DialogContentText>Please enter your e-mail:</DialogContentText>
-                <div className={classes.popup}>
-                  <div className={classes.textfieldBox}>
-                  <TextField className={classes.textfield} label='Email'></TextField>
-                  <TextField
-                    multiline
-                    rows="4"
-                    label="Message"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                  />
+      <div className='selectionTest__contactStyle'>
+        <div /* subscribe button */>
+          <Button className={classes.button} onClick={ openSubs }>Subscribe</Button>
+          <Dialog open={subOpen} onClose={closeSubs}>
+              <DialogTitle id='sub_popup'>Subscription</DialogTitle>
+              <DialogContent>
+                  <DialogContentText>Please enter your e-mail:</DialogContentText>
+                  <div className={classes.popup}>
+                    <TextField variant="outlined" className={classes.textfield}></TextField>
+                    <Button className={classes.button} onClick={openThanks}>Subscribe</Button>
                   </div>
-                  <Button className={classes.button} onClick={openMessageSent}>Send</Button>
-                </div>
-            </DialogContent>        
-        </Dialog>
-        <Dialog open={messageOpen} onClose={closeMessageSent}>
-            <DialogTitle>Message Sent</DialogTitle>
-            <DialogContent>
-                <DialogContentText>Thank you for contacting us! We will contact you as soon as we can!</DialogContentText>
-                <Button onClick={closeMessageSent}>Close</Button>
-            </DialogContent>
-        </Dialog>
+              </DialogContent>        
+          </Dialog>
+          <Dialog open={thanksOpen} onClose={closeThanks}>
+              <DialogTitle>Subscribed</DialogTitle>
+              <DialogContent>
+                  <DialogContentText>Thank you for subscribing! We hope you enjoy these stories!</DialogContentText>
+                  <Button onClick={closeThanks}>Close</Button>
+              </DialogContent>
+          </Dialog>
+        </div>
+        <div /* contact me form */>
+          <Button className={classes.button} onClick={ openContactPopup }>Contact Me</Button>            
+          <Dialog open={contactPopOpen} onClose={closeContactPopup}>
+              <DialogTitle id='contact_popup'>{contactType}</DialogTitle>
+              <DialogContent>
+                <DialogContentText>Please enter your e-mail:</DialogContentText>
+                  <div className={classes.popup}>
+                    <div className={classes.textfieldBox}>
+                    <TextField variant="outlined" className={classes.textfield}></TextField>
+                    <DialogContentText>Message:</DialogContentText>
+                    <TextField
+                      multiline
+                      rows="4"
+                      className={classes.textField}
+                      margin="normal"
+                      variant="outlined"
+                    />
+                    </div>
+                    <Button className={classes.button} onClick={openMessageSent}>Send</Button>
+                  </div>
+              </DialogContent>        
+          </Dialog>
+          <Dialog open={messageOpen} onClose={closeMessageSent}>
+              <DialogTitle>Message Sent</DialogTitle>
+              <DialogContent>
+                  <DialogContentText>Thank you for contacting us! We will contact you as soon as we can!</DialogContentText>
+                  <Button onClick={closeMessageSent}>Close</Button>
+              </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </Page>
   );
@@ -189,3 +165,4 @@ const ContactPage = () => {
 export default withSeo(ContactPage, {
   title: 'Contact',
 });
+ 
