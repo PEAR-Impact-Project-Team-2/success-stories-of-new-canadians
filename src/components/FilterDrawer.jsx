@@ -366,8 +366,8 @@ export default function FilterDrawer(props) {
   }
 
   return (
-    <main>
-      <div className="selectionTest__root">
+    <main style={{backgroundColor: 'white'}}>
+      <div>
         <p className='index__text'> Find your next inspiration.</p>
         <div style={{justifyContent: 'center', alignItems: 'center', display: 'flex', width: '100%'}}>
           <Autocomplete
@@ -458,6 +458,7 @@ function SelectionCard(props) {
   })(Chip)
   return (
     <Card className='selectionTest__cardStyles'>
+      {console.log("made card for " + props.frontmatter.title)}
       <meta name="story" content={props.frontmatter.title + " " + props.frontmatter.country + " " + props.frontmatter.description}></meta>
       <CardActionArea>
         <CardMedia
