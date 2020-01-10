@@ -1,11 +1,12 @@
-import '@styles/components/SearchWidget.scss'
+import '@styles/components/SearchWidget.scss';
+import "./bootstrap"; 
 
 import React, {Component} from 'react';
-import { withStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
-import { TextField, Chip } from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab'
-import { StaticQuery, graphql, navigate } from "gatsby"
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { TextField, Chip } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
+import { StaticQuery, graphql, navigate } from "gatsby";
 
 const CssChip = withStyles({
   root: {
