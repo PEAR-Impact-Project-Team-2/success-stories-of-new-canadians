@@ -5,7 +5,9 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 export default function HideOnScroll(props) {
     const { children } = props;
 
-    const trigger = useScrollTrigger();
+    const trigger = useScrollTrigger({
+        threshold: 50,
+    });
 
     return (
         <Slide appear={false} direction="down" in={!trigger}>
