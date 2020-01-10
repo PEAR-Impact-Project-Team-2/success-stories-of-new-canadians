@@ -43,22 +43,6 @@ export const BlogHeader = ({ title, description, author, date, image, country, t
                             {date}
                         </li>
                     </ul>
-                    <div>
-                    {
-                        tags.map(tag => {
-                            return (
-                                <CssChip 
-                                label={tag} 
-                                size="small"
-                                onClick={() => onTagSelect(tag)} 
-                                key={tag}>
-                                  {tag}
-                                  </CssChip>
-                            )
-                        }
-                        )
-                    }
-                    </div>
                 </header>
             </div>
         </div>
