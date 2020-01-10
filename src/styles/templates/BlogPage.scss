@@ -3,14 +3,7 @@
 
 
 .navSpace {
-    height:60px;
-
-    @media screen and (max-width: 693px) {
-        height: 100px;
-    }
-    @media screen and (max-width: 381px) {
-        height: 140px;
-    }
+    height:70px;
 }
 
 .blog {
@@ -185,9 +178,9 @@
 }
 
 .suggestedBlog {
-    width: 95%;
-    margin-left: 4vw;
-    margin-right: 4vw;
+    width: 100%;
+    // margin-left: 4vw;
+    // margin-right: 4vw;
     background-color: white;
 }
 
@@ -250,6 +243,7 @@
             width: 90vw;
             margin-left: 4vw;
             margin-right: 4vw;
+            // height: 2000
         }
     }
 

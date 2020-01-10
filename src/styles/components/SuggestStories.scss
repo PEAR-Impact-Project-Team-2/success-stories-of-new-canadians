@@ -5,10 +5,11 @@
 
 .suggestCard {
     margin-top: 20px;
-    margin-left: 20px;
+    // margin-left: 20px;
     margin-bottom: 50px;
-    width: 20vw;
+    width: 20%;
     height: 400px;
+    margin-right: 10px;
 }
 
 .spacer {
@@ -17,15 +18,22 @@
 
 .suggestRow {
     display: flex;
+    flex-direction: row;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
     .spacer {
         height: 170vh;
     }
 
+    .suggestRow {
+        display: flex;
+        flex-direction: column;
+    }
+    
+
     .suggestCard {
-        width: 40vw;
+        width: 80vw;
     }
     .suggestContainer {
         height: 170vh;
