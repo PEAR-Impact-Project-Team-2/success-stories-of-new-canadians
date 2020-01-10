@@ -106,13 +106,14 @@ export class SearchWidget extends Component {
         return (
             <div className="widgetStyles__searchwidget">
                 <h1 style={{marginBottom: '15px'}}>Directly search by title or person</h1>
+                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
                 <Autocomplete
                     className="widgetStyles__searchBox"
                     freeSolo
                     disableClearable
                     margin='dense'
                     onChange={onSelect}
-                    style={{ width: '80%' }}
+                    style={{ width: 250 }}
                     size='small'
                     id="combo-box-demo"
                     options={autocompleteoptions}
