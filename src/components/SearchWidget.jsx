@@ -160,7 +160,7 @@ export class SearchWidget extends Component {
                     }
                 </div>
                 <div style={{padding: '25px', display: 'flex', justifyContent: 'center'}}>
-                <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' to='/selectionTest'>
+                <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' href='/selectionTest'>
                   Browse all stories ...
                 </Button> 
                 </div> 
