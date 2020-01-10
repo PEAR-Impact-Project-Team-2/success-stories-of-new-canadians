@@ -101,8 +101,8 @@
         margin-top: 1;
     }
     &__list {
-        width: 270;
-        margin-top: 80;
+        width: 270px;
+        margin-top: 80px;
     }
     &__fullList {
         width: auto;
@@ -111,9 +111,9 @@
         background-color: white;
         justify-items: center;
     }
-    &__rested {
-        padding-left: 4;
-        padding: 1;
+    &__nested {
+        padding-left: 4px;
+        padding: 1px;
     }
     &__searchSubmitButton {
         background-color: red;
@@ -133,6 +133,19 @@
         color: red; 
         margin-bottom: 5px;
         margin-top: 5px;
+    }
+    &__learnMoreButton {
+        background-color: white;
+        color: red; 
+        margin-bottom: 5px;
+        padding-top: 15px;
+    }
+    &__searchWidgetSearchMore {
+        background-color: red;
+        color: white; 
+        margin-bottom: 5px;
+        margin-top: 5px;
+        height: 40px;
     }
     &__sortButton {
         background-color: red;
@@ -165,10 +178,10 @@
     }
     &__description {
         justify-content: center;
-        text-align: center;
         margin-bottom: 8.4px;
         height: 40.833px; 
         overflow: hidden;
+        padding: 4px;
     }
     &__cardActions {
         justify-content: center;
@@ -179,7 +192,21 @@
         flex-wrap: wrap;
         justify-content: center;
         margin-right: 5px;
-        margin-left: 5px;
+        margin-left: 10px;
+        padding-left: 5px;
+    }
+    &__buttonSection {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 100%;
+    }
+    &__searchBox {
+        display: flex;
+        margin-left: 10px;
+        margin-right: 5px;
+        min-width: 70%;
+        max-width: 70%;
     }
 }
 
@@ -189,18 +216,5 @@
         color: black;
         background-color: white;
     }
-    &__searchBox {
-        margin-left: 10px;
-        margin-right: 5px;
-        min-width: 70%;
-        max-width: 70%;
-        min-height: 50px;
-        max-height: 50px;
-    }
-    &__buttonSection {
-        justify-content: center;
-        align-items: center;
-        display: inline-flex;
-        width: 100%;
-    }
+    
 }

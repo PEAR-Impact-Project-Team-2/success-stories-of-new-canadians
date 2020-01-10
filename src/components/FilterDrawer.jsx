@@ -288,6 +288,20 @@ export default function FilterDrawer(props) {
     checked: {},
   })(props => <Radio color="default" {...props} />);
 
+  const CssButton = withStyles({
+    root: {
+        backgroundColor: 'red',
+        color: 'white',
+        marginBottom: '15px',
+        marginTop: '15px',
+        '&:hover':
+        {
+            backgroundColor: 'white',
+            color: 'red',
+        }
+    }
+  })(Button)
+
   const CssTextField = withStyles({
     root: {
       '& label.Mui-focused': {
@@ -312,7 +326,7 @@ export default function FilterDrawer(props) {
       },
       '& .MuiAutocomplete-inputRoot': {
         '& .MuiAutocomplete-input': {
-          minWidth: '115%'
+          minWidth: '100%'
         }
       },
       '& .input::-webkit-clear-button': {
@@ -355,7 +369,7 @@ export default function FilterDrawer(props) {
     <main>
       <div className="selectionTest__root">
         <p className='index__text'> Find your next inspiration.</p>
-        <div className="selectionTest__buttonSection">
+        <div style={{justifyContent: 'center', alignItems: 'center', display: 'flex', width: '100%'}}>
           <Autocomplete
             className="selectionTest__searchBox"
             freeSolo
@@ -376,7 +390,6 @@ export default function FilterDrawer(props) {
                 margin="dense"
                 variant="outlined"
                 margin="none"
-                fullWidth
                 onChange={search}
                 InputProps={{ ...params.InputProps, type: 'search' }}
                 onKeyPress={(ev) => {
@@ -389,10 +402,10 @@ export default function FilterDrawer(props) {
           <Button key="search" aria-label='search submit button' className="selectionTest__searchSubmitButton" onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
         </div>
         <div className="selectionTest__buttonSection">
-          <Button key="drawer" className="selectionTest__sortButton" onClick={toggleDrawer('left', true)}>
+          <CssButton key="drawer" className="selectionTest__sortButton" onClick={toggleDrawer('left', true)}>
             {'Sort by Tag / Country' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
               ' (' + (filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1) + ')'))}
-          </Button>
+          </CssButton>
         </div>
         <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
           {sideList('left')}
@@ -443,7 +456,6 @@ function SelectionCard(props) {
         marginTop: '5px',
     }
   })(Chip)
-
   return (
     <Card className='selectionTest__cardStyles'>
       <meta name="story" content={props.frontmatter.title + " " + props.frontmatter.country + " " + props.frontmatter.description}></meta>
@@ -464,13 +476,11 @@ function SelectionCard(props) {
             <SquareFlagIcon countryName={props.frontmatter.country} countryCode="" className="selectionTest__item"></SquareFlagIcon>
             <Typography variant='caption' component="p" className="selectionTest__item" > {props.frontmatter.country} </Typography>
           </div>
-          <Typography variant="caption" component="p">
-            {props.frontmatter.date.split("T")[0]}
-          </Typography>
-
-
           <Typography className="selectionTest__description" variant="body2" color="textSecondary" component="p">
             {props.frontmatter.description}
+          </Typography>
+          <Typography variant="caption" component="p" style={{textAlign: 'center', color: 'gray'}}>
+            {props.frontmatter.date.split("T")[0]}
           </Typography>
           <Grid
             container
@@ -493,9 +503,10 @@ function SelectionCard(props) {
             }
           </Grid>
           <CardActions className="selectionTest__cardActions">
-            <Button className="selectionTest__button" size="small" color="primary" onClick={() => { navigate(props.fields.slug) }}>
+            <Button className="selectionTest__learnMoreButton" size="small" color="primary" onClick={() => { navigate(props.fields.slug) }}>
               <span style={{
                 color: 'red',
+                fontSize: '0.9rem',
                 }}>Learn More</span>
             </Button>
           </CardActions>
