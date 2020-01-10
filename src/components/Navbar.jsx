@@ -8,34 +8,6 @@ import { StaticQuery, graphql, navigate } from "gatsby"
 import MobileNavbar from '@components/MobileNavbar'
 import { navigation } from '@components/Directory'
 
-// const navigation = [
-//   {
-//     "text": "Home",
-//     "relativelink": "/",
-//     "id": 'home'
-//   },
-//   {
-//     "text": "Stories",
-//     "relativelink": "/selectionTest",
-//     "id": "selection"
-//   },
-//   {
-//     "text": "About Me",
-//     "relativelink": "/",
-//     "id": "about"
-//   },
-//   {
-//     "text": "Contact Me",
-//     "relativelink": "/contact",
-//     "id": "contact"
-//   },
-//   {
-//     "text": "Subscribe",
-//     "relativelink": "/contact",
-//     "id": "subscribe"
-//   }
-// ]
-
 export class Navbar extends Component {
 
   render(props) {
@@ -130,7 +102,6 @@ export class Navbar extends Component {
                 Success Stories of New Canadians
               </h1>
             </div>
-            <a>
             <ul id="nav" className="nav">
 
             {
@@ -172,7 +143,7 @@ export class Navbar extends Component {
               }
               {console.log(data)}
               {navigation.map((entry) => (
-                <li>
+                <li key={entry.id}>
                   <a
                     className={this.props.page.page === entry.id ? "nav-wrap__current" : "nav-wrap__other"}
                     href={entry.relativelink}>
@@ -184,7 +155,6 @@ export class Navbar extends Component {
               {/* Legacy Link to Azhar's Site 
               <li><a className={this.props.page.page === 'about' ? "nav-wrap__current" : "nav-wrap__other"} href="https://azharlaher.com/about-azhar">About Me</a></li> */}
             </ul>
-            </a> 
           </nav>
         </Hidden>
         <Hidden mdUp>

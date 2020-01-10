@@ -44,12 +44,6 @@ export default function Footer() {
          
     ]
 
-    const bottomText = [
-        "Success Stories of New Canadians", 
-        "A blog of Canadian immigrant stories edited by Azhar Laher.", 
-        "Website © 2020 Cheng Liang (William) H., Sameer K., Dubem O., Mitra M. and Henry Z.", 
-    ]
-
     function footerDirectory() {
         return navigation.map((page) => {
             return(

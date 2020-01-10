@@ -16,7 +16,7 @@ const IndexPage = () => {
       <About />
       <SearchWidget/>
       <div className='index__divbutton'>
-      <Button id='contact' className='index__button' to='/selectionTest'>
+      <Button id='contact' to='/selectionTest'>
         Search more stories ...
       </Button> 
       </div> 

@@ -1,56 +1,28 @@
-import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import '@styles/components/SearchWidget.scss'
+
+import React, {Component} from 'react';
+import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import { TextField, Chip } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 
-import '@styles/pages/SelectionTest.scss'
+const CssChip = withStyles({
+  root: {
+      backgroundColor: 'red',
+      color: 'white',
+      '&:hover':
+      {
+      backgroundColor: 'white',
+      color: 'red',
+      },
+      marginRight: '2px',
+      marginTop: '5px',
+  }
+})(Chip)
 
-export class SearchWidget extends React.Component {
+export class SearchWidget extends Component {
     render() {
-
-        const useStyles = makeStyles(theme => ({
-            searchBox: {
-                marginLeft: '15px',
-                marginRight: '15px',
-                marginTop: '30px',
-                marginBottom:'30px',
-            }, 
-            tagBox: {
-                display: 'flex',
-                backgroundColor: 'rgba(0,0,0,0.1)',
-                padding: '10px',
-                boxSizing: 'border-box',
-                borderRadius: '8px',
-                flexWrap: 'wrap',
-                marginRight: '50px',
-                marginTop: '50px',
-            },
-            divBox: {
-                marginLeft: '20px',
-                marginRight: '10px',
-                marginTop: '20px',
-                marginBottom:'10px',
-            },
-            chip: {
-                backgroundColor: 'red',
-                color: 'white',
-                marginRight: '5px',
-                '&:hover':
-                {
-                backgroundColor: 'white',
-                color: 'red',
-                },
-                '&:focus':
-                {
-                backgroundColor: 'red',
-                color: 'white'
-                }
-            }
-        }));
-
-        const widgetStyles = makeStyles();
 
         const { data } = this.props
 
@@ -80,106 +52,108 @@ export class SearchWidget extends React.Component {
             })
         }
 
-        const CssChip = withStyles({
-            root: {
-                backgroundColor: 'red',
-                color: 'white',
-                '&:hover':
-                {
-                backgroundColor: 'white',
-                color: 'red',
-                },
-                marginRight: '2px',
-                marginTop: '5px',
-            }
-        })(Chip)
+        var currentSearchText = "";
 
-        const CssTextField = withStyles({
-            root: {
-              '& label.Mui-focused': {
-                color: 'red',
-              },
-              '& .MuiInput-underline:after': {
-                borderBottomColor: 'red',
-              },
-              '& .MuiFormLabel-root': {
-                color: 'red',
-              },
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: 'red',
-                },
-                '&:hover fieldset': {
-                  borderColor: 'red',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: 'red',
-                },
-              },
-              '& .MuiAutocomplete-inputRoot': {
-                '& .MuiAutocomplete-input': {
-                  minWidth: '100%'
-                }
-              },
-              '& .input::-webkit-clear-button': {
-                '& .input::-webkit-outer-spin-button': {
-                  '& .input::-webkit-inner-spin-button': {
-                    display: "none",
-                    margin: 80
-                  },
-                },
-              }
+    function onSearchSubmit() {
+      navigate("/selectionTest", {
+        state: { searchTag: null, searchText: currentSearchText },
+      })
+    }
+
+    const search = (e) => {
+      currentSearchText = e.target.value;
+    }
+        const CSSNavBarTextField = withStyles({
+          root: {
+            '& label.Mui-focused': {
+              color: 'red',
             },
-            '@global': {
-              '.MuiFormControl-root': {
-                width: '100%',
-              },
-              '.MuiAutocomplete-tag': {
-                backgroundColor: 'red',
-                color: 'white',
-              },
-              '.MuiAutocomplete-option':	{
-                minHeight: '10px'
-              }
+            '& .MuiInput-underline:after': {
+              borderBottomColor: 'red',
             },
-          })(TextField);
+            '& .MuiFormLabel-root': {
+              color: 'red',
+            },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'red',
+              },
+              '&:hover fieldset': {
+                borderColor: 'red',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'red',
+              },
+            },
+            '& .MuiAutocomplete-inputRoot': {
+              '& .MuiAutocomplete-input': {
+                minWidth: '130%'
+              }
+            }
+          },
+          '@global': {
+            '.MuiFormControl-root': {
+              display: 'contents',
+            },
+            '.MuiAutocomplete-tag': {
+              backgroundColor: 'red',
+              color: 'white',
+            },
+          },
+        })(TextField);
+    
 
         return (
-            <div className="selectionTest__searchwidget">
+            <div className="widgetStyles__searchwidget">
                 <h1 style={{marginBottom: '15px'}}>Directly search by title or person</h1>
+                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
                 <Autocomplete
-                    // className={widgetStyles.searchBox}
+                    className="widgetStyles__searchBox"
                     freeSolo
                     disableClearable
+                    margin='dense'
                     onChange={onSelect}
+                    style={{ width: 250 }}
                     size='small'
                     id="combo-box-demo"
                     options={autocompleteoptions}
                     renderOption={(option) => (
-                        <React.Fragment>
-                            <p className="selectionTest__checkboxtext">{option.title}</p>
-                        </React.Fragment>
+                      <React.Fragment>
+                        <p className="widgetStyles__checkboxtext">{option.title}</p>
+                      </React.Fragment>
                     )}
                     renderInput={params => (
-                        <CssTextField
-                            {...params}
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
-                            InputProps={{ ...params.InputProps, type: 'search' }}
-                        />
+                      <CSSNavBarTextField
+                        className="widgetStyles__searchBox"
+                        {...params}
+                        margin="dense"
+                        variant="outlined"
+                        placeholder="Search ... "
+                        size='small'
+                        fullWidth
+                        InputProps={{ ...params.InputProps, type: 'search' }}
+                        onChange={search}
+                                    onKeyPress={(ev) => {
+                                        if (ev.key === 'Enter') {
+                                            onSearchSubmit();
+                                        }
+                                    }}
+                      />
                     )}
-                />
+                  />
                 <div>
                     {generateTags()}
-                    <p className='selectionTest__tagTitle'>or browse stories tagged with a specific topic: </p>
+                    <p className='widgetStyles__tagTitle'>or browse stories tagged with a specific topic: </p>
                     {
                         featuredtags.map(tag => {
                             return (
-                                <CssChip label={tag} 
-                                classes={widgetStyles.chip}
+                                <CssChip 
+                                label={tag} 
+                                size="small"
                                 onClick={() => onTagSelect(tag)} 
-                                key={tag}/>
+                                key={tag}>
+                                  {tag}
+                                  </CssChip>
                             )
                         }
                         )
@@ -222,3 +196,4 @@ export default () => (
         render={data => <SearchWidget data={data} />}
     />
 )
+
