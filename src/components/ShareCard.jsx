@@ -5,8 +5,18 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import '@styles/components/ShareCard.scss';
+import {
+    FacebookShareButton,
+    LinkedinShareButton,
+    RedditShareButton,
+    TwitterShareButton,
+    TwitterIcon,
+    FacebookIcon,
+    LinkedinIcon,
+    RedditIcon,
+  } from "react-share";
 
-export const ShareCard = () => (
+export const ShareCard = ( {shareUrl, Title} ) => (
     <div className='card'>
         <Card>
             <CardContent className='cardContent'>
@@ -14,29 +24,48 @@ export const ShareCard = () => (
                 <h2 className='header'>Share</h2>
 
                 <div className='icon'>
-                    
                         <div className='iconDiv'>
-                            <IconButton> 
+                            <FacebookShareButton url={shareUrl} title={Title}>
+                                <FacebookIcon
+                                size={32}
+                                round />
+                            </FacebookShareButton>
+                            {/* <IconButton> 
                                 <img src={require('../assets/facebook.svg')} height='32px' alt='Facebook'/>
-                            </IconButton>
+                            </IconButton> */}
                         </div>
 
                         <div className='iconDiv'>
-                            <IconButton> 
+                            <TwitterShareButton url={shareUrl} title={Title}>
+                                <TwitterIcon
+                                size={32}
+                                round />
+                            </TwitterShareButton>
+                            {/* <IconButton> 
                                 <img src={require('../assets/instagram.svg')} height='32px' alt='Instagram' />
-                            </IconButton>
+                            </IconButton> */}
                         </div>
                     
                         <div className='iconDiv'>
-                            <IconButton> 
+                            <LinkedinShareButton url={shareUrl} title={Title}>
+                                <LinkedinIcon
+                                size={32}
+                                round />
+                            </LinkedinShareButton>
+                            {/* <IconButton> 
                                 <img src={require('../assets/twitter.svg')} height='32px' alt='Twitter'/>
-                            </IconButton>
+                            </IconButton> */}
                         </div>
 
                         <div className='iconDiv'>
-                            <IconButton> 
+                            <RedditShareButton url={shareUrl} title={Title}>
+                                <RedditIcon
+                                size={32}
+                                round />
+                            </RedditShareButton>
+                            {/* <IconButton> 
                                 <img src={require('../assets/linkedin.svg')} height='32px' alt='LinkedIn' />
-                            </IconButton>
+                            </IconButton> */}
                         </div>
                     
 
