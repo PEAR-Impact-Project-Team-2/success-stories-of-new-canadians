@@ -16,7 +16,7 @@ import {
     RedditIcon,
   } from "react-share";
 
-export const ShareCard = ( {shareUrl, Title} ) => (
+export const ShareCard = ( {shareUrl, Title, Text} ) => (
     <div className='card'>
         <Card>
             <CardContent className='cardContent'>
@@ -25,7 +25,7 @@ export const ShareCard = ( {shareUrl, Title} ) => (
 
                 <div className='icon'>
                         <div className='iconDiv'>
-                            <FacebookShareButton url={shareUrl} title={Title}>
+                            <FacebookShareButton url={shareUrl} title={Title} quote={Text}>
                                 <FacebookIcon
                                 size={32}
                                 round />
@@ -47,7 +47,7 @@ export const ShareCard = ( {shareUrl, Title} ) => (
                         </div>
                     
                         <div className='iconDiv'>
-                            <LinkedinShareButton url={shareUrl} title={Title}>
+                            <LinkedinShareButton url={shareUrl} title={Title} summary={Text}>
                                 <LinkedinIcon
                                 size={32}
                                 round />

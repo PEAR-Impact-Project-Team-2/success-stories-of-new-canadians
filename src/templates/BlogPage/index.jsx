@@ -39,7 +39,7 @@ const BlogPage = ({ data }) => {
           
           <div className='content__socialMedia'>
 
-            <ShareCard shareUrl={'https://immigrant-success-canada.netlify.com/'.concat(fields.slug)} Title={headerProps.title}/>
+            <ShareCard shareUrl={'https://immigrant-success-canada.netlify.com/'.concat(fields.slug)} Title={headerProps.title} Text={headerProps.description}/>
 
           </div>
 
