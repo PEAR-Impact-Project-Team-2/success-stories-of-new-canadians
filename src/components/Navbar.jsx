@@ -7,6 +7,7 @@ import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 import MobileNavbar from '@components/MobileNavbar'
 import { navigation } from '@components/Directory'
+import HideOnScroll from '@components/HideOnScroll'
 
 export class Navbar extends Component {
 
@@ -89,78 +90,79 @@ export class Navbar extends Component {
     }
 
     return (
-
-      <div className="parent">
-        <Hidden smDown>
-          <nav className="nav-wrap">
-          <meta name="navbar" content="Desktop navigation bar."/>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <a id="logo">
-                <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
-              </a>
-              <h1 style={{color: 'red', alignSelf: 'center', textAlign: 'center', marginRight: 20}}>
-                Success Stories of New Canadians
+      <HideOnScroll {...props}>
+        <div className="parent">
+          <Hidden smDown>
+            <nav className="nav-wrap">
+              <meta name="navbar" content="Desktop navigation bar." />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <a id="logo">
+                  <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
+                </a>
+                <h1 style={{ color: 'red', alignSelf: 'center', textAlign: 'center', marginRight: 20 }}>
+                  Success Stories of New Canadians
               </h1>
-            </div>
-            <ul id="nav" className="nav">
+              </div>
+              <ul id="nav" className="nav">
 
-            {
-                this.props.page.page === 'selection' ? null :
-                  <Autocomplete
-                    className={widgetStyles.searchBox}
-                    freeSolo
-                    disableClearable
-                    margin='dense'
-                    onChange={onSelect}
-                    style={{ width: 250 }}
-                    size='small'
-                    id="combo-box-demo"
-                    options={autocompleteoptions}
-                    renderOption={(option) => (
-                      <React.Fragment>
-                        <p className="selectionTest__checkboxtext">{option.title}</p>
-                      </React.Fragment>
-                    )}
-                    renderInput={params => (
-                      <CSSNavBarTextField
-                        className={widgetStyles.searchBox}
-                        {...params}
-                        margin="dense"
-                        variant="outlined"
-                        placeholder="Search ... "
-                        size='small'
-                        fullWidth
-                        InputProps={{ ...params.InputProps, type: 'search' }}
-                        onChange={search}
-                                    onKeyPress={(ev) => {
-                                        if (ev.key === 'Enter') {
-                                            onSearchSubmit();
-                                        }
-                                    }}
-                      />
-                    )}
-                  />
-              }
-              {console.log(data)}
-              {navigation.map((entry) => (
-                <li key={entry.id}>
-                  <a
-                    className={this.props.page.page === entry.id ? "nav-wrap__current" : "nav-wrap__other"}
-                    href={entry.relativelink}>
-                    {entry.text}
-                  </a>
-                </li>
-              ))}
+                {
+                  this.props.page.page === 'selection' ? null :
+                    <Autocomplete
+                      className={widgetStyles.searchBox}
+                      freeSolo
+                      disableClearable
+                      margin='dense'
+                      onChange={onSelect}
+                      style={{ width: 250 }}
+                      size='small'
+                      id="combo-box-demo"
+                      options={autocompleteoptions}
+                      renderOption={(option) => (
+                        <React.Fragment>
+                          <p className="selectionTest__checkboxtext">{option.title}</p>
+                        </React.Fragment>
+                      )}
+                      renderInput={params => (
+                        <CSSNavBarTextField
+                          className={widgetStyles.searchBox}
+                          {...params}
+                          margin="dense"
+                          variant="outlined"
+                          placeholder="Search ... "
+                          size='small'
+                          fullWidth
+                          InputProps={{ ...params.InputProps, type: 'search' }}
+                          onChange={search}
+                          onKeyPress={(ev) => {
+                            if (ev.key === 'Enter') {
+                              onSearchSubmit();
+                            }
+                          }}
+                        />
+                      )}
+                    />
+                }
+                {console.log(data)}
+                {navigation.map((entry) => (
+                  <li key={entry.id}>
+                    <a
+                      className={this.props.page.page === entry.id ? "nav-wrap__current" : "nav-wrap__other"}
+                      href={entry.relativelink}>
+                      {entry.text}
+                    </a>
+                  </li>
+                ))}
 
-              {/* Legacy Link to Azhar's Site 
+                {/* Legacy Link to Azhar's Site 
               <li><a className={this.props.page.page === 'about' ? "nav-wrap__current" : "nav-wrap__other"} href="https://azharlaher.com/about-azhar">About Me</a></li> */}
-            </ul>
-          </nav>
-        </Hidden>
-        <Hidden mdUp>
-          <MobileNavbar page={this.props.page.page} navigation={navigation} autocompleteoptions={autocompleteoptions} ></MobileNavbar>
-        </Hidden>
-      </div>
+              </ul>
+            </nav>
+          </Hidden>
+          <Hidden mdUp>
+            <MobileNavbar page={this.props.page.page} navigation={navigation} autocompleteoptions={autocompleteoptions} ></MobileNavbar>
+          </Hidden>
+        </div>
+      </HideOnScroll>
     );
   }
 }

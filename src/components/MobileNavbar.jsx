@@ -8,6 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import '@styles/components/Navbar.scss';
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
+import HideOnScroll from '@components/HideOnScroll';
 
 export default function MobileNavbar(props) {
 
@@ -168,6 +169,7 @@ export default function MobileNavbar(props) {
             <title>Navigation bar for mobile devices</title>
             <CssBaseline />
             <meta name="mobile-navbar" content="Mobile navigation bar."/>
+            <HideOnScroll>
             <AppBar
                 position="fixed"
                 style={{ background: 'white', height: 70 }}
@@ -235,6 +237,7 @@ export default function MobileNavbar(props) {
                     }
                 </Toolbar>
             </AppBar>
+            </HideOnScroll>
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
