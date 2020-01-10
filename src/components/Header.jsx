@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { Card } from '@material-ui/core';
-import { Button } from "gatsby-theme-material-ui";
+
 import '@styles/components/Header.scss';
-import MapChart from './MapChart';
+import MapChart from '@components/MapChart';
 
 class Header extends Component {
    render() {
@@ -12,18 +12,13 @@ class Header extends Component {
       return (
          <div className='headcont'>
             <Card>
-               <header style={{ width: '100%', justifySelf: 'center' }} id="home">
-                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', minWidth: '80%'}}>
-                     <h1>{data.markdownRemark.frontmatter.title}</h1>
-                     <h4>{data.markdownRemark.frontmatter.heading}</h4>
-                     <Button size="large" style={{color: 'white', backgroundColor: 'red'}} href='/selectionTest'>
-                        Discover the stories
-                     </Button>
+               <header style={{ backgroundImage: `url(${data.markdownRemark.frontmatter.image})`, width: '100%', justifySelf: 'center' }} id="home">
+                  <div style={{ paddingTop: '300px' }}>
+                     <h1 style={{ color: 'red' }}>Success Stories of New Canadians</h1>
+                     <h4 style={{ color: 'white' }}>A place to read, share, and celebrate the successes of new Canadians through blog stories of real stories.</h4>
                   </div>
-
-                  <MapChart />
-
                </header>
+               <MapChart />
             </Card>
          </div>
       );

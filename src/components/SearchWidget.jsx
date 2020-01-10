@@ -3,8 +3,7 @@ import '@styles/components/SearchWidget.scss';
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { TextField, Chip, Card } from '@material-ui/core'
-import { Button } from "gatsby-theme-material-ui";
+import { TextField, Chip, Card, Button } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 
@@ -167,7 +166,7 @@ export class SearchWidget extends Component {
                 </div> 
                 </Card>
                 
-                <Card style={{marginTop: '25px', marginBottom: '25px', paddingBottom: '50px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}} id="aboutSection">
+                <Card style={{marginTop: '25px', marginBottom: '25px', paddingBottom: '50px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
                   <h1 style={{marginBottom: '15px', color: 'red'}}>About the Editor</h1>
                   <p>
                     Azhar is a father and husband, social entrepreneur, sports nut, teacher and business coach. He has worked in the Human Resources industry for over 25 years and held senior human resources positions in both South Africa and Canada, focusing on strategic planning, total rewards, employee relations and diversity. He lives in beautiful Toronto and is a published author.  He is currently Professor of Leadership and Human Resources at Seneca College in Toronto.

@@ -1,8 +1,8 @@
 ---
 templateKey: index-page
-title: Success Stories of New Canadians
+title: Welcome
 image: /images/uploads/header-background.jpg
-heading: A place to read, share, and celebrate the successes of new Canadians through blog stories of real stories.
+heading: This is the new subheading
 CTA: Success stories of new Canadian immigrants
 aboutus:
   title1: About the Author
