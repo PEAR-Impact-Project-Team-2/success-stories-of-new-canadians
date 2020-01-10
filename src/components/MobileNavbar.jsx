@@ -8,6 +8,19 @@ import CloseIcon from '@material-ui/icons/Close';
 import '@styles/components/Navbar.scss';
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
+import Slide from '@material-ui/core/Slide';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+
+function HideOnScroll(props) {
+    const { children } = props;
+    const trigger = useScrollTrigger();
+  
+    return (
+      <Slide appear={false} direction="down" in={!trigger}>
+        {children}
+      </Slide>
+    );
+  }
 
 export default function MobileNavbar(props) {
 
@@ -167,74 +180,76 @@ export default function MobileNavbar(props) {
         <div className={classes.root}>
             <title>Navigation bar for mobile devices</title>
             <CssBaseline />
-            <meta name="mobile-navbar" content="Mobile navigation bar."/>
-            <AppBar
-                position="fixed"
-                style={{ background: 'white', height: 70 }}
-            >
-                <Toolbar style={{ height: '100%' }}>
-                    <meta name='mobile-navbar' content='Search bar to search blog stories on site'/>
-                    {!searchOpen ?
-                        <React.Fragment>
-                            <a id="logo" classes={{ marginLeft: -10 }}>
-                                <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="70px" style={{ marginRight: -1 + 'pxem' }} />
-                            </a>
-                            <IconButton
-                                aria-label="open drawer"
-                                onClick={handleDrawerOpen}
-                                edge="start"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="h6" noWrap style={{ color: '#333' }}>
-                                Menu
-                    </Typography>
-                        </React.Fragment>
-                        :
-                        <Autocomplete
-                            className={widgetStyles.searchBox}
-                            freeSolo
-                            disableClearable
-                            margin='dense'
-                            onChange={onSelect}
-                            style={{ width: 500, alignContent: 'center' }}
-                            size='small'
-                            id="combo-box-demo"
-                            options={props.autocompleteoptions}
-                            renderOption={(option) => (
-                                <React.Fragment>
-                                    <p className="selectionTest__checkboxtext">{option.title}</p>
-                                </React.Fragment>
-                            )}
-                            renderInput={params => (
-                                <CSSNavBarTextField
-                                    className={widgetStyles.searchBox}
-                                    {...params}
-                                    margin="dense"
-                                    variant="outlined"
-                                    placeholder="Search ... "
-                                    size='small'
-                                    fullWidth
-                                    InputProps={{ ...params.InputProps, type: 'search' }}
-                                    onChange={search}
-                                    onKeyPress={(ev) => {
-                                        if (ev.key === 'Enter') {
-                                            onSearchSubmit();
-                                        }
-                                    }}
-                                />
-                            )}
-                        />}
-                    {
-                        props.page === 'selection' ? null :
-                            <span className={classes.rightSearch}>
-                                <IconButton aria-label="open search" onClick={toggleSearch}>
-                                    {searchOpen ? <CloseIcon /> : <SearchIcon />}
+            <meta name="mobile-navbar" content="Mobile navigation bar." />
+            <HideOnScroll {...props}>
+                <AppBar
+                    position="fixed"
+                    style={{ background: 'white', height: 72 }}
+                >
+                    <Toolbar style={{ height: '100%' }}>
+                        <meta name='mobile-navbar' content='Search bar to search blog stories on site' />
+                        {!searchOpen ?
+                            <React.Fragment>
+                                <a id="logo" classes={{ marginLeft: -10 }}>
+                                    <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" style={{ marginRight: -1 + 'pxem' }} />
+                                </a>
+                                <IconButton
+                                    aria-label="open drawer"
+                                    onClick={handleDrawerOpen}
+                                    edge="start"
+                                >
+                                    <MenuIcon />
                                 </IconButton>
-                            </span>
-                    }
-                </Toolbar>
-            </AppBar>
+                                <Typography variant="h6" noWrap style={{ color: '#333' }}>
+                                    Menu
+                    </Typography>
+                            </React.Fragment>
+                            :
+                            <Autocomplete
+                                className={widgetStyles.searchBox}
+                                freeSolo
+                                disableClearable
+                                margin='dense'
+                                onChange={onSelect}
+                                style={{ width: 500, alignContent: 'center' }}
+                                size='small'
+                                id="combo-box-demo"
+                                options={props.autocompleteoptions}
+                                renderOption={(option) => (
+                                    <React.Fragment>
+                                        <p className="selectionTest__checkboxtext">{option.title}</p>
+                                    </React.Fragment>
+                                )}
+                                renderInput={params => (
+                                    <CSSNavBarTextField
+                                        className={widgetStyles.searchBox}
+                                        {...params}
+                                        margin="dense"
+                                        variant="outlined"
+                                        placeholder="Search ... "
+                                        size='small'
+                                        fullWidth
+                                        InputProps={{ ...params.InputProps, type: 'search' }}
+                                        onChange={search}
+                                        onKeyPress={(ev) => {
+                                            if (ev.key === 'Enter') {
+                                                onSearchSubmit();
+                                            }
+                                        }}
+                                    />
+                                )}
+                            />}
+                        {
+                            props.page === 'selection' ? null :
+                                <span className={classes.rightSearch}>
+                                    <IconButton aria-label="open search" onClick={toggleSearch}>
+                                        {searchOpen ? <CloseIcon /> : <SearchIcon />}
+                                    </IconButton>
+                                </span>
+                        }
+                    </Toolbar>
+                </AppBar>
+            </HideOnScroll>
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
