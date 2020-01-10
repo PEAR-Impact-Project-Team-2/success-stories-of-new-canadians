@@ -1,7 +1,10 @@
 ---
 templateKey: story-page
 title: Jane Doe
-description: Coming to America
+description: >-
+  You wouldn't believe this story. Lorem ipsum dolor sit amet, consectetur
+  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+  aliqua. Ut enim ad minim veniam.
 country: Germany
 author: Henry Zhang
 image: /images/uploads/stockvault-kaghan-valley112534.jpg
