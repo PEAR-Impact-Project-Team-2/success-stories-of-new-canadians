@@ -181,3 +181,4 @@ export default withSeo(ContactPage, {
   title: 'Contact',
 });
  
+// added the captcha to fend off bots
