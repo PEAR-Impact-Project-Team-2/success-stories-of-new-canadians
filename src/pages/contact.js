@@ -28,8 +28,8 @@ const useStyles = makeStyles(theme => ({
   textfield: {
     paddingTop: '10px',
     paddingBottom: '10px',
-    maxHeight: 350,
-    minWidth: 500,
+    maxWidth: 500,
+    minWidth: 200,
     height: '100%',
     width: '100%'
   },
@@ -37,7 +37,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     maxHeight: 350,
-    minWidth: 500,
+    maxWidth: 500,
+    minWidth: 200,
     height: '100%',
     width: '100%'
   },
@@ -123,12 +124,13 @@ const ContactPage = () => {
   
   return (
     <Page className='contact'>
-      <Navbar page='contact'/>
-      <div className='selectionTest__headerBox'>
-        <h1 className='selectionTest__title'>Contact and Subscribe</h1> 
-      </div>
+      <div className="selectionTest__navSpace"></div>
+      <Navbar page='contact'/>    
       <div className='selectionTest__contactStyle'>
         <div className='selectionTest__subBox'>
+          <div className='selectionTest__headerBox'>
+          <h1 className='selectionTest__title'>Contact and Subscribe</h1> 
+          </div>
           <h2>Subscription</h2>
           <div className={classes.popup}>
             <p>Please enter your e-mail:  </p>

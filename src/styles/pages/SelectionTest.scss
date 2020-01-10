@@ -57,6 +57,10 @@
         }
     }
 
+    &__navSpace {
+        height: 70px;
+    }
+
     &__contactBox {
         display: flex;
         padding: '10px';
@@ -67,20 +71,20 @@
 
     &__subBox {
         display: flex;
-        padding-top: '60px';
         padding-left: '10px';
         padding-right: '10px';
         padding-bottom: '10px';
         flex-direction: column;
         justify-content: center;
-        margin-bottom: 100px;
-        margin-top: 300px;
+        margin-bottom: 20px;
     }
 
     &__contactStyle {
         background-color: white;
         margin-bottom: 10px;
-        padding: 200px;
+        padding-left: 25%;
+        padding-right: 25%;
+        margin-top: 300px;
         justify-content: center;
         display: flex;
         flex-direction: column;
@@ -88,9 +92,11 @@
         padding-bottom: 75vh;
     }
 
+    
+
     &__headerBox {
         background-color: white;
-        padding-top: 15vh;
+        padding-top: 20vh;
     }
 
     &__checkboxtext {
