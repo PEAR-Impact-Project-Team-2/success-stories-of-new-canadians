@@ -352,10 +352,11 @@ export default function FilterDrawer(props) {
   }
 
   return (
-    <main>
+    <main style={{backgroundColor: 'white'}}>
       <div className="selectionTest__root">
         <p className='index__text'> Find your next inspiration.</p>
-        <div className="selectionTest__buttonSection">
+        <div style={{justifyContent: 'center', alignItems: 'center', display: 'flex', width: '100%'}}>
+
           <Autocomplete
             className="selectionTest__searchBox"
             freeSolo
@@ -377,6 +378,7 @@ export default function FilterDrawer(props) {
                 variant="outlined"
                 margin="none"
                 fullWidth
+                style={{width: 300}}
                 onChange={search}
                 InputProps={{ ...params.InputProps, type: 'search' }}
                 onKeyPress={(ev) => {
@@ -388,7 +390,7 @@ export default function FilterDrawer(props) {
           />
           <Button key="search" aria-label='search submit button' className="selectionTest__searchSubmitButton" onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
         </div>
-        <div className="selectionTest__buttonSection">
+        <div style={{display:'flex', justifyContent:'center'}}>
           <Button key="drawer" className="selectionTest__sortButton" onClick={toggleDrawer('left', true)}>
             {'Sort by Tag / Country' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
               ' (' + (filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1) + ')'))}
