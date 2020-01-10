@@ -9,7 +9,7 @@ import Footer from '@components/Footer';
 import '@styles/templates/BlogPage.scss';
 
 const BlogPage = ({ data }) => {
-  const { html, frontmatter, fields } = data.markdownRemark;
+  const { html, frontmatter } = data.markdownRemark;
   const { order, ...headerProps } = frontmatter;
 
   return (
@@ -39,7 +39,7 @@ const BlogPage = ({ data }) => {
           
           <div className='content__socialMedia'>
 
-            <ShareCard shareUrl={'https://immigrant-success-canada.netlify.com/'.concat(fields.slug)} Title={headerProps.title}/>
+            <ShareCard shareUrl={window.location.href} Title={headerProps.title}/>
 
           </div>
 
@@ -54,9 +54,11 @@ const BlogPage = ({ data }) => {
 
         </div>
 
-        {/* <div className='suggestedBlog'>
-          <SuggestStories edges={data.allMarkdownRemark.edges} />    
-        </div> */}
+
+
+        <div className='suggestedBlog'>
+          <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />    
+        </div>
 
         <Footer />
 
@@ -78,9 +80,6 @@ export const pageQuery = graphql`
         order
         date(formatString: "MMMM DD, YYYY")
         tags
-      }
-      fields {
-        slug
       }
     }
     allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}, filter: {frontmatter: {templateKey: {eq: "story-page"}}}) {

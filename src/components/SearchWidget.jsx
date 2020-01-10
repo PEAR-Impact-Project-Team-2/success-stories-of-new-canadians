@@ -113,13 +113,13 @@ export class SearchWidget extends Component {
                     disableClearable
                     margin='dense'
                     onChange={onSelect}
-                    style={{ width: '80%' }}
+                    style={{ width: 250 }}
                     size='small'
                     id="combo-box-demo"
                     options={autocompleteoptions}
                     renderOption={(option) => (
                       <React.Fragment>
-                        <p className="widgetStyles__checkboxtext">{option.title}</p>
+                        <h1 style={{color: 'black'}}>{option.title}</h1>
                       </React.Fragment>
                     )}
                     renderInput={params => (

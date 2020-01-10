@@ -7,6 +7,7 @@ import '@styles/components/Header.scss';
 class Header extends Component {
    render() {
       const { data } = this.props
+
       return (
          <div className='headcont'>
             <Card>
