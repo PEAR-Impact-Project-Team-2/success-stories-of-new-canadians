@@ -54,7 +54,9 @@ const BlogPage = ({ data }) => {
 
         </div>
 
-    
+        <div className="suggestedBlog">
+          <SuggestStories edges={data.allMarkdownRemark.edges} />
+        </div>
         
         {/*
           LEGACY CODE FOR DISCUS
@@ -66,7 +68,10 @@ const BlogPage = ({ data }) => {
         </div>
         */}
 
+  
+
         <Footer />
+
 
     </div>
 
