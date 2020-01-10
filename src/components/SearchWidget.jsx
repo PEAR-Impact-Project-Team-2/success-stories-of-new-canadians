@@ -105,8 +105,8 @@ export class SearchWidget extends Component {
 
         return (
             <div className="widgetStyles__searchwidget">
-              <Card style={{paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
-                <h1 style={{marginBottom: '15px'}}>Directly search by title or person</h1>
+              <Card style={{marginTop: '25px', marginBottom: '25px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
+                <h1 style={{marginBottom: '15px', color: 'red'}}>Directly search by title or person</h1>
                 <Autocomplete
                     className="widgetStyles__searchBox"
                     freeSolo
@@ -165,6 +165,20 @@ export class SearchWidget extends Component {
                   Browse all stories ...
                 </Button> 
                 </div> 
+                </Card>
+                
+                <Card style={{marginTop: '25px', marginBottom: '25px', paddingBottom: '50px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
+                  <h1 style={{marginBottom: '15px', color: 'red'}}>About the Editor</h1>
+                  <p>
+                    Azhar is a father and husband, social entrepreneur, sports nut, teacher and business coach. He has worked in the Human Resources industry for over 25 years and held senior human resources positions in both South Africa and Canada, focusing on strategic planning, total rewards, employee relations and diversity. He lives in beautiful Toronto and is a published author.  He is currently Professor of Leadership and Human Resources at Seneca College in Toronto.
+                  </p>
+
+                </Card>
+                <Card style={{marginTop: '25px', marginBottom: '25px', paddingBottom: '50px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
+                  <h1 style={{marginBottom: '15px', color: 'red'}}>What will you find?</h1>
+                <p>
+                I am writing a book and developing a website on the experiences of immigrants and refugees in Canada, part of which includes a compilation of original stories from at least 100 Canadians who have made Canada their home. The project will highlight the joys and challenges of new Canadians who have been in Canada for at least 5 years.  I would love to hear interesting and compelling stories from immigrants and refugees from different parts of the world.
+                </p>
                 </Card>
             </div>
         )
