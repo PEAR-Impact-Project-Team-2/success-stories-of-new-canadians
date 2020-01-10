@@ -2,7 +2,7 @@
 templateKey: story-page
 title: New Story Test
 description: 'Nulla venenatis velit nunc, et dignissim turpis interdum a.'
-country: Antartica
+country: Nigeria
 author: Chidubem Ogbudibe
 image: /images/uploads/download.jpeg
 date: 2019-12-08T04:13:30.895Z

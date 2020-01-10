@@ -11,7 +11,7 @@ export const navigation = [
     },
     {
       "text": "About",
-      "relativelink": "/",
+      "relativelink": "/#aboutSection",
       "id": "about"
     },
     {

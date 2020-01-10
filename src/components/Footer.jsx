@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button, Grid, Hidden } from '@material-ui/core'
+import { Grid, Hidden } from '@material-ui/core'
+import { Button } from "gatsby-theme-material-ui";
 import '@styles/components/Footer.scss';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { navigation } from '@components/Directory'
@@ -97,7 +98,7 @@ export default function Footer() {
                         socialMedia.map((entry) => {
                             return(
                                 <Button size='small' key={entry.alt}>
-                                    <OutboundLink href={entry.outlink}>
+                                    <OutboundLink href={entry.outlink} target='_blank' and rel='noopener noreferrer'>
                                         <img src={entry.imagelink} height='50px' alt={entry.alt} />
                                     </OutboundLink>
                                 </Button>
