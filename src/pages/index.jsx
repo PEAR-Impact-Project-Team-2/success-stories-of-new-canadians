@@ -6,7 +6,6 @@ import Header from '@components/Header';
 import Navbar from '@components/Navbar';
 import About from '@components/About';
 import SearchWidget from '@components/SearchWidget';
-import BasicTextFields from '@components/Test'; 
 import '@styles/pages/Index.scss';
 
 const IndexPage = () => {
@@ -17,7 +16,7 @@ const IndexPage = () => {
       <About />
       <SearchWidget/>
       <div className='index__divbutton'>
-      <Button id='contact' to='/selectionTest'>
+      <Button className='selectionTest__button' id='contact' to='/selectionTest'>
         Search more stories ...
       </Button> 
       </div> 
