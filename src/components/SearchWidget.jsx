@@ -3,8 +3,7 @@ import '@styles/components/SearchWidget.scss';
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { TextField, Chip, Card } from '@material-ui/core'
-import { Button } from "gatsby-theme-material-ui";
+import { TextField, Chip, Card, Button } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 

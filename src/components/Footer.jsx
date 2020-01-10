@@ -1,6 +1,5 @@
 import React from 'react'
-import { Grid, Hidden } from '@material-ui/core'
-import { Button } from "gatsby-theme-material-ui";
+import { Grid, Hidden, Button } from '@material-ui/core'
 import '@styles/components/Footer.scss';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { navigation } from '@components/Directory'

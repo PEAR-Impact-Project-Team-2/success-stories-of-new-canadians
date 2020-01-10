@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import { Card } from '@material-ui/core';
-import { Button } from "gatsby-theme-material-ui";
+import { Card, Button } from '@material-ui/core';
 import '@styles/components/Header.scss';
 import MapChart from './MapChart';
 
