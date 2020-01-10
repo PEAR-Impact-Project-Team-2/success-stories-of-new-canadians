@@ -54,19 +54,9 @@ const BlogPage = ({ data }) => {
 
         </div>
 
-        <div className='suggestedBlog'>
+        {/* <div className='suggestedBlog'>
           <SuggestStories edges={data.allMarkdownRemark.edges} />    
-        </div>
-        
-        {/*
-          LEGACY CODE FOR DISCUS
-
-        <div className='comment'>
-          <div className='comment__commentSection'>
-            <DiscussionEmbed {...disqusConfig} />
-          </div>
-        </div>
-        */}
+        </div> */}
 
         <Footer />
 

@@ -3,7 +3,7 @@ import '@styles/components/SearchWidget.scss';
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { TextField, Chip } from '@material-ui/core'
+import { TextField, Chip, Card, Button } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 
@@ -105,6 +105,7 @@ export class SearchWidget extends Component {
 
         return (
             <div className="widgetStyles__searchwidget">
+              <Card style={{paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
                 <h1 style={{marginBottom: '15px'}}>Directly search by title or person</h1>
                 <Autocomplete
                     className="widgetStyles__searchBox"
@@ -157,7 +158,14 @@ export class SearchWidget extends Component {
                         }
                         )
                     }
+                    
                 </div>
+                <div style={{padding: '25px', display: 'flex', justifyContent: 'center'}}>
+                <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' to='/selectionTest'>
+                  Browse all stories ...
+                </Button> 
+                </div> 
+                </Card>
             </div>
         )
     }
@@ -168,6 +176,9 @@ SearchWidget.propTypes = {
         allMarkdownRemark: PropTypes.shape({
             edges: PropTypes.array,
         }),
+        markdownRemark: PropTypes.shape({
+          edges: PropTypes.array,
+      }),
     }),
 }
 
@@ -188,6 +199,13 @@ export default () => (
               slug
             }
           }
+        }
+      }
+      markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
+        frontmatter {
+          image
+          heading
+          title
         }
       }
     }

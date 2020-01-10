@@ -13,12 +13,8 @@ const IndexPage = () => {
     <Page id='home' className='index'>
       <Navbar page='home'/>
       <Header />
-      <About />
       <SearchWidget/>
       <div className='index__divbutton'>
-      <Button className='selectionTest__searchWidgetSearchMore' id='contact' to='/selectionTest'>
-        Browse all stories ...
-      </Button> 
       </div> 
     </Page>
   );
