@@ -6,7 +6,6 @@ import Header from '@components/Header';
 import Navbar from '@components/Navbar';
 import About from '@components/About';
 import SearchWidget from '@components/SearchWidget';
-import BasicTextFields from '@components/Test'; 
 import '@styles/pages/Index.scss';
 
 const IndexPage = () => {
