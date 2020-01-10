@@ -39,7 +39,7 @@ const BlogPage = ({ data }) => {
           
           <div className='content__socialMedia'>
 
-            <ShareCard shareUrl={window.location.href} Title={headerProps.title}/>
+            <ShareCard shareUrl={'google.com'} Title={headerProps.title}/>
 
           </div>
 
