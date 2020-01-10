@@ -55,8 +55,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `csec-pear-project`,
-        short_name: `pears`,
+        name: `immigrant-success-stories-canada`,
+        short_name: `stories`,
         start_url: `/`,
         background_color: `#FF0000`,
         theme_color: `#FF0000`,

@@ -35,7 +35,5 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - {label: Title, name: title, widget: string}
-          - {label: Image, name: image, widget: image}
           - {label: Heading, name: heading, widget: string}
-          - {label: Subheading, name: subheading, widget: string}
           - {label: About Us, name: aboutus, widget: object, fields: [{label: AuthorTitle, name: title1, widget: string}, {label: AuthorDescription, name: description1, widget: text}, {label: ProjectTitle, name: title2, widget: string}, {label: ProjectDescription, name: description2, widget: text}]}
