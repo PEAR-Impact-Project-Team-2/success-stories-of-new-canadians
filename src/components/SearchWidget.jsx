@@ -158,7 +158,6 @@ export class SearchWidget extends Component {
                         }
                         )
                     }
-                    
                 </div>
                 <div style={{padding: '25px', display: 'flex', justifyContent: 'center'}}>
                 <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' to='/selectionTest'>
@@ -190,9 +189,6 @@ SearchWidget.propTypes = {
         allMarkdownRemark: PropTypes.shape({
             edges: PropTypes.array,
         }),
-        markdownRemark: PropTypes.shape({
-          edges: PropTypes.array,
-      }),
     }),
 }
 
@@ -213,13 +209,6 @@ export default () => (
               slug
             }
           }
-        }
-      }
-      markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
-        frontmatter {
-          image
-          heading
-          title
         }
       }
     }
