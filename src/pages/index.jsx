@@ -13,7 +13,6 @@ const IndexPage = () => {
     <Page id='home' className='index'>
       <Navbar page='home'/>
       <Header />
-      <About />
       <SearchWidget/>
       <div className='index__divbutton'>
       <Button className='selectionTest__button' id='contact' to='/selectionTest'>
