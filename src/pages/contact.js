@@ -5,7 +5,6 @@ import { Page } from '../layouts/Page';
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Select, MenuItem} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from '@components/Navbar';
-import ReCAPTCHA from "react-google-recaptcha";
 
 
 import '@styles/pages/Contact.scss'
@@ -55,7 +54,6 @@ const ContactPage = () => {
   const [showDropdown, setShowDropdown] = React.useState(false)
   const [contactPopOpen, setContactPopOpen] = React.useState(false)
   const [messageOpen, setMessageOpen] = React.useState(false)
-  const [isVerified, setVerified] = React.useState(false)
 
   const openSubs = () => {
       setSubOpen(true);
@@ -63,15 +61,11 @@ const ContactPage = () => {
 
   const closeSubs = () => {
       setSubOpen(false)
-  }  
+  }
 
   const openThanks = () => {
       closeSubs()
-      if (isVerified) {
-        setThanksOpen(true)
-      } else {
-        alert('Please verify that you are a human')
-      }
+      setThanksOpen(true)
   }
 
   const closeThanks = () => {
@@ -80,11 +74,7 @@ const ContactPage = () => {
 
   const openMessageSent = () => {
     closeContactPopup()
-    if (isVerified) {
-      setMessageOpen(true)
-    } else {
-      alert('Please verify that you are a human')
-    }
+    setMessageOpen(true)
   }
 
   const closeMessageSent = () => {
@@ -98,10 +88,6 @@ const ContactPage = () => {
   const openContactPopup = () => {
     setContactPopOpen(true);
   };
-
-  const captchaComplete = () => {
-    setVerified(true);
-  }
 
   
 
@@ -168,10 +154,6 @@ const ContactPage = () => {
               <Button onClick={closeMessageSent}>Close</Button>
           </DialogContent>
       </Dialog>
-      <ReCAPTCHA
-      sitekey="6Lcdmc0UAAAAAI8h_3WLw1HSiy2BqTL0ZQTi4pU5"
-      onChange={captchaComplete}
-    />
     </div>
     </Page>
   );
