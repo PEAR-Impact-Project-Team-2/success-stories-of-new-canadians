@@ -3,7 +3,7 @@ import '@styles/components/SearchWidget.scss';
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { TextField, Chip } from '@material-ui/core'
+import { TextField, Chip, Card, Button } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
 
@@ -105,8 +105,8 @@ export class SearchWidget extends Component {
 
         return (
             <div className="widgetStyles__searchwidget">
-                <h1 style={{marginBottom: '15px'}}>Directly search by title or person</h1>
-                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+              <Card style={{marginTop: '25px', marginBottom: '25px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
+                <h1 style={{marginBottom: '15px', color: 'red'}}>Directly search by title or person</h1>
                 <Autocomplete
                     className="widgetStyles__searchBox"
                     freeSolo
@@ -119,7 +119,7 @@ export class SearchWidget extends Component {
                     options={autocompleteoptions}
                     renderOption={(option) => (
                       <React.Fragment>
-                        <p className="widgetStyles__checkboxtext">{option.title}</p>
+                        <h1 style={{color: 'black'}}>{option.title}</h1>
                       </React.Fragment>
                     )}
                     renderInput={params => (
@@ -159,6 +159,26 @@ export class SearchWidget extends Component {
                         )
                     }
                 </div>
+                <div style={{padding: '25px', display: 'flex', justifyContent: 'center'}}>
+                <Button style={{color: 'white', backgroundColor: 'red'}} id='contact' to='/selectionTest'>
+                  Browse all stories ...
+                </Button> 
+                </div> 
+                </Card>
+                
+                <Card style={{marginTop: '25px', marginBottom: '25px', paddingBottom: '50px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
+                  <h1 style={{marginBottom: '15px', color: 'red'}}>About the Editor</h1>
+                  <p>
+                    Azhar is a father and husband, social entrepreneur, sports nut, teacher and business coach. He has worked in the Human Resources industry for over 25 years and held senior human resources positions in both South Africa and Canada, focusing on strategic planning, total rewards, employee relations and diversity. He lives in beautiful Toronto and is a published author.  He is currently Professor of Leadership and Human Resources at Seneca College in Toronto.
+                  </p>
+
+                </Card>
+                <Card style={{marginTop: '25px', marginBottom: '25px', paddingBottom: '50px', paddingTop: '50px', paddingLeft: '25px', paddingRight: '25px', backgroundColor: 'rgb(245, 245, 245)'}}>
+                  <h1 style={{marginBottom: '15px', color: 'red'}}>What will you find?</h1>
+                <p>
+                I am writing a book and developing a website on the experiences of immigrants and refugees in Canada, part of which includes a compilation of original stories from at least 100 Canadians who have made Canada their home. The project will highlight the joys and challenges of new Canadians who have been in Canada for at least 5 years.  I would love to hear interesting and compelling stories from immigrants and refugees from different parts of the world.
+                </p>
+                </Card>
             </div>
         )
     }

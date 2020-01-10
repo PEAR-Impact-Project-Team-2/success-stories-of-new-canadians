@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
+import { Card } from '@material-ui/core';
+
 import '@styles/components/Header.scss';
 
 class Header extends Component {
@@ -8,19 +10,14 @@ class Header extends Component {
 
       return (
          <div className='headcont'>
-            <header  style={{backgroundImage: `url(${data.markdownRemark.frontmatter.image})`, width: '100%', justifySelf: 'center'}} id="home">
-               <div className="row banner">
-                  <div className="banner-text">
-                     <h1>{data.markdownRemark.frontmatter.title}</h1>
-                     <h3>{data.markdownRemark.frontmatter.heading}</h3>
-                     <hr />
-                  </div>
-
-                  <p className="scrolldown">
-                     <a className="smoothscroll" href="#contact"><i className="fa fa-arrow-down"></i></a>
-                  </p>
+            <Card>
+            <header style={{ backgroundImage: `url(${data.markdownRemark.frontmatter.image})`, width: '100%', justifySelf: 'center' }} id="home">
+               <div className="banner-text">
+                  <h1 style={{color: 'red'}}>Success Stories of New Canadians</h1>
+                  <h4 style={{color: 'white'}}>A place to read, share, and celebrate the successes of new Canadians through blog stories of real stories.</h4>
                </div>
             </header>
+            </Card>
          </div>
       );
    }
