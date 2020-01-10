@@ -4,9 +4,21 @@ import '@styles/components/Navbar.scss';
 import PropTypes from 'prop-types'
 import { TextField } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
-import { StaticQuery, graphql, navigate } from "gatsby"
+import { StaticQuery, graphql, navigate, Link } from "gatsby"
 
 export class Navbar extends Component {
+  componentDidMount() {
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("floatingNavbar").style.top = "0";
+      } else {
+        document.getElementById("floatingNavbar").style.top = "-78px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+  }
 
   render() {
 
@@ -70,11 +82,11 @@ export class Navbar extends Component {
     }
 
     return (
-      <div class="parent">
-        <nav class="nav-wrap">
-          <a href="./" id="logo">
+      <div id="floatingNavbar">
+        <nav className="nav-wrap">
+          <Link to="/" id="logo">
             <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
-          </a>
+          </Link>
           <ul id="nav" className="nav">
             <li>
               <Autocomplete
@@ -104,11 +116,11 @@ export class Navbar extends Component {
                 )}
               />
             </li>
-            <li className="current"><a className="smoothscroll" href="./">Home</a></li>
-            <li><a className="smoothscroll" href="/selectionTest">Stories</a></li>
-            <li><a className="smoothscroll" href="https://azharlaher.com/about-azhar">About Me</a></li>
-            <li><a className="smoothscroll" href="/contact">Contact Me</a></li>
-            <li><a className="smoothscroll" href="/contact">Subscribe</a></li>
+            <li className="current"><Link className="smoothscroll" to="/">Home</Link></li>
+            <li><Link className="smoothscroll" to="/selectionTest">Stories</Link></li>
+            <li><Link className="smoothscroll" to="/#about">About Me</Link></li>
+            <li><Link className="smoothscroll" to="/contact">Contact Me</Link></li>
+            <li><Link className="smoothscroll" to="/contact">Subscribe</Link></li>
           </ul>
         </nav>
       </div>

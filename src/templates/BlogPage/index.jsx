@@ -1,12 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { BlogHeader } from '../../components/BlogHeader';
-import { ShareCard } from '../../components/ShareCard';
-import { SuggestStories } from '../../components/SuggestStories';
+import { BlogHeader } from '@components/BlogHeader';
+import { ShareCard } from '@components/ShareCard';
+import { SuggestStories } from '@components/SuggestStories';
 import { DiscussionEmbed } from "disqus-react"
 import { Seo } from '@components';
 import Navbar from '@components/Navbar';
-import Footer from '../../components/Footer';
+import Footer from '@components/Footer';
 import '@styles/templates/BlogPage.scss';
 
 const BlogPage = ({ data }) => {

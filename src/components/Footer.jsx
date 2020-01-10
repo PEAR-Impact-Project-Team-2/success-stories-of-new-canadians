@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Grid } from '@material-ui/core'
-import '@styles/components/Footer.scss';
-import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import '@styles/components/Footer.scss'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
+import { Link } from 'gatsby';
 
 export default function Footer() {
     const styleZ = {
@@ -12,7 +13,7 @@ export default function Footer() {
             <Grid container direction="row" justify="space-evenly" alignItems="stretch">
                 <Grid item>
                     <Grid item xs={4}>
-                        <Button style={styleZ} to="./">Home</Button>
+                        <Link to="/">Home</Link>
                     </Grid>
                     <Grid item xs={4}>
                         <Button style={styleZ} href="/selectionTest">Stories</Button>
@@ -41,7 +42,7 @@ export default function Footer() {
                         </OutboundLink>
                     </Button>
                     <Button size='small'>
-                        <OutboundLink href="https://www.linkedin.com/in/azhar-laher-877b844/?originalSubdomain=ca">
+                        <OutboundLink href="https://www.linkedin.com/in/azhar-laher-877b844/?originalSubdomain=ca" target='_blank' and rel='noopener noreferrer'>
                             <img src={require('../assets/linkedin.svg')} height='64px' alt='LinkedIn' />
                         </OutboundLink>
                     </Button>

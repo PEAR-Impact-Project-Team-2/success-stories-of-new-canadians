@@ -29,6 +29,7 @@ module.exports = {
         path: `${__dirname}/src/data`,
       },
     },
+    `gatsby-transformer-csv`,
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
@@ -71,6 +72,7 @@ module.exports = {
           '@pages': path.resolve(__dirname, 'src/pages'),
           '@styles': path.resolve(__dirname, 'src/styles'),
           '@utils': path.resolve(__dirname, 'src/utils'),
+          '@data': path.resolve(__dirname, 'src/data'),
         },
       },
     },
