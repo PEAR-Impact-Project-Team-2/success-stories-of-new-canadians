@@ -41,14 +41,14 @@ export default function MapChart() {
         const found = markers.some(el => el.country === cName);
         if (!found) {
             countryObj['country'] = cName;
-            let correctNode = coordData.allCountryCentroidsAz8Csv.edges.filter(function(edge) {
+            let correctNode = coordData.allCountryCentroidsAz8Csv.edges.filter(function (edge) {
                 return edge.node.name == cName;
             });
-            console.log(correctNode)
+            console.log(correctNode['0'].node.Longitude)
             if (correctNode != []) {
                 countryObj['coordinates'] = []
-                countryObj['coordinates'].push(correctNode['Longitude'])
-                countryObj['coordinates'].push(correctNode['Latitude'])
+                countryObj['coordinates'].push(correctNode['0'].node.Longitude)
+                countryObj['coordinates'].push(correctNode['0'].node.Latitude)
                 markers.push(countryObj)
             }
         }
@@ -56,35 +56,44 @@ export default function MapChart() {
     console.log(markers)
 
     return (
-        <ComposableMap
-            style={{
-                width: '50%',
-                height: '65%'
-            }}
-        >
-            <Geographies geography={geoUrl}>
-                {({ geographies }) =>
-                    geographies
-                        .map(geo => (
-                            <Geography
-                                key={geo.rsmKey}
-                                geography={geo}
-                                fill="#EAEAEC"
-                                stroke="#D6D6DA"
-                            />
-                        ))
-                }
-            </Geographies>
-            {markers.map(({ country, coordinates }) => (
-                <Marker key={country} coordinates={coordinates}>
-                    <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
-                    <text
-                        textAnchor="middle"
-                        style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
-                    >
-                        {country}
-                    </text>
-                </Marker>
-            ))}
-        </ComposableMap>)
+        <div>
+            <ComposableMap
+                style={{
+                    width: '100%',
+                    height: '125vh'
+                }}
+                projection="geoMercator"
+            >
+                <Geographies geography={geoUrl}>
+                    {({ geographies }) =>
+                        geographies
+                            .map(geo => (
+                                <Geography
+                                    key={geo.rsmKey}
+                                    geography={geo}
+                                    fill="#5A0001"
+                                    stroke="#22181C"
+                                    strokeWidth="0.5px"
+                                />
+                            ))
+                    }
+                </Geographies>
+                {markers.map(({ country, coordinates }) => (
+                    <Marker key={country} coordinates={coordinates}>
+                        <g
+                            fill="none"
+                            stroke="#F45B69"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            transform="translate(-12, -24)"
+                        >
+                            <circle cx="12" cy="10" r="3" />
+                            <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
+                        </g>
+                    </Marker>
+                ))}
+
+            </ComposableMap>
+        </div>)
 }

@@ -96,9 +96,9 @@ export class Navbar extends Component {
             <nav className="nav-wrap">
               <meta name="navbar" content="Desktop navigation bar." />
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <a id="logo">
+                <Link id="logo" to="/">
                   <img src="/images/uploads/logo-icon-navbar.png" alt="logo" width="72px" />
-                </a>
+                </Link>
                 <h1 style={{ color: 'red', alignSelf: 'center', textAlign: 'center', marginRight: 20 }}>
                   Success Stories of New Canadians
               </h1>
