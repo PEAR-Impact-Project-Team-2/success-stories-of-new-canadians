@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import '@styles/components/SuggestStories.scss';
 
-export const SuggestStories = ({ edges }) => (
+export const SuggestStories = ({ order, edges }) => (
     <div className='spacer'>
     <h3>Recent Stories:</h3>
     <div className='suggestContainer'>
