@@ -57,8 +57,19 @@
         }
     }
 
+    &__contactStyle {
+        background-color: white;
+        margin-bottom: 10px;
+        padding: 10px;
+        justify-content: center;
+        display: flex;
+        height: 30px;
+        padding-bottom: 50vh;
+    }
+
     &__headerBox {
         background-color: white;
+        padding-top: 7vh;
     }
 
     &__checkboxtext {
