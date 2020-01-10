@@ -4,7 +4,7 @@ import '@styles/components/Navbar.scss';
 import PropTypes from 'prop-types'
 import { TextField, Hidden } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
-import { StaticQuery, graphql, navigate } from "gatsby"
+import { StaticQuery, graphql, navigate, Link } from "gatsby"
 import MobileNavbar from '@components/MobileNavbar'
 import { navigation } from '@components/Directory'
 import HideOnScroll from '@components/HideOnScroll'
@@ -145,11 +145,11 @@ export class Navbar extends Component {
                 {console.log(data)}
                 {navigation.map((entry) => (
                   <li key={entry.id}>
-                    <a
+                    <Link
                       className={this.props.page.page === entry.id ? "nav-wrap__current" : "nav-wrap__other"}
-                      href={entry.relativelink}>
+                      to={entry.relativelink}>
                       {entry.text}
-                    </a>
+                    </Link>
                   </li>
                 ))}
 

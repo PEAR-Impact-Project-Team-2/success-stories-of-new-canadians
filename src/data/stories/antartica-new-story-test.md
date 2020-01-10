@@ -1,5 +1,5 @@
 ---
-templateKey: story-post
+templateKey: story-page
 title: New Story Test
 description: 'Nulla venenatis velit nunc, et dignissim turpis interdum a.'
 country: Antartica
