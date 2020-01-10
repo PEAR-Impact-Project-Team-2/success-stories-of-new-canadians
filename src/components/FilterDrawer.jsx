@@ -5,7 +5,7 @@ import { SquareFlagIcon } from './SquareFlagIcon'
 import { Autocomplete } from '@material-ui/lab'
 import { Card, CardMedia, CardActions, Checkbox, Chip } from '@material-ui/core';
 import { CardActionArea, CardContent, Typography } from '@material-ui/core'
-import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse } from '@material-ui/core';
+import { FormControl, Drawer, List, ListSubheader, ListItem, ListItemText, Collapse, Divider } from '@material-ui/core';
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import SearchIcon from '@material-ui/icons/Search'
@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     width: 270,
+    marginTop: 80,
   },
   fullList: {
     width: 'auto',
@@ -40,15 +41,6 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(4),
     padding: 1
   },
-  // card: {
-  //   width: {Dimensions.get('window')},
-  //   marginRight: '5px',
-  //   marginLeft: '5px',
-  //   marginTop: '5px',
-  //   marginBottom: '5px',
-  //   backgroundColor: 'white',
-  //   flexWrap: 'wrap'
-  // },
   searchSubmitButton: {
     backgroundColor: 'red',
     color: 'white',
@@ -60,12 +52,24 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    padding: '10px',
   },
   button: {
     backgroundColor: 'white',
     color: 'red',
     marginBottom: '5px',
-    marginTop: '5px'
+    marginTop: '5px',
+  },
+  sortButton: {
+    backgroundColor: 'red',
+    color: 'white',
+    marginBottom: '15px',
+    marginTop: '15px',
+    '&:hover':
+    {
+      backgroundColor: 'white',
+      color: 'red',
+    },
   },
   fab: {
     backgroundColor: 'red',
@@ -96,7 +100,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     bottom: '0%'
   },
-  // item padding in lists
   item: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -147,7 +150,7 @@ export default function FilterDrawer(props) {
   function includeAllCountries() { return filterCountrySetting.length === props.countries.length }
   function includeAllTags() { return filterTagSetting.length === props.tags.length }
 
-  const [searchText, setSearchText] = React.useState("");
+  const [searchText, setSearchText] = React.useState(props.initialSearchText != null ? props.initialSearchText : "");
 
   var currentSearchText = "";
 
@@ -170,9 +173,6 @@ export default function FilterDrawer(props) {
     navigate("/selectionTest", {
       state: { searchTag: { event } },
     })
-    // setTagSetting([event])
-    // setIncludeAllTags(false);
-    // setTagOpen(true);
   }
 
   const handleDateNameChange = event => {
@@ -273,20 +273,21 @@ export default function FilterDrawer(props) {
     <div
       className={nestedClasses.list}
     >
+      <title>Navigation bar for desktop and larger screens.</title>
       <List>
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
             <ListSubheader component="div" id="nested-list-subheader">
-              Filter Stories
-          </ListSubheader>
+              <Typography variant="h5">Filter Stories</Typography>
+            </ListSubheader>
           }
           className={nestedClasses.root}
         >
           { /* Date Filtering */}
           <ListItem button onClick={handleClick.bind(this, 0)}>
-            <ListItemText primary="by Name/Date" />
+            <ListItemText primary="Sort by Name/Date" />
             {nameOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={true} timeout="auto" unmountOnExit>
@@ -294,14 +295,14 @@ export default function FilterDrawer(props) {
             </List>
           </Collapse>
           <Collapse in={nameOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding={true}>
-              <FormControl component="fieldset" className={nestedClasses.formControl}>
+            <List component="div" disablePadding={true} style={{marginLeft: '11px'}}>
+              <FormControl component="fieldset">
                 <FormLabel component="legend"></FormLabel>
                 <RadioGroup aria-label="name" name="name1" value={filterDateNameSetting} onChange={handleDateNameChange}>
                   {dateNames.map(item => {
                     return (
                       <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
-                        <FormControlLabel className={nestedClasses.formControlLabel} key={item} value={item} control={<Radio />} label={item} />
+                        <FormControlLabel key={item} value={item} control={<CssRadio />}/>{item}
                       </ListItem>
                     )
                   })}
@@ -309,7 +310,7 @@ export default function FilterDrawer(props) {
               </FormControl>
             </List>
           </Collapse>
-
+          <Divider/>
           { /* Country Filtering */}
 
           <ListItem button onClick={handleClick.bind(this, 1)}>
@@ -320,7 +321,7 @@ export default function FilterDrawer(props) {
           <Collapse in={true} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem button className={nestedClasses.nested}>
-                <Checkbox name='Include All' label='Include All' key='InlcAllCount' onClick={handleCountryChange} defaultChecked={includeAllCountries()}></Checkbox>Include All
+                <CssCheckbox name='Include All' label='Include All' key='InlcAllCount' onClick={handleCountryChange} defaultChecked={includeAllCountries()}></CssCheckbox>Include All
               </ListItem>
             </List>
           </Collapse>
@@ -330,14 +331,14 @@ export default function FilterDrawer(props) {
               {countries.map(item => {
                 return (
                   <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
-                    <Checkbox name={item} key={item} onClick={handleCountryChange} defaultChecked={filterCountrySetting.includes(item)}>
-                    </Checkbox>{item}
+                    <CssCheckbox name={item} key={item} onClick={handleCountryChange} defaultChecked={filterCountrySetting.includes(item)}>
+                    </CssCheckbox>{item}
                   </ListItem>)
               })}
 
             </List>
           </Collapse>
-
+          <Divider/>
           { /* Tag Filtering */}
 
           <ListItem button onClick={handleClick.bind(this, 2)}>
@@ -348,7 +349,7 @@ export default function FilterDrawer(props) {
           <Collapse in={true} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem button className={nestedClasses.nested}>
-                <Checkbox name='Include All' label='Include All' key='InlcAllTag' onClick={handleTagChange} defaultChecked={includeAllTags()}></Checkbox>Include All
+                <CssCheckbox name='Include All' label='Include All' key='InlcAllTag' onClick={handleTagChange} defaultChecked={includeAllTags()}></CssCheckbox>Include All
           </ListItem>
             </List>
           </Collapse>
@@ -360,13 +361,14 @@ export default function FilterDrawer(props) {
                 item => {
                   return (
                     <ListItem button className={nestedClasses.nested} key={'listitem' + item}>
-                      <Checkbox name={item} label={item} onClick={handleTagChange} key={item} defaultChecked={filterTagSetting.includes(item)}></Checkbox>{item}
+                      <CssCheckbox name={item} label={item} onClick={handleTagChange} key={item} defaultChecked={filterTagSetting.includes(item)}></CssCheckbox>{item}
                     </ListItem>
                   )
                 })
               }
             </List>
           </Collapse>
+          <Divider/>
         </List>
       </List>
     </div>
@@ -374,7 +376,18 @@ export default function FilterDrawer(props) {
 
   function filterSearchBar(value) {
     if (searchText.length === 0) return true;
-    return (value.node.frontmatter.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1)
+    let words = searchText.toLowerCase().split(" ");
+    let res = false;
+    words.forEach((st) => {
+      if (value.node.frontmatter.title.toLowerCase().indexOf(st) != -1 ||
+        value.node.frontmatter.tags.includes(st) ||
+        value.node.frontmatter.country.toLowerCase().indexOf(st) != -1) {
+        res = true;
+        return;
+      }
+    }
+    );
+    return res;
   }
 
   function getFilteredResults() {
@@ -382,6 +395,26 @@ export default function FilterDrawer(props) {
       (filterCountrySetting.includes(node.frontmatter.country) || includeAllCountries())
     ).filter(filterTags).filter(filterSearchBar);
   }
+
+  const CssCheckbox = withStyles({
+    root: {
+      color: 'red',
+      '&$checked': {
+        color: 'red',
+      },
+    },
+    checked: {},
+  })(props => <Checkbox color="default" {...props} />);
+
+  const CssRadio = withStyles({
+    root: {
+      color: 'red',
+      '&$checked': {
+        color: 'red',
+      },
+    },
+    checked: {},
+  })(props => <Radio color="default" {...props} />);
 
   const CssTextField = withStyles({
     root: {
@@ -427,7 +460,7 @@ export default function FilterDrawer(props) {
         backgroundColor: 'red',
         color: 'white',
       },
-      '.MuiAutocomplete-option':	{
+      '.MuiAutocomplete-option': {
         minHeight: '10px'
       }
     },
@@ -442,14 +475,14 @@ export default function FilterDrawer(props) {
   });
 
   const c = (event, values) => {
-    navigate(values.slug)
+    if (values.slug !== undefined)
+      navigate(values.slug)
   }
 
   return (
     <main>
-      {console.log(filterTagSetting)}
       <div className={autoCompleteClasses.root}>
-        <p className='index__text'> Find your next inspiration by their background, interests and contributions.</p>
+        <p className='index__text'> Find your next inspiration.</p>
         <div className={autoCompleteClasses.buttonSection}>
           <Autocomplete
             className={autoCompleteClasses.searchBox}
@@ -486,30 +519,36 @@ export default function FilterDrawer(props) {
                     <SearchIcon></SearchIcon>
                   </React.Fragment>
                 }
+                onChange={search}
                 InputProps={{ ...params.InputProps, type: 'search' }}
+                onKeyPress={(ev) => {
+                  if (ev.key === 'Enter') {
+                    onSearchSubmit();
+                  }
+                }}
               />)}
           />
-          <Button key="search" className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
+          <Button key="search" aria-label='search submit button' className={nestedClasses.searchSubmitButton} onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
         </div>
-        <div className={autoCompleteClasses.buttonSection}> 
-          <Button key="drawer" className={nestedClasses.button} onClick={toggleDrawer('left', true)}>
-            {'More Filters' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
+        <div className={autoCompleteClasses.buttonSection}>
+          <Button key="drawer" className={nestedClasses.sortButton} onClick={toggleDrawer('left', true)}>
+            {'Sort by Tag / Country' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
               ' (' + (filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1) + ')'))}
           </Button>
-        </div> 
+        </div>
         <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
           {sideList('left')}
         </Drawer>
-        <h3>
-          {(searchText.length > 0 ? "Results for: '" + searchText + "' with current tag and country filtering. Click search again to return." : "")}
-        </h3>
         <Grid
           container
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <div classes={{ backgroundColor: 'transparent', justifyItems: 'center' }}>
+          <h3 style={{ textAlign: 'center' }}>
+            {((searchText != null && searchText.length > 0) ? "Results for: '" + searchText + "' with current tag and country filtering. Click search again to return." : "")}
+          </h3>
+          <div style={{ backgroundColor: 'transparent', justifyItems: 'center', width: '100%', display: 'flex', justifyContent: 'center' }}>
             {getFilteredResults().length > 0 ?
               <div className={nestedClasses.resultsBox}>
                 {getFilteredResults().sort(sortNamesAlphabetically).map(({ node }, i) => (
@@ -521,9 +560,9 @@ export default function FilterDrawer(props) {
                   </SelectionCard>
                 ))}
               </div> :
-              <h3>
+              <h3 style={{padding: 10}}>
                 No results found for filter settings.
-                  </h3>}
+              </h3>}
           </div>
         </Grid>
       </div>
@@ -534,7 +573,7 @@ export default function FilterDrawer(props) {
 function SelectionCard(props) {
 
   const classes = useStyles();
-  //cinnuit
+
   return (
     <Card className='selectionTest__cardStyles'>
       <meta name="story" content={props.frontmatter.title + " " + props.frontmatter.country + " " + props.frontmatter.description}></meta>

@@ -2,8 +2,6 @@
 @import '../mixins';
 @import '../variables';
 
-:export { tagBackground: $PRIMARY }
-
 .selectionTest {
     .page__content {
         display: flex;
@@ -19,6 +17,7 @@
 
     &__titleSpace {
         color: transparent;
+        padding: 25px;
     }
 
     &__text {
@@ -59,7 +58,7 @@
             margin: 0.5%;
             background-color: white;
             flex-wrap: wrap;
-            width: 49%;
+            width: 40%;
         }
     }
 

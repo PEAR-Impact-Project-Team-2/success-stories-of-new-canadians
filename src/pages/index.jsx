@@ -11,14 +11,15 @@ import '@styles/pages/Index.scss';
 const IndexPage = () => {
   return (
     <Page id='home' className='index'>
-      <Navbar/>
+      <Navbar page='home'/>
       <Header />
       <About />
       <SearchWidget/>
+      <div className='index__divbutton'>
       <Button id='contact' className='index__button' to='/selectionTest'>
-        Select A Story
+        Search more stories ...
       </Button> 
-      
+      </div> 
     </Page>
   );
 };

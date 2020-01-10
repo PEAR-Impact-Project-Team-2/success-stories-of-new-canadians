@@ -21,9 +21,19 @@
         text-align: center;
     }
 
+    &__divbutton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     &__button {
         background-color: red;
         color: white;
+        max-height: 20px;
+        justify-content: center; 
+        margin: 10px;
+        min-width: 300px;
     }
 
     &__cards {
