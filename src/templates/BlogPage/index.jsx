@@ -7,11 +7,6 @@ import { Seo } from '@components';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 import '@styles/templates/BlogPage.scss';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
 
 const BlogPage = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
@@ -43,9 +38,9 @@ const BlogPage = ({ data }) => {
           <Seo title={headerProps.title} />
           
           <div className='content__socialMedia'>
-            <Router>
-              <ShareCard shareUrl={'google.com'} Title={headerProps.title}/>
-            </Router>
+
+            <ShareCard shareUrl={window.location.href} Title={headerProps.title}/>
+
           </div>
 
           <div
