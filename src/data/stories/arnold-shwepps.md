@@ -1,7 +1,10 @@
 ---
 templateKey: story-page
 title: A Tale of Success
-description: Coming to Canada
+description: >-
+  You wouldn't believe this story. Lorem ipsum dolor sit amet, consectetur
+  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+  aliqua. Ut enim ad minim veniam.
 country: Austria
 author: Arnold Scwepps
 image: /images/uploads/face2.jpg
