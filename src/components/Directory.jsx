@@ -22,6 +22,6 @@ export const navigation = [
     {
       "text": "Subscribe",
       "relativelink": "/contact",
-      "id": "subscribe"
+      "id": "contact"
     }
   ]

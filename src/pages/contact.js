@@ -123,7 +123,7 @@ const ContactPage = () => {
   
   return (
     <Page className='contact'>
-      <Navbar/>
+      <Navbar page='contact'/>
       <div className='selectionTest__headerBox'>
         <h1 className='selectionTest__title'>Contact and Subscribe</h1> 
       </div>
@@ -150,7 +150,7 @@ const ContactPage = () => {
       <p>Please enter your e-mail:</p>
         <div className={classes.textfieldBox}>
         <TextField variant="outlined" className={classes.textfield}></TextField>
-        <p>Message:</p>
+        <p>Leave me a message here: </p>
         <TextField
           multiline
           rows="4"

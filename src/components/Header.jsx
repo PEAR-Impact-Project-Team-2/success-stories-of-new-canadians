@@ -12,9 +12,9 @@ class Header extends Component {
          <div className='headcont'>
             <Card>
             <header style={{ backgroundImage: `url(${data.markdownRemark.frontmatter.image})`, width: '100%', justifySelf: 'center' }} id="home">
-               <div style={{paddingTop: '300px'}}>
-                  <h1 style={{color: 'red'}}>Success Stories of New Canadians</h1>
-                  <h4 style={{color: 'white'}}>A place to read, share, and celebrate the successes of new Canadians through blog stories of real stories.</h4>
+               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignContent: 'center', width: '100%', height: '100%'}}>
+                  <h1 style={{color: 'red', fontSize: '3.0rem'}}>Success Stories of New Canadians</h1>
+                  <p style={{color: 'white', fontSize: '1.0rem'}}>A place to read, share, and celebrate the successes of new Canadians through blog stories of real stories.</p>
                </div>
             </header>
             </Card>
