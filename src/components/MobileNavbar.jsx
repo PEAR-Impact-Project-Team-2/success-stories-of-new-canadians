@@ -8,19 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import '@styles/components/Navbar.scss';
 import { Autocomplete } from '@material-ui/lab'
 import { StaticQuery, graphql, navigate } from "gatsby"
-import Slide from '@material-ui/core/Slide';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-
-function HideOnScroll(props) {
-    const { children } = props;
-    const trigger = useScrollTrigger();
-  
-    return (
-      <Slide appear={false} direction="down" in={!trigger}>
-        {children}
-      </Slide>
-    );
-  }
+import HideOnScroll from '@components/HideOnScroll';
 
 export default function MobileNavbar(props) {
 

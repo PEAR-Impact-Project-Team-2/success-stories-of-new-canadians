@@ -44,11 +44,11 @@ export default function MapChart() {
             let correctNode = coordData.allCountryCentroidsAz8Csv.edges.filter(function(edge) {
                 return edge.node.name == cName;
             });
-            console.log(found)
             console.log(correctNode)
-            if (correctNode == []) {
-                countryObj['Longitude'] = correctNode.Longitude
-                countryObj['Latitude'] = correctNode.Latitude
+            if (correctNode != []) {
+                countryObj['coordinates'] = []
+                countryObj['coordinates'].push(correctNode['Longitude'])
+                countryObj['coordinates'].push(correctNode['Latitude'])
                 markers.push(countryObj)
             }
         }
