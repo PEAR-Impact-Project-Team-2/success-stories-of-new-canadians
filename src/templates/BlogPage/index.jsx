@@ -54,8 +54,12 @@ const BlogPage = ({ data }) => {
 
         </div>
 
-        <div className='suggestedBlog'>
-          <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />    
+        <div className='secondStrip'></div>
+        
+        <div className='suggestedBlogContainer'>
+          <div className='suggestedBlog'>
+            <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />    
+          </div>
         </div>
         
         {/*

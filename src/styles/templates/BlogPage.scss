@@ -97,8 +97,17 @@
     background-color: $PRIMARY;
 }
 
+.secondStrip {
+    height: 5px;
+    margin-top: 30px;
+    margin-right: 45%;
+    margin-left: 45%;
+    background-color: grey;
+}
+
 .blogContainer {
     padding-top: 40px;
+    padding-bottom: 0px;
     display:flex;
     flex-direction: row;
     min-height: 100vh; 
@@ -184,10 +193,15 @@
     }
 }
 
+.suggestedBlogContainer {
+    background-color:white;
+}
+
 .suggestedBlog {
-    width: 95%;
+    width: 100%;
     margin-left: 4vw;
     margin-right: 4vw;
+    margin-top: 0vh;
     background-color: white;
 }
 
