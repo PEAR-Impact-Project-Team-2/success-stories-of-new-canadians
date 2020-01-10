@@ -111,10 +111,10 @@ export default function FilterDrawer(props) {
       return 0;
     }
     else {
-      if (a.node.frontmatter.date < b.node.frontmatter.date) {
+      if (a.node.frontmatter.date > b.node.frontmatter.date) {
         return (filterDateNameSetting === dateNames[0]) ? -1 : 1;
       }
-      if (a.node.frontmatter.date > b.node.frontmatter.date) {
+      if (a.node.frontmatter.date < b.node.frontmatter.date) {
         return (filterDateNameSetting === dateNames[0]) ? 1 : -1;
       }
       return 0;
