@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: localhost-demo
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
@@ -38,4 +38,4 @@ collections:
           - {label: Image, name: image, widget: image}
           - {label: Heading, name: heading, widget: string}
           - {label: Subheading, name: subheading, widget: string}
-          - {label: About Us, name: aboutus, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
+          - {label: About Us, name: aboutus, widget: object, fields: [{label: AuthorTitle, name: title1, widget: string}, {label: AuthorDescription, name: description1, widget: text}, {label: ProjectTitle, name: title2, widget: string}, {label: ProjectDescription, name: description2, widget: text}]}
