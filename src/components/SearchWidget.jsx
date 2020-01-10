@@ -1,4 +1,4 @@
-import '@styles/components/SearchWidget.scss'
+import '@styles/components/SearchWidget.scss';
 
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles'
