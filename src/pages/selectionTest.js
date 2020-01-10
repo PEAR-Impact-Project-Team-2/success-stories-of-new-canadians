@@ -54,7 +54,6 @@ const SelectionPage = ({ data, location }) => {
         content="Search blog stories from new canadians"></meta>
       <Navbar page='selection' />
       <div className={'selectionTest__headerBox'}>
-        <h1 className='selectionTest__titleSpace'>s</h1>
         <h1 className='selectionTest__title'>Search Stories</h1>
       </div>
       {console.log(location.state !== null + " " + location.state !== undefined)}

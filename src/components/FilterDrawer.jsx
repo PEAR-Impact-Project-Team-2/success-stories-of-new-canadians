@@ -338,6 +338,20 @@ export default function FilterDrawer(props) {
     },
   })(TextField);
 
+  const CssButton = withStyles({
+    root: {
+        backgroundColor: 'red',
+        color: 'white',
+        '&:hover':
+        {
+        backgroundColor: 'white',
+        color: 'red',
+        },
+        marginRight: '2px',
+        marginTop: '5px',
+    }
+  })(Button)
+
   const autocompleteoptions = props.edges.map(({ node }) => {
     return {
       title: "'" + node.frontmatter.title + "'" + ' from ' + node.frontmatter.author,
@@ -355,13 +369,14 @@ export default function FilterDrawer(props) {
     <main style={{backgroundColor: 'white'}}>
       <div className="selectionTest__root">
         <p className='index__text'> Find your next inspiration.</p>
-        <div style={{justifyContent: 'center', alignItems: 'center', display: 'flex', width: '100%'}}>
+        <div style={{alignItems: 'center', display: 'flex', width: '100%', justifyContent: 'center', justifyItems: 'center'}}>
 
           <Autocomplete
             className="selectionTest__searchBox"
             freeSolo
             disableClearable
             onChange={c}
+            style={{width: "80%"}}
             size='small'
             margin='dense'
             id="combo-box-demo"
@@ -378,7 +393,6 @@ export default function FilterDrawer(props) {
                 variant="outlined"
                 margin="none"
                 fullWidth
-                style={{width: 300}}
                 onChange={search}
                 InputProps={{ ...params.InputProps, type: 'search' }}
                 onKeyPress={(ev) => {
@@ -391,10 +405,10 @@ export default function FilterDrawer(props) {
           <Button key="search" aria-label='search submit button' className="selectionTest__searchSubmitButton" onClick={onSearchSubmit.bind()}><SearchIcon></SearchIcon></Button>
         </div>
         <div style={{display:'flex', justifyContent:'center'}}>
-          <Button key="drawer" className="selectionTest__sortButton" onClick={toggleDrawer('left', true)}>
+          <CssButton key="drawer" onClick={toggleDrawer('left', true)}>
             {'Sort by Tag / Country' + ((filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1)) == 0 ? '' :
               ' (' + (filterTagSetting.length * (includeAllTags() ? 0 : 1) + filterCountrySetting.length * (includeAllCountries() ? 0 : 1) + ')'))}
-          </Button>
+          </CssButton>
         </div>
         <Drawer open={drawerState.left} onClose={toggleDrawer('left', false)}>
           {sideList('left')}

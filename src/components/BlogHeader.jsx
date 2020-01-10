@@ -31,18 +31,33 @@ export const BlogHeader = ({ title, description, author, date, image, country, t
                 <header className='blog__header'>
                     <h1 className='blogHeader__titleHeader'>{title}</h1>
                     <p className='blog__desc'>{description}</p>
-                    <ul className='blog__tags'>
-                        <li className='BlogHeader__tag'>
-                            <strong>by </strong>
-                            {author}
-                        </li>
-                        <li className='BlogHeader__tag'>
+                        <span>
+                        <p className='BlogHeader__tag'>
+                            {"by " + author}
+                        </p>
+                        </span>
+                        <span>
+                        <p className='BlogHeader__tag'>
                             {country}
-                        </li>
-                        <li className='BlogHeader__tag'>
+                        </p>
+                        </span>
+                        <span>
+                        <p className='BlogHeader__tag'>
                             {date}
-                        </li>
-                    </ul>
+                        </p>
+                        </span>
+                    { tags.map(tag => {
+                            return (
+                                <CssChip
+                                color="primary" 
+                                style={{marginRight: '5px'}}
+                                label={tag} 
+                                onClick={() => onTagSelect(tag)} 
+                                key={tag}/>
+                            );
+                        })
+                    }
+                    
                 </header>
             </div>
         </div>
