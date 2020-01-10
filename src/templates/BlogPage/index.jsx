@@ -7,14 +7,9 @@ import { Seo } from '@components';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 import '@styles/templates/BlogPage.scss';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
 
 const BlogPage = ({ data }) => {
-  const { html, frontmatter } = data.markdownRemark;
+  const { html, frontmatter, fields } = data.markdownRemark;
   const { order, ...headerProps } = frontmatter;
 
   return (
@@ -43,9 +38,9 @@ const BlogPage = ({ data }) => {
           <Seo title={headerProps.title} />
           
           <div className='content__socialMedia'>
-            <Router>
-              <ShareCard shareUrl={'google.com'} Title={headerProps.title}/>
-            </Router>
+
+            <ShareCard shareUrl={'https://immigrant-success-canada.netlify.com/'.concat(fields.slug)} Title={headerProps.title}/>
+
           </div>
 
           <div
@@ -60,7 +55,7 @@ const BlogPage = ({ data }) => {
         </div>
 
         <div className='suggestedBlog'>
-          <SuggestStories order={order} edges={data.allMarkdownRemark.edges} />    
+          <SuggestStories edges={data.allMarkdownRemark.edges} />    
         </div>
         
         {/*
@@ -93,6 +88,9 @@ export const pageQuery = graphql`
         order
         date(formatString: "MMMM DD, YYYY")
         tags
+      }
+      fields {
+        slug
       }
     }
     allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}, filter: {frontmatter: {templateKey: {eq: "story-page"}}}) {

@@ -49,7 +49,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-material-ui`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
